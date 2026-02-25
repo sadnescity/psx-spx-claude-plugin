@@ -24,11 +24,17 @@ Skills are model-invoked — Claude loads them automatically when the task conte
 ## Installation
 
 ```bash
-# Local (development)
-claude --plugin-dir /path/to/psx-spx
+# Add the marketplace (once)
+/plugin marketplace add brisma/claude-plugins
 
-# From marketplace
-/plugin install psx-spx
+# Install the plugin
+/plugin install psx-spx@brisma-plugins
+```
+
+For local development/testing:
+
+```bash
+claude --plugin-dir /path/to/psx-spx-claude-plugin
 ```
 
 ## Source
