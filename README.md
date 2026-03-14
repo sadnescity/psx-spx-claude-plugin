@@ -25,10 +25,10 @@ Skills are model-invoked — Claude loads them automatically when the task conte
 
 ```bash
 # Add the marketplace (once)
-/plugin marketplace add brisma/claude-plugins
+/plugin marketplace add sadnescity/claude-plugins
 
 # Install the plugin
-/plugin install psx-spx@brisma-plugins
+/plugin install psx-spx@sadnescity-plugins
 ```
 
 For local development/testing:
