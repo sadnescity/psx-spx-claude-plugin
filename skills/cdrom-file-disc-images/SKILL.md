@@ -734,7 +734,7 @@ Chunk Footer in v1 and up:<br/>
 ```
 The "Compressed ZLIB Data" parts contain Deflate'd data (starting with 2-byte
 ZLIB header, and ending with 4-byte ZLIB/ADLER checksum), for details see:<br/>
-[CDROM File Compression ZIP/GZIP/ZLIB (Inflate/Deflate)](cdromfileformats.md#cdrom-file-compression-zipgzipzlib-inflatedeflate)<br/>
+[CDROM File Compression ZIP/GZIP/ZLIB (Inflate/Deflate)](../cdrom-file-compression/SKILL.md#cdrom-file-compression-zipgzipzlib-inflatedeflate)<br/>
 
 #### .CDZ Chunks / Content
 The chunk(s) have following content:<br/>
@@ -1025,7 +1025,7 @@ it isn't very good to compress audio sectors that way).<br/>
 Data Compression is using raw Deflate (without any zlib headers or the like),
 and it's unfortunately just compressing the sectors as-is (without filtering
 out sector headers and ECC/EDC values).<br/>
-[CDROM File Compression ZIP/GZIP/ZLIB (Inflate/Deflate)](cdromfileformats.md#cdrom-file-compression-zipgzipzlib-inflatedeflate)<br/>
+[CDROM File Compression ZIP/GZIP/ZLIB (Inflate/Deflate)](../cdrom-file-compression/SKILL.md#cdrom-file-compression-zipgzipzlib-inflatedeflate)<br/>
 Audio Compression format is unknown:<br/>
 ```
   ?
@@ -1484,14 +1484,14 @@ code; there aren't any ZLIB headers nor Adler checksums). V1-V4 does
 distinguish between "zlib" and "zlib+" (both are using normal Deflate) (V3/V4
 are always using "zlib+") (the "+" does probably just mean that file was
 compressed with improved compression ratio).<br/>
-[CDROM File Compression ZIP/GZIP/ZLIB (Inflate/Deflate)](cdromfileformats.md#cdrom-file-compression-zipgzipzlib-inflatedeflate)<br/>
+[CDROM File Compression ZIP/GZIP/ZLIB (Inflate/Deflate)](../cdrom-file-compression/SKILL.md#cdrom-file-compression-zipgzipzlib-inflatedeflate)<br/>
 
 ##### LZMA
 This contains a raw LZMA bitstream (without .lzma or .lz headers). The LZMA
 bitstream starts with 8 ignored bits, if Normalization occurs after last
 compression code, then it will also end with 8 ignored bits (those ignored bits
 aren't CHD-specific, they do also occur in other LZMA-based formats).<br/>
-[CDROM File Compression LZMA](cdromfileformats.md#cdrom-file-compression-lzma)<br/>
+[CDROM File Compression LZMA](../cdrom-file-compression/SKILL.md#cdrom-file-compression-lzma)<br/>
 
 ##### FLAC
 The data consists of raw FLAC Frames (without FLAC file header or FLAC metadata
@@ -1503,7 +1503,7 @@ There are usually several FLAC frames per CHD hunk (one must decompress all
 FLAC frames, until reaching the decompressed hunk size).<br/>
 Each FLAC Frame contains Left samples, followed by Right samples. After
 decompression, CHD does store them in interleaved form (L,R,L,R,etc.)<br/>
-[CDROM File Compression FLAC audio](cdromfileformats.md#cdrom-file-compression-flac-audio)<br/>
+[CDROM File Compression FLAC audio](../cdrom-file-compression/SKILL.md#cdrom-file-compression-flac-audio)<br/>
 
 ##### Huffman
 This is using some custom CHD-specific Huffman compression.<br/>

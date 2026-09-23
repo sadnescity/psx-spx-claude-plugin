@@ -18,7 +18,7 @@ assuming that the BIOS is read-only).<br/>
 The BIOS initalizes Expansion Region 1 to 512Kbyte with 8bit bus, and Region 2
 to 128 bytes with 8bit bus. However, the size and data bus-width of these
 regions can be changed, see:<br/>
-[Memory Control](memorycontrol.md)<br/>
+[Memory Control](../memory-control/SKILL.md)<br/>
 For Region 1, 32bit reads are supported even in 8bit mode (eg. 32bit opcode
 fetches are automatically processed as four 8bit reads).<br/>
 For Region 2, only 8bit access seems to be supported (except that probably
@@ -26,13 +26,13 @@ For Region 2, only 8bit access seems to be supported (except that probably
 exceptions... not sure if that can be disabled...?<br/>
 
 #### Expansion 1 - EXP1 - Intended to contain ROM
-[EXP1 Expansion ROM Header](expansionportpio.md#exp1-expansion-rom-header)<br/>
+[EXP1 Expansion ROM Header](#exp1-expansion-rom-header)<br/>
 
 #### Expansion 2 - EXP2 - Intended to contain I/O Ports
-[EXP2 Dual Serial Port (for TTY Debug Terminal)](expansionportpio.md#exp2-dual-serial-port-for-tty-debug-terminal)<br/>
-[EXP2 DTL-H2000 I/O Ports](expansionportpio.md#exp2-dtl-h2000-io-ports)<br/>
-[EXP2 Post Registers](expansionportpio.md#exp2-post-registers)<br/>
-[EXP2 Nocash Emulation Expansion](expansionportpio.md#exp2-nocash-emulation-expansion)<br/>
+[EXP2 Dual Serial Port (for TTY Debug Terminal)](#exp2-dual-serial-port-for-tty-debug-terminal)<br/>
+[EXP2 DTL-H2000 I/O Ports](#exp2-dtl-h2000-io-ports)<br/>
+[EXP2 Post Registers](#exp2-post-registers)<br/>
+[EXP2 Nocash Emulation Expansion](#exp2-nocash-emulation-expansion)<br/>
 
 #### Expansion 3 - EXP3 - Intended to contain RAM
 Not used by BIOS nor by any games. Seems to contain 1Mbyte RAM with 16bit
@@ -101,7 +101,7 @@ Replay v2.0 and up).<br/>
 
 #### Note
 Expansion ROMs are most commonly used in cheat devices,<br/>
-[Cheat Devices](cheatdevices.md)<br/>
+[Cheat Devices](../cheat-devices/SKILL.md)<br/>
 
 
 
@@ -341,11 +341,11 @@ Unknown if the Interrupt signal is connected to the PSX... there seems to be no
 spare IRQ for it, though it \<might\> share an IRQ with whatever other
 hardware...?<br/>
 The BIOS seems to use only one of the two channels; for the std\_io functions:<br/>
-[BIOS TTY Console (std_io)](kernelbios.md#bios-tty-console-std_io)<br/>
+[BIOS TTY Console (std_io)](../bios-boot-internals/SKILL.md#bios-tty-console-std_io)<br/>
 Aside from the external DUART, the PSX additionally contains an internal UART,<br/>
-[Serial Interfaces (SIO)](serialinterfacessio.md)<br/>
+[Serial Interfaces (SIO)](../sio/SKILL.md)<br/>
 The DTL-H2000 devboard uses a non-serial "ATCONS" channel for TTY stuff,<br/>
-[EXP2 DTL-H2000 I/O Ports](expansionportpio.md#exp2-dtl-h2000-io-ports)<br/>
+[EXP2 DTL-H2000 I/O Ports](#exp2-dtl-h2000-io-ports)<br/>
 
 
 
@@ -435,7 +435,7 @@ side). Possible values are:<br/>
 ```
 
 #### 1F802042h - DTL-H2000: EXP2: POST/LED (R/W)
-[EXP2 Post Registers](expansionportpio.md#exp2-post-registers)<br/>
+[EXP2 Post Registers](#exp2-post-registers)<br/>
 
 
 

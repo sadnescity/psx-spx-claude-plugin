@@ -485,7 +485,7 @@ Commands 5Bh and 5Ch can use the following functions:<br/>
 ##   Pocketstation BU Standard Memory Card Commands
 For general info on the three standard memory card commands (52h, 53h, 57h),
 and for info on the FLAG response value, see:<br/>
-[Memory Card Read/Write Commands](controllersandmemorycards.md#memory-card-readwrite-commands)<br/>
+[Memory Card Read/Write Commands](../memory-cards/SKILL.md#memory-card-readwrite-commands)<br/>
 
 #### BU Command 52h (Read Sector)
 Works much as on normal memory cards, except that, on the Pocketstation, the
@@ -913,7 +913,7 @@ title).<br/>
 In normal PSX files, the region at 50h..5Fh is usually zerofilled. For more
 info on the standard entries in the Title Sector (and for info on Directory
 Entries), see:<br/>
-[Memory Card Data Format](controllersandmemorycards.md#memory-card-data-format)<br/>
+[Memory Card Data Format](../memory-cards/SKILL.md#memory-card-data-format)<br/>
 
 #### Snapshot Region (in "MCX1" Files only)
 For a load-able snapshot the Snapshot ID must be 01h,00h,"SE", the Kernel uses
@@ -1011,7 +1011,7 @@ PrepareExecute(1,0,GetDirIndex()+30h), and then DoExecute(0).<br/>
 
 ##   Pocketstation File Images
 Pocketstation files are normally stored in standard Memory Card images,<br/>
-[Memory Card Images](controllersandmemorycards.md#memory-card-images)<br/>
+[Memory Card Images](../memory-cards/SKILL.md#memory-card-images)<br/>
 
 #### Pocketstation specific files
 Aside from that standard formats, there are two Pocketstation specific formats,

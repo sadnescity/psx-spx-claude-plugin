@@ -4,14 +4,14 @@ description: "PSX GTE (Geometry Transformation Engine, COP2): data/control regis
 ---
 
 #   Geometry Transformation Engine (GTE)
-[GTE Overview](geometrytransformationenginegte.md#gte-overview)<br/>
-[GTE Registers](geometrytransformationenginegte.md#gte-registers)<br/>
-[GTE Saturation](geometrytransformationenginegte.md#gte-saturation)<br/>
-[GTE Opcode Summary](geometrytransformationenginegte.md#gte-opcode-summary)<br/>
-[GTE Coordinate Calculation Commands](geometrytransformationenginegte.md#gte-coordinate-calculation-commands)<br/>
-[GTE General Purpose Calculation Commands](geometrytransformationenginegte.md#gte-general-purpose-calculation-commands)<br/>
-[GTE Color Calculation Commands](geometrytransformationenginegte.md#gte-color-calculation-commands)<br/>
-[GTE Division Inaccuracy](geometrytransformationenginegte.md#gte-division-inaccuracy)<br/>
+[GTE Overview](#gte-overview)<br/>
+[GTE Registers](#gte-registers)<br/>
+[GTE Saturation](#gte-saturation)<br/>
+[GTE Opcode Summary](#gte-opcode-summary)<br/>
+[GTE Coordinate Calculation Commands](#gte-coordinate-calculation-commands)<br/>
+[GTE General Purpose Calculation Commands](#gte-general-purpose-calculation-commands)<br/>
+[GTE Color Calculation Commands](#gte-color-calculation-commands)<br/>
+[GTE Division Inaccuracy](#gte-division-inaccuracy)<br/>
 
 
 
@@ -430,7 +430,7 @@ in the FLAG register gets set; that happens if the vertex is exceeding the
 "near clip plane", ie. if it is very close to the camera (SZ3\<=H/2), exactly
 at the camara position (SZ3=0), or behind the camera (negative Z coordinates
 are saturated to SZ3=0). For details on the division, see:<br/>
-[GTE Division Inaccuracy](geometrytransformationenginegte.md#gte-division-inaccuracy)<br/>
+[GTE Division Inaccuracy](#gte-division-inaccuracy)<br/>
 For "far plane clipping", one can use the SZ3 saturation flag (MaxZ=FFFFh), or
 the IR3 saturation flag (MaxZ=7FFFh) (eg. used by Wipeout 2097), or one can
 compare the SZ3 value with any desired MaxZ value by software.<br/>
@@ -458,7 +458,7 @@ in a straight line). Note: The GPU probably renders straight lines as invisble
 ```
 Adds three or four Z values together and multplies them by a fixed point value.
 The result can be used as index in the GPU's Ordering Table (OT).<br/>
-[GPU Depth Ordering](graphicsprocessingunitgpu.md#gpu-depth-ordering)<br/>
+[GPU Depth Ordering](../gpu/SKILL.md#gpu-depth-ordering)<br/>
 The scaling factors would be usually ZSF3=N/30h and ZSF4=N/40h, where "N" is
 the number of entries in the OT (max 10000h). SZn and OTZ are unsigned 16bit
 values, for whatever reason ZSFn registers are signed 16bit values (negative

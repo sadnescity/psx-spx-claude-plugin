@@ -11,8 +11,8 @@ disc (whole movies usually being stored on two CDs). VCDs are popular in asia
 #### VCDs on Playstation
 For the Playstation, the asian SCPH-5903 model includes a special daughterboard
 with MPEG decoding hardware for playing VCDs.<br/>
-[CDROM - Video CD Commands](cdromdrive.md#cdrom-video-cd-commands)<br/>
-[Pinouts - VCD Pinouts](pinouts.md#pinouts-vcd-pinouts)<br/>
+[CDROM - Video CD Commands](../cdrom-test-protection/SKILL.md#cdrom---video-cd-commands)<br/>
+[Pinouts - VCD Pinouts](../pinouts-internal/SKILL.md#pinouts---vcd-pinouts)<br/>
 Without that hardware it has been widely believed to be impossible to play VCDs
 on Playstations, although, as of 2017, it turned out that the Playstation's CPU
 and MDEC decoder are fast enough for that purpose (when skipping B-frames,
@@ -20,16 +20,16 @@ rendering the movie in monochrome without colors, and reducing audio output to
 11kHz/mono).<br/>
 
 #### ISO Filesystem (Track 1)
-[VCD ISO Basic Files (INFO, ENTRIES, AVSEQnn, ISO Filesystem)](cdromvideocdsvcd.md#vcd-iso-basic-files-info-entries-avseqnn-iso-filesystem)<br/>
-[VCD ISO Playback Control PBC Files (PSD, LOT, ITEMnnnn)](cdromvideocdsvcd.md#vcd-iso-playback-control-pbc-files-psd-lot-itemnnnn)<br/>
-[VCD ISO Search Files (SCANDATA, SEARCH, TRACKS, SPICONTX)](cdromvideocdsvcd.md#vcd-iso-search-files-scandata-search-tracks-spicontx)<br/>
-[VCD ISO Misc files (CAPTnn, AUDIOnn, KARINFO, PICTURES, CDI)](cdromvideocdsvcd.md#vcd-iso-misc-files-captnn-audionn-karinfo-pictures-cdi)<br/>
+[VCD ISO Basic Files (INFO, ENTRIES, AVSEQnn, ISO Filesystem)](#vcd-iso-basic-files-info-entries-avseqnn-iso-filesystem)<br/>
+[VCD ISO Playback Control PBC Files (PSD, LOT, ITEMnnnn)](#vcd-iso-playback-control-pbc-files-psd-lot-itemnnnn)<br/>
+[VCD ISO Search Files (SCANDATA, SEARCH, TRACKS, SPICONTX)](#vcd-iso-search-files-scandata-search-tracks-spicontx)<br/>
+[VCD ISO Misc files (CAPTnn, AUDIOnn, KARINFO, PICTURES, CDI)](#vcd-iso-misc-files-captnn-audionn-karinfo-pictures-cdi)<br/>
 
 #### MPEG Streams (Track 2 and up)
-[VCD MPEG-1 Multiplex Stream](cdromvideocdsvcd.md#vcd-mpeg-1-multiplex-stream)<br/>
-[VCD MPEG-1 Video Stream](cdromvideocdsvcd.md#vcd-mpeg-1-video-stream)<br/>
+[VCD MPEG-1 Multiplex Stream](#vcd-mpeg-1-multiplex-stream)<br/>
+[VCD MPEG-1 Video Stream](#vcd-mpeg-1-video-stream)<br/>
 XXX MPEG-1 Macroblocks<br/>
-[VCD MP2 Audio Stream](cdromvideocdsvcd.md#vcd-mp2-audio-stream)<br/>
+[VCD MP2 Audio Stream](#vcd-mp2-audio-stream)<br/>
 
 #### VCD Versions & Variants
 XXX<br/>

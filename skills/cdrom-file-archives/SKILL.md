@@ -132,7 +132,7 @@ Compressed Data Format (when List entry [08h]\>0 and [0Ch].bit31=1)::<br/>
   ...  ..    Zeropadding to 4-byte boundary
   ...  ..    CRC32 on above bytes (method, size, compressed data, padding)
 ```
-[CDROM File Compression RESOURCE (Star Wars Rebel Assault 2)](cdromfileformats.md#cdrom-file-compression-resource-star-wars-rebel-assault-2)<br/>
+[CDROM File Compression RESOURCE (Star Wars Rebel Assault 2)](../cdrom-file-compression/SKILL.md#cdrom-file-compression-resource-star-wars-rebel-assault-2)<br/>
 
 #### Entrysize=14h
 
@@ -219,7 +219,7 @@ File List entries:<br/>
   010h 4     Filesize in bytes (can be odd, eg. for .FA2 files)
 ```
 PAC and FA are uncompressed, FA2 is compressed via some LZ5-variant:<br/>
-[CDROM File Compression LZ5 and LZ5-variants](cdromfileformats.md#cdrom-file-compression-lz5-and-lz5-variants)<br/>
+[CDROM File Compression LZ5 and LZ5-variants](../cdrom-file-compression/SKILL.md#cdrom-file-compression-lz5-and-lz5-variants)<br/>
 
 ##### Interplay Sports Baseball 2000 (MagDemo22:BB2000\DATA\HOG.TOC\UNIFORMS\\*.UNI)
 ```
@@ -626,7 +626,7 @@ File List entries:<br/>
   008h 18h   Filename ("FILENAME.EXT" or ":NAME" or ":NAME:NAME", zeropadded)
 ```
 Files with extension .z or .Z are compressed:<br/>
-[CDROM File Compression Z (Running Wild)](cdromfileformats.md#cdrom-file-compression-z-running-wild)<br/>
+[CDROM File Compression Z (Running Wild)](../cdrom-file-compression/SKILL.md#cdrom-file-compression-z-running-wild)<br/>
 
 ##### Test Drive Off-Road 3 (MagDemo27: TDOR3\TDOR3.DAT)
 About same as the other Test Drive games, but with shorter filenames.<br/>
@@ -714,7 +714,7 @@ headers:<br/>
   - stored blocks have plain 16bit len (without additional 16bit inverse len)
 ```
 Everything else is same as described here:<br/>
-[CDROM File Compression ZIP/GZIP/ZLIB (Inflate/Deflate)](cdromfileformats.md#cdrom-file-compression-zipgzipzlib-inflatedeflate)<br/>
+[CDROM File Compression ZIP/GZIP/ZLIB (Inflate/Deflate)](../cdrom-file-compression/SKILL.md#cdrom-file-compression-zipgzipzlib-inflatedeflate)<br/>
 Instead of "tinf\_uncompress", use the function below:<br/>
 ```
  bmx_tinf_style_uncompress(dst,src)
@@ -777,7 +777,7 @@ File List entries:<br/>
   024h 4     (Offset-Headersize)/800h (increasing)
 ```
 TD5.DAT and DD.DAT contain DOT1 child archives and many RNC compressed files:<br/>
-[CDROM File Compression RNC (Rob Northen Compression)](cdromfileformats.md#cdrom-file-compression-rnc-rob-northen-compression)<br/>
+[CDROM File Compression RNC (Rob Northen Compression)](../cdrom-file-compression/SKILL.md#cdrom-file-compression-rnc-rob-northen-compression)<br/>
 
 ##### Gekido (MagDemo31: GEKIDO\GLOBAL.CD)
 ```
@@ -937,7 +937,7 @@ File Type values are 07h=TIM, 0Ah=SFX, 0Eh=MBL, 10h=ATR, 13h=AST, 15h=SCD,
 19h=VTB, 1Bh=DCS, 1Dh=DSS, 1Eh=STR, 1Fh=DSM, 20h=FNT, 21h=TER, 25h=PMH,
 26h=Misc.<br/>
 Most of the files are SCRATCH compressed:<br/>
-[CDROM File Compression LZ5 and LZ5-variants](cdromfileformats.md#cdrom-file-compression-lz5-and-lz5-variants)<br/>
+[CDROM File Compression LZ5 and LZ5-variants](../cdrom-file-compression/SKILL.md#cdrom-file-compression-lz5-and-lz5-variants)<br/>
 There are also several uncompressed files (eg. VERSION.V, \*.SFX, and many of
 the TERRAIN.\* files).<br/>
 
@@ -1009,7 +1009,7 @@ PADBUG: Apocalypse does append 1..800h bytes alignment padding (instead of
   ...  (4)   Optional extra garbage? ("MON " in ATLANTFI.PAK, MARSFI.PAK, etc.)
   ...  ..    File Data area (ZLIB compressed, starting with big-endian 789Ch)
 ```
-[CDROM File Compression ZIP/GZIP/ZLIB (Inflate/Deflate)](cdromfileformats.md#cdrom-file-compression-zipgzipzlib-inflatedeflate)<br/>
+[CDROM File Compression ZIP/GZIP/ZLIB (Inflate/Deflate)](../cdrom-file-compression/SKILL.md#cdrom-file-compression-zipgzipzlib-inflatedeflate)<br/>
 
 ##### Largo Winch - Commando SAR (NTEXTURE\\*.GRP and LEVELS\\*.DCF\\*.CAT and \*.GRP)
 ```
@@ -1153,7 +1153,7 @@ Caution: The whole .DAT file can be compressed: If the sum of the filesizes in
 PTH file does exceed the size of the DAT file then assume compression to be
 used (normally, the top-level DATs are uncompressed, and nested DATs are
 compressed).<br/>
-[CDROM File Compression PCK (Destruction Derby Raw)](cdromfileformats.md#cdrom-file-compression-pck-destruction-derby-raw)<br/>
+[CDROM File Compression PCK (Destruction Derby Raw)](../cdrom-file-compression/SKILL.md#cdrom-file-compression-pck-destruction-derby-raw)<br/>
 
 ##### SnoCross Championship Racing (MagDemo37: SNOCROSS\SNOW.TOC+.IMG)
 ```
@@ -1320,7 +1320,7 @@ Most other GT-ARC's contain LZ compressed files. In case of CARINF.DAT it's
 vice-versa, the files are uncompressed, but the GT-ARC itself is LZ compressed
 (the fileheader contains 00h,"@(#)GT-A",00h,"RC",00h,00h; it can be detected
 via those bytes, but lacks info about decompressed size).<br/>
-[CDROM File Compression GT-ZIP (Gran Turismo 1 and 2)](cdromfileformats.md#cdrom-file-compression-gt-zip-gran-turismo-1-and-2)<br/>
+[CDROM File Compression GT-ZIP (Gran Turismo 1 and 2)](../cdrom-file-compression/SKILL.md#cdrom-file-compression-gt-zip-gran-turismo-1-and-2)<br/>
 
 #### O.D.T. (MagDemo17: ODT\\*.LNK and ODT\RSC\NTSC\ALLSOUND.SND and nested LNK's)
 #### Barbie Explorer (MagDemo50: BARBIEX\\*.STR and nested therein)
@@ -1354,7 +1354,7 @@ Same as in O.D.T. with extra "DFS\_" ID at start of file.<br/>
 ```
 The game does use uncompressed DFS archives (in .DFS files) and compressed DFS
 archives (in .BPE files):<br/>
-[CDROM File Compression BPE (Byte Pair Encoding)](cdromfileformats.md#cdrom-file-compression-bpe-byte-pair-encoding)<br/>
+[CDROM File Compression BPE (Byte Pair Encoding)](../cdrom-file-compression/SKILL.md#cdrom-file-compression-bpe-byte-pair-encoding)<br/>
 The game does also use .DBI files (which contain filenames and other strings,
 whatever what for).<br/>
 
@@ -1410,7 +1410,7 @@ File List entries:<br/>
 The compression related entries allow to pre-allocated the decompression buffer
 (without needing to load the actual GT20 file header), and then load the
 comprssed file to the top of the decompression buffer.<br/>
-[CDROM File Compression GT20 and PreGT20](cdromfileformats.md#cdrom-file-compression-gt20-and-pregt20)<br/>
+[CDROM File Compression GT20 and PreGT20](../cdrom-file-compression/SKILL.md#cdrom-file-compression-gt20-and-pregt20)<br/>
 
 #### Ultimate 8 Ball (MagDemo23: POOL.DAT) (5.5Mbyte)
 ```
@@ -1520,7 +1520,7 @@ after the 2800h-byte list)<br/>
 #### Threads of Fate (MagDemo33: TOF\DEWPRISM.HED+.EXE+.IMG)
 The demo version uses "Virtual Sectors" in HED+EXE+IMG files. Apart from that,
 the format is same as for the "Hidden Sectors" in retail version:<br/>
-[CDROM File Archives in Hidden Sectors](cdromfileformats.md#cdrom-file-archives-in-hidden-sectors)<br/>
+[CDROM File Archives in Hidden Sectors](#cdrom-file-archives-in-hidden-sectors)<br/>
 
 #### WWF Smackdown (MagDemo33: TAI\\*.PAC\\*, and nested therein)
 These "PAC " files are found in the main archives (which use a separate archive
@@ -1704,7 +1704,7 @@ File List entries (0Ch or 10h bytes per entry, depending on compression):<br/>
   00Ch (4)   Filesize, compressed (can be odd)   ;<-- exists only if compressed
 ```
 For decompression, see:<br/>
-[CDROM File Compression ZAL (Z-Axis)](cdromfileformats.md#cdrom-file-compression-zal-z-axis)<br/>
+[CDROM File Compression ZAL (Z-Axis)](../cdrom-file-compression/SKILL.md#cdrom-file-compression-zal-z-axis)<br/>
 
 #### Speed Punks (MagDemo32: SPUNKS\\*.GDF)
 ```
@@ -1993,7 +1993,7 @@ The DAT file contains many zerofilled "dummy" files with 800h-byte size.<br/>
   ...  ..    File Data area
 ```
 Most or all files in DAT archives are PreGT20 compressed.<br/>
-[CDROM File Compression GT20 and PreGT20](cdromfileformats.md#cdrom-file-compression-gt20-and-pregt20)<br/>
+[CDROM File Compression GT20 and PreGT20](../cdrom-file-compression/SKILL.md#cdrom-file-compression-gt20-and-pregt20)<br/>
 Note: Unused entries can occur anywhere, eg. Bloody Roar 2 CMN\SEL01.DAT does
 have both first and LAST entry marked as unused (FFFFFFFFh). Also, there may be
 a lot of unused entries, eg. Bloady Roar 1 CMN\TITLE00.DAT uses only 5 of 41h
@@ -2026,7 +2026,7 @@ entries).<br/>
   ...  ..    Data (compressed .PAK files, which do ALSO have ID="VRAM-WAD")
 ```
 The compressed .PAK files are using a LZ5-variant:<br/>
-[CDROM File Compression LZ5 and LZ5-variants](cdromfileformats.md#cdrom-file-compression-lz5-and-lz5-variants)<br/>
+[CDROM File Compression LZ5 and LZ5-variants](../cdrom-file-compression/SKILL.md#cdrom-file-compression-lz5-and-lz5-variants)<br/>
 
 #### The Next Tetris (MagDemo22: TETRIS\\*) has PSX.BSE (and nested therein)
 ```
@@ -2102,7 +2102,7 @@ File List entries:<br/>
   008h 4     Filesize rounded up to multiple of 800h bytes
 ```
 Files are compressed, starting with 0Bh, same as in Jersey Devil...<br/>
-[CDROM File Compression BZZ](cdromfileformats.md#cdrom-file-compression-bzz)<br/>
+[CDROM File Compression BZZ](../cdrom-file-compression/SKILL.md#cdrom-file-compression-bzz)<br/>
 Note: The TIM files in Bugs Bunny and The Grinch BZZ archives consists of two
 TIMs badged together: A 4x4 pix dummy TIM, followed by the actual 512x125 pix
 TIM (in some cases followed some extra bytes at end of file?).<br/>
@@ -2123,7 +2123,7 @@ File List entries:<br/>
   004h 4     Size rounded to multiple of 800h
 ```
 Files are compressed, starting with 0Bh, same as in Bugs Bunny...<br/>
-[CDROM File Compression BZZ](cdromfileformats.md#cdrom-file-compression-bzz)<br/>
+[CDROM File Compression BZZ](../cdrom-file-compression/SKILL.md#cdrom-file-compression-bzz)<br/>
 
 #### Jackie Chan Stuntmaster (RCHARS\\*.RR)
 #### NBA Basketball 2000 (MagDemo28: FOXBB\\*.RR)
@@ -2288,7 +2288,7 @@ Note: Dino Crisis DEMO version (MagDemo28: DINO\TRIAL.DAT) does also contain
 "dummy header" DAT archives (but, unlike as in retail version, they are hidden
 somewhere inside of the headerless 14Mbyte TRIAL.DAT archive).<br/>
 Type 7 and 8 are using LZSS compression:<br/>
-[CDROM File Compression LZSS (Dino Crisis 1 and 2)](cdromfileformats.md#cdrom-file-compression-lzss-dino-crisis-1-and-2)<br/>
+[CDROM File Compression LZSS (Dino Crisis 1 and 2)](../cdrom-file-compression/SKILL.md#cdrom-file-compression-lzss-dino-crisis-1-and-2)<br/>
 Apart from LZSS, Type 4 is using SPU-ADPCM compression, and some Type 0 files
 contain .BS compressed pictures (eg. Dino Crisis 2 PSX\DATA\ST\*.DBS\\*).<br/>
 
@@ -2517,8 +2517,8 @@ For detection, the existing .BIN files start with following values:<br/>
   ST7DATA.BIN has 2 chunks with Type=0Eh, followed by SEQ chunk at offset=20h.
 ```
 TIMs are compressed via HornedLZ (Type=05h,0Fh) or Deflate (Type=10h).<br/>
-[CDROM File Compression HornedLZ](cdromfileformats.md#cdrom-file-compression-hornedlz)<br/>
-[CDROM File Compression ZIP/GZIP/ZLIB (Inflate/Deflate)](cdromfileformats.md#cdrom-file-compression-zipgzipzlib-inflatedeflate)<br/>
+[CDROM File Compression HornedLZ](../cdrom-file-compression/SKILL.md#cdrom-file-compression-hornedlz)<br/>
+[CDROM File Compression ZIP/GZIP/ZLIB (Inflate/Deflate)](../cdrom-file-compression/SKILL.md#cdrom-file-compression-zipgzipzlib-inflatedeflate)<br/>
 The game's Inflate function does ignore the 2bit blocktype: All blocks must
 have dynamic trees (fixed trees and uncompressed blocks aren't supported).<br/>
 
@@ -2573,11 +2573,11 @@ for quick lookup, but even then, one will still need to parse the DAT chunk
 headers to find the actual contents like TIM, SEQ, VB, VH files).<br/>
 
 #### See also
-[CDROM File Archive Darkworks Chunks (Alone in the Dark)](cdromfileformats.md#cdrom-file-archive-darkworks-chunks-alone-in-the-dark)<br/>
-[CDROM File Archive Blue Chunks (Blue's Clues)](cdromfileformats.md#cdrom-file-archive-blue-chunks-blues-clues)<br/>
-[CDROM File Archive HED/CDF (Parasite Eve 2)](cdromfileformats.md#cdrom-file-archive-hedcdf-parasite-eve-2)<br/>
-[CDROM File Compression LZSS (Serial Experiments Lain)](cdromfileformats.md#cdrom-file-compression-lzss-serial-experiments-lain)<br/>
-[CDROM File Compression SLZ/01Z (chunk-based compressed archive)](cdromfileformats.md#cdrom-file-compression-slz01z-chunk-based-compressed-archive)<br/>
+[CDROM File Archive Darkworks Chunks (Alone in the Dark)](#cdrom-file-archive-darkworks-chunks-alone-in-the-dark)<br/>
+[CDROM File Archive Blue Chunks (Blue's Clues)](#cdrom-file-archive-blue-chunks-blues-clues)<br/>
+[CDROM File Archive HED/CDF (Parasite Eve 2)](#cdrom-file-archive-hedcdf-parasite-eve-2)<br/>
+[CDROM File Compression LZSS (Serial Experiments Lain)](../cdrom-file-compression/SKILL.md#cdrom-file-compression-lzss-serial-experiments-lain)<br/>
+[CDROM File Compression SLZ/01Z (chunk-based compressed archive)](../cdrom-file-compression/SKILL.md#cdrom-file-compression-slz01z-chunk-based-compressed-archive)<br/>
 
 
 
@@ -2590,20 +2590,20 @@ There are several ways to implement folder-like directory trees:<br/>
 Other than that, below are special formats with dedicated folder structures.<br/>
 
 #### Archives with Folders
-[CDROM File Archive HUG/IDX/BIZ (Power Spike)](cdromfileformats.md#cdrom-file-archive-hugidxbiz-power-spike)<br/>
-[CDROM File Archive TOC/DAT/LAY](cdromfileformats.md#cdrom-file-archive-tocdatlay)<br/>
-[CDROM File Archive WAD (Doom)](cdromfileformats.md#cdrom-file-archive-wad-doom)<br/>
-[CDROM File Archive WAD (Cardinal Syn/Fear Effect)](cdromfileformats.md#cdrom-file-archive-wad-cardinal-synfear-effect)<br/>
-[CDROM File Archive DIR/DAT (One/Viewpoint)](cdromfileformats.md#cdrom-file-archive-dirdat-oneviewpoint)<br/>
-[CDROM File Archive HED/CDF (Parasite Eve 2)](cdromfileformats.md#cdrom-file-archive-hedcdf-parasite-eve-2)<br/>
-[CDROM File Archive IND/WAD (MTV Music Generator)](cdromfileformats.md#cdrom-file-archive-indwad-mtv-music-generator)<br/>
-[CDROM File Archive GAME.RSC (Colonly Wars Red Sun)](cdromfileformats.md#cdrom-file-archive-gamersc-colonly-wars-red-sun)<br/>
-[CDROM File Archive BIGFILE.DAT (Soul Reaver)](cdromfileformats.md#cdrom-file-archive-bigfiledat-soul-reaver)<br/>
-[CDROM File Archive FF8 IMG (Final Fantasy VIII)](cdromfileformats.md#cdrom-file-archive-ff8-img-final-fantasy-viii)<br/>
-[CDROM File Archive FF9 IMG (Final Fantasy IX)](cdromfileformats.md#cdrom-file-archive-ff9-img-final-fantasy-ix)<br/>
-[CDROM File Archive GTFS (Gran Turismo 2)](cdromfileformats.md#cdrom-file-archive-gtfs-gran-turismo-2)<br/>
-[CDROM File Archive Nightmare Project: Yakata](cdromfileformats.md#cdrom-file-archive-nightmare-project-yakata)<br/>
-[CDROM File Archive FAdj0500 (Klonoa)](cdromfileformats.md#cdrom-file-archive-fadj0500-klonoa)<br/>
+[CDROM File Archive HUG/IDX/BIZ (Power Spike)](#cdrom-file-archive-hugidxbiz-power-spike)<br/>
+[CDROM File Archive TOC/DAT/LAY](#cdrom-file-archive-tocdatlay)<br/>
+[CDROM File Archive WAD (Doom)](#cdrom-file-archive-wad-doom)<br/>
+[CDROM File Archive WAD (Cardinal Syn/Fear Effect)](#cdrom-file-archive-wad-cardinal-synfear-effect)<br/>
+[CDROM File Archive DIR/DAT (One/Viewpoint)](#cdrom-file-archive-dirdat-oneviewpoint)<br/>
+[CDROM File Archive HED/CDF (Parasite Eve 2)](#cdrom-file-archive-hedcdf-parasite-eve-2)<br/>
+[CDROM File Archive IND/WAD (MTV Music Generator)](#cdrom-file-archive-indwad-mtv-music-generator)<br/>
+[CDROM File Archive GAME.RSC (Colonly Wars Red Sun)](#cdrom-file-archive-gamersc-colonly-wars-red-sun)<br/>
+[CDROM File Archive BIGFILE.DAT (Soul Reaver)](#cdrom-file-archive-bigfiledat-soul-reaver)<br/>
+[CDROM File Archive FF8 IMG (Final Fantasy VIII)](#cdrom-file-archive-ff8-img-final-fantasy-viii)<br/>
+[CDROM File Archive FF9 IMG (Final Fantasy IX)](#cdrom-file-archive-ff9-img-final-fantasy-ix)<br/>
+[CDROM File Archive GTFS (Gran Turismo 2)](#cdrom-file-archive-gtfs-gran-turismo-2)<br/>
+[CDROM File Archive Nightmare Project: Yakata](#cdrom-file-archive-nightmare-project-yakata)<br/>
+[CDROM File Archive FAdj0500 (Klonoa)](#cdrom-file-archive-fadj0500-klonoa)<br/>
 See also: PKG (a WAD.WAD variant with folders)<br/>
 
 #### Perfect Assassin (\*.JFS)
@@ -2666,9 +2666,9 @@ File Entries (10h bytes):<br/>
   0Ch 4    Size in bytes (when compressed: decompressed size+02000000h)
 ```
 Compressed files (in LEVELS\\*\\* with Size.bit25=1) can be decompressed as so:<br/>
-[CDROM File Compression Darkworks](cdromfileformats.md#cdrom-file-compression-darkworks)<br/>
+[CDROM File Compression Darkworks](../cdrom-file-compression/SKILL.md#cdrom-file-compression-darkworks)<br/>
 The files include some TIM images, WxH images, binary files, and chunks:<br/>
-[CDROM File Archive Darkworks Chunks (Alone in the Dark)](cdromfileformats.md#cdrom-file-archive-darkworks-chunks-alone-in-the-dark)<br/>
+[CDROM File Archive Darkworks Chunks (Alone in the Dark)](#cdrom-file-archive-darkworks-chunks-alone-in-the-dark)<br/>
 
 #### Interplay Sports Baseball 2000 (MagDemo22: BB2000\\* HOG.DAT and HOG.TOC)
 ```
@@ -2802,7 +2802,7 @@ Compressed Data (when [008h]\<\>0):<br/>
   000h ..    ZLIB compressed data (usually starting with big-endian 789Ch)
   (compression is used for almost all files, except VERY small ones)
 ```
-[CDROM File Compression ZIP/GZIP/ZLIB (Inflate/Deflate)](cdromfileformats.md#cdrom-file-compression-zipgzipzlib-inflatedeflate)<br/>
+[CDROM File Compression ZIP/GZIP/ZLIB (Inflate/Deflate)](../cdrom-file-compression/SKILL.md#cdrom-file-compression-zipgzipzlib-inflatedeflate)<br/>
 
 
 
@@ -2856,7 +2856,7 @@ File List entries<br/>
 ```
 All files in the BIZ archive are BIZ compressed (unknown if it does also
 support uncompressed files).<br/>
-[CDROM File Compression LZ5 and LZ5-variants](cdromfileformats.md#cdrom-file-compression-lz5-and-lz5-variants)<br/>
+[CDROM File Compression LZ5 and LZ5-variants](../cdrom-file-compression/SKILL.md#cdrom-file-compression-lz5-and-lz5-variants)<br/>
 The BIZ archive seems to be solely containing PSI bitmaps (even files in
 GAME.IDX\SOUND\MUSIC\\*.BIZ do merely contain PSI bitmaps, not audio files).<br/>
 
@@ -3280,7 +3280,7 @@ all following chunks can start at unaligned locations.<br/>
   ...  (..) Zeropadding to 4-byte boundary      ;/
 ```
 VRAM and FRAM chunks with [08h]=1 (and Chunksize\>14h) are compressed:<br/>
-[CDROM File Compression Blues](cdromfileformats.md#cdrom-file-compression-blues)<br/>
+[CDROM File Compression Blues](../cdrom-file-compression/SKILL.md#cdrom-file-compression-blues)<br/>
 
 
 
@@ -3604,7 +3604,7 @@ The file header, the first some Folder headers (those in first quarter or so),
 and (all?) File Data is unencrypted (aka XORed with 0000h).<br/>
 The Folder headers at higher offsets are encrypted with a 16bit XOR value. That
 XOR value is derived from Subchannel Q via LibCrypt:<br/>
-[CDROM Protection - LibCrypt](cdromformat.md#cdrom-protection-libcrypt)<br/>
+[CDROM Protection - LibCrypt](../cdrom-xa-iso/SKILL.md#cdrom-protection---libcrypt)<br/>
 When not having the Subchannel data (or when not knowing which Folders are
 encrypted or unencrypted), one can simply obtain the encryption key from one of
 these entries (which will be key=0000h when unencrypted):<br/>
@@ -3730,7 +3730,7 @@ Note: The PADBUG archives resemble LNK archives in  O.D.T. (though those LNK
 archives have a different unique 4-byte padding quirk).<br/>
 
 #### Compression
-[CDROM File Compression LZ5 and LZ5-variants](cdromfileformats.md#cdrom-file-compression-lz5-and-lz5-variants)<br/>
+[CDROM File Compression LZ5 and LZ5-variants](../cdrom-file-compression/SKILL.md#cdrom-file-compression-lz5-and-lz5-variants)<br/>
 FF8 does reportedly also use GZIP (unknown in which files).<br/>
 
 #### Known/unknown sectors for US version FF8DISC1.IMG
@@ -3807,7 +3807,7 @@ skip unused entries (FFFFh) to find NextOffs.<br/>
 #### Nested Child Archives
 Most of the files in FF9.IMG are DB archives, there are also some DOT1
 archives.<br/>
-[CDROM File Archive FF9 DB (Final Fantasy IX)](cdromfileformats.md#cdrom-file-archive-ff9-db-final-fantasy-ix)<br/>
+[CDROM File Archive FF9 DB (Final Fantasy IX)](#cdrom-file-archive-ff9-db-final-fantasy-ix)<br/>
 There are various combinations of IMG, DB, DOT1 archives nested up to 4 levels
 deep:<br/>
 ```
@@ -3895,8 +3895,8 @@ of main GTFS) and WAD.WAD and DOT1.<br/>
 The game does use some GT-ZIP compressed files, and many GZIP compressed files
 (albeit with corrupted/zeropadded GZIP footers; due to DOT1 filesize 4-byte
 padding and (unneccessarily) GTFS 800h-byte padding).<br/>
-[CDROM File Compression GT-ZIP (Gran Turismo 1 and 2)](cdromfileformats.md#cdrom-file-compression-gt-zip-gran-turismo-1-and-2)<br/>
-[CDROM File Compression ZIP/GZIP/ZLIB (Inflate/Deflate)](cdromfileformats.md#cdrom-file-compression-zipgzipzlib-inflatedeflate)<br/>
+[CDROM File Compression GT-ZIP (Gran Turismo 1 and 2)](../cdrom-file-compression/SKILL.md#cdrom-file-compression-gt-zip-gran-turismo-1-and-2)<br/>
+[CDROM File Compression ZIP/GZIP/ZLIB (Inflate/Deflate)](../cdrom-file-compression/SKILL.md#cdrom-file-compression-zipgzipzlib-inflatedeflate)<br/>
 To extract the decompressed size from the corrupted GZIP footers, one could
 compute the compressed "size" (excluding the GZIP header, footer, and padding),
 and search for a footer entry that is bigger than "size".<br/>
@@ -4055,7 +4055,7 @@ ISO data in Sector 10h-16h, followed by Hidden stuff in Sector 17h and up:<br/>
 Note: Like normal files, all hidden entries have their last sector flagged as
 SM=89h (that applies to all three Hidden ID, Directory, Unknown entries, and to
 all Hidden Files). For details, see:<br/>
-[CDROM XA Subheader, File, Channel, Interleave](cdromformat.md#cdrom-xa-subheader-file-channel-interleave)<br/>
+[CDROM XA Subheader, File, Channel, Interleave](../cdrom-xa-iso/SKILL.md#cdrom-xa-subheader-file-channel-interleave)<br/>
 
 #### Xenogears (2 discs, 1998)
 ```
@@ -4192,7 +4192,7 @@ rather than BS compressed bitmaps. Ape Escape is (c)1999 by Sony.<br/>
   .STR's: 7D3Bh+150 = 7DD1h = sector for STR\LAB.STR
 ```
 Some files contain RLE compressed TIMs:<br/>
-[CDROM File Compression TIM-RLE4/RLE8](cdromfileformats.md#cdrom-file-compression-tim-rle4rle8)<br/>
+[CDROM File Compression TIM-RLE4/RLE8](../cdrom-file-compression/SKILL.md#cdrom-file-compression-tim-rle4rle8)<br/>
 Some files contain raw headerless SPU-ADPCM (eg. DAT file 00Ah).<br/>
 
 
@@ -4556,12 +4556,12 @@ As shown above, interval 1:2 and 1:4 are grouped as 4:8 and 2:8 (ie. 4 or 2
 continous sectors per 8 sectors).<br/>
 The Subheader's Channel number is specified in the above directory entries,
 Subheader's File number is fixed (0 for BPB, and 1 for SPB).<br/>
-[CDROM XA Subheader, File, Channel, Interleave](cdromformat.md#cdrom-xa-subheader-file-channel-interleave)<br/>
+[CDROM XA Subheader, File, Channel, Interleave](../cdrom-xa-iso/SKILL.md#cdrom-xa-subheader-file-channel-interleave)<br/>
 The SPB file is about 520Mbyte in both US and Japan, however, the Japanese
 version does reportedly contain more movies and some storyline that is missing
 in US/EU versions.<br/>
 The BPB file contains DOT1 child archives, and Ulz compressed files.<br/>
-[CDROM File Compression Ulz/ULZ (Namco)](cdromfileformats.md#cdrom-file-compression-ulzulz-namco)<br/>
+[CDROM File Compression Ulz/ULZ (Namco)](../cdrom-file-compression/SKILL.md#cdrom-file-compression-ulzulz-namco)<br/>
 The SPB file contains movies with non-standard STR headers (and also uncommon:
 interleaved videos on different channels, at least so in the japanese version).<br/>
 Demo: The archives do also exist on the demo version (MagDemo30: AC3\\*), but
@@ -5001,7 +5001,7 @@ could decompress the .PCX file to find the end of each file) (also one could
 guess/find them by looking for 0A,05,01,01/08 on 800h-byte boundaries).<br/>
 
 #### ZMOVIE.STR (movie archive with several STR files with subtitles)
-[CDROM File Video Streaming STR Variants](cdromfileformats.md#cdrom-file-video-streaming-str-variants)<br/>
+[CDROM File Video Streaming STR Variants](../cdrom-file-video-3d/SKILL.md#cdrom-file-video-streaming-str-variants)<br/>
 
 #### STAGE.DIR\\*\\*.sb - stage binary/header
 This is the first file in most folders (except "init\*" folders).<br/>
@@ -5018,7 +5018,7 @@ folder.<br/>
 MGS is using customized/corrupted PCX files as standard texture format (in
 STAGE.DIR\\*\\*.cp, STAGE.DIR\\*\\*.nd\\*.p, and BRF.DAT\\*).<br/>
 For details on PCX format (and MGS-specific customizations), see:<br/>
-[CDROM File Video Texture/Bitmap (PCX)](cdromfileformats.md#cdrom-file-video-texturebitmap-pcx)<br/>
+[CDROM File Video Texture/Bitmap (PCX)](../cdrom-file-exe-tim/SKILL.md#cdrom-file-video-texturebitmap-pcx)<br/>
 Apart from PCX, there's also custom texture format for animated bitmaps (in
 FACE.DAT), and a few TIM images (in STAGE.DIR\init\*\\*.rd\\*.r)<br/>
 
@@ -5544,7 +5544,7 @@ COPYRIGHT.IMG, WARNING.IMG<br/>
   Raw bitmaps (25800h bytes, uncompressed, 320x240x16bpp)
 ```
 CUTS\\*.AN2 (looks like cut-scenes with polygon-streaming):<br/>
-[CDROM File Video Polygon Streaming](cdromfileformats.md#cdrom-file-video-polygon-streaming)<br/>
+[CDROM File Video Polygon Streaming](../cdrom-file-video-3d/SKILL.md#cdrom-file-video-polygon-streaming)<br/>
 Note: MOD/ANI files contain many Reserved/Garbage/Pointer entries which are
 replaced by pointers after loading (the initial values seem to have no purpose;
 they are aften set to constants with value 002xxxxxh which could be useful for

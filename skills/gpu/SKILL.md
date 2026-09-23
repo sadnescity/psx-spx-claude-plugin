@@ -9,21 +9,21 @@ sends the Display Buffer to the Television Set. Polygons are useful for 3D
 graphics (or rotated/scaled 2D graphics), Rectangles are useful for 2D graphics
 and Text output.<br/>
 
-[GPU I/O Ports, DMA Channels, Commands, VRAM](graphicsprocessingunitgpu.md#gpu-io-ports-dma-channels-commands-vram)<br/>
-[GPU Render Polygon Commands](graphicsprocessingunitgpu.md#gpu-render-polygon-commands)<br/>
-[GPU Render Line Commands](graphicsprocessingunitgpu.md#gpu-render-line-commands)<br/>
-[GPU Render Rectangle Commands](graphicsprocessingunitgpu.md#gpu-render-rectangle-commands)<br/>
-[GPU Rendering Attributes](graphicsprocessingunitgpu.md#gpu-rendering-attributes)<br/>
-[GPU Memory Transfer Commands](graphicsprocessingunitgpu.md#gpu-memory-transfer-commands)<br/>
-[GPU Other Commands](graphicsprocessingunitgpu.md#gpu-other-commands)<br/>
-[GPU Display Control Commands (GP1)](graphicsprocessingunitgpu.md#gpu-display-control-commands-gp1)<br/>
-[GPU Status Register](graphicsprocessingunitgpu.md#gpu-status-register)<br/>
-[GPU Versions](graphicsprocessingunitgpu.md#gpu-versions)<br/>
-[GPU Depth Ordering](graphicsprocessingunitgpu.md#gpu-depth-ordering)<br/>
-[GPU Video Memory (VRAM)](graphicsprocessingunitgpu.md#gpu-video-memory-vram)<br/>
-[GPU Texture Caching](graphicsprocessingunitgpu.md#gpu-texture-caching)<br/>
-[GPU Timings](graphicsprocessingunitgpu.md#gpu-timings)<br/>
-[GPU (MISC)](graphicsprocessingunitgpu.md#gpu-misc)<br/>
+[GPU I/O Ports, DMA Channels, Commands, VRAM](#gpu-io-ports-dma-channels-commands-vram)<br/>
+[GPU Render Polygon Commands](#gpu-render-polygon-commands)<br/>
+[GPU Render Line Commands](#gpu-render-line-commands)<br/>
+[GPU Render Rectangle Commands](#gpu-render-rectangle-commands)<br/>
+[GPU Rendering Attributes](#gpu-rendering-attributes)<br/>
+[GPU Memory Transfer Commands](#gpu-memory-transfer-commands)<br/>
+[GPU Other Commands](#gpu-other-commands)<br/>
+[GPU Display Control Commands (GP1)](#gpu-display-control-commands-gp1)<br/>
+[GPU Status Register](#gpu-status-register)<br/>
+[GPU Versions](#gpu-versions)<br/>
+[GPU Depth Ordering](#gpu-depth-ordering)<br/>
+[GPU Video Memory (VRAM)](#gpu-video-memory-vram)<br/>
+[GPU Texture Caching](#gpu-texture-caching)<br/>
+[GPU Timings](#gpu-timings)<br/>
+[GPU (MISC)](#gpu-misc)<br/>
 
 
 
@@ -45,8 +45,8 @@ Thus the GPU can be seen as a blackbox that executes 32 bits commands.<br/>
 
 #### GPU Timers / Synchronization
 Most of the Timers are bound to GPU timings, see<br/>
-[Timers](timers.md)<br/>
-[Interrupts](interrupts.md)<br/>
+[Timers](../timers/SKILL.md)<br/>
+[Interrupts](../interrupts/SKILL.md)<br/>
 
 #### GPU-related DMA Channels (DMA2 and DMA6)
 ```
@@ -1294,7 +1294,7 @@ The PSone/PAL video clock is the cpu clock multiplied by 11/7.<br/>
   Video Clock =  53.222400MHz (44100Hz*300h*11/7)
 ```
 For other PSX/PSone PAL/NTSC variants, see:<br/>
-[Pinouts - CLK Pinouts](pinouts.md#pinouts-clk-pinouts)<br/>
+[Pinouts - CLK Pinouts](../pinouts-internal/SKILL.md#pinouts---clk-pinouts)<br/>
 
 #### Vertical Timings
 ```

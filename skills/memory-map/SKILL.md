@@ -85,7 +85,7 @@ each other. Additional mirrors within these 512MB regions are:<br/>
 ```
 The size of the RAM, BIOS, Expansion regions can be configured by software, for
 Expansion Region it's also possible to change base address, see:<br/>
-[Memory Control](memorycontrol.md)<br/>
+[Memory Control](../memory-control/SKILL.md)<br/>
 The Scratchpad is mirrored only in KUSEG and KSEG0, but not in KSEG1.<br/>
 
 #### Memory Exceptions
@@ -153,10 +153,10 @@ useful to flush the write queue all at once, instead of flushing it word by word
 #### More Memory Info
 For Info on Exception vectors, Unused/Garbage memory locations, I/O Ports,
 Expansion ROM Headers, and Memory Waitstate Control, etc. see:<br/>
-[I/O Map](iomap.md)<br/>
-[Memory Control](memorycontrol.md)<br/>
-[EXP1 Expansion ROM Header](expansionportpio.md#exp1-expansion-rom-header)<br/>
-[BIOS Memory Map](kernelbios.md#bios-memory-map)<br/>
-[BIOS Memory Allocation](kernelbios.md#bios-memory-allocation)<br/>
-[COP0 - Exception Handling](cpuspecifications.md#cop0-exception-handling)<br/>
-[Unpredictable Things](unpredictablethings.md)<br/>
+[I/O Map](../io-map/SKILL.md)<br/>
+[Memory Control](../memory-control/SKILL.md)<br/>
+[EXP1 Expansion ROM Header](../expansion-port/SKILL.md#exp1-expansion-rom-header)<br/>
+[BIOS Memory Map](../bios-file-cd-memcard/SKILL.md#bios-memory-map)<br/>
+[BIOS Memory Allocation](../bios-irq-threads-timer/SKILL.md#bios-memory-allocation)<br/>
+[COP0 - Exception Handling](../cpu/SKILL.md#cop0---exception-handling)<br/>
+[Unpredictable Things](../unpredictable-things/SKILL.md)<br/>

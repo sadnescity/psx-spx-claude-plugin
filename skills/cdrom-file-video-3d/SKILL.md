@@ -452,20 +452,20 @@ used on retail discs. Except:<br/>
 
 ##   CDROM File Video STR Streaming and BS Picture Compression (Sony)
 #### STR Files (movie streams)
-[CDROM File Video Streaming STR (Sony)](cdromfileformats.md#cdrom-file-video-streaming-str-sony)<br/>
-[CDROM File Video Streaming STR Variants](cdromfileformats.md#cdrom-file-video-streaming-str-variants)<br/>
-[CDROM File Video Streaming Framerate](cdromfileformats.md#cdrom-file-video-streaming-framerate)<br/>
-[CDROM File Video Streaming Audio](cdromfileformats.md#cdrom-file-video-streaming-audio)<br/>
-[CDROM File Video Streaming Chunk-based formats](cdromfileformats.md#cdrom-file-video-streaming-chunk-based-formats)<br/>
-[CDROM File Video Streaming Mis-mastered files](cdromfileformats.md#cdrom-file-video-streaming-mis-mastered-files)<br/>
+[CDROM File Video Streaming STR (Sony)](#cdrom-file-video-streaming-str-sony)<br/>
+[CDROM File Video Streaming STR Variants](#cdrom-file-video-streaming-str-variants)<br/>
+[CDROM File Video Streaming Framerate](#cdrom-file-video-streaming-framerate)<br/>
+[CDROM File Video Streaming Audio](#cdrom-file-video-streaming-audio)<br/>
+[CDROM File Video Streaming Chunk-based formats](#cdrom-file-video-streaming-chunk-based-formats)<br/>
+[CDROM File Video Streaming Mis-mastered files](#cdrom-file-video-streaming-mis-mastered-files)<br/>
 Apart from the 20h-byte STR headers, movies basically consist of a series of BS
 files (see below).<br/>
 
 #### BS Files (Huffman compressed MDEC codes)
 BS stands for bitstream, which might refer to the use in STR files, or to the
 Huffman bitstreams.<br/>
-[CDROM File Video BS Compression Versions](cdromfileformats.md#cdrom-file-video-bs-compression-versions)<br/>
-[CDROM File Video BS Compression Headers](cdromfileformats.md#cdrom-file-video-bs-compression-headers)<br/>
+[CDROM File Video BS Compression Versions](#cdrom-file-video-bs-compression-versions)<br/>
+[CDROM File Video BS Compression Headers](#cdrom-file-video-bs-compression-headers)<br/>
 The header is followed by the bitstream...<br/>
 ```
   v1/v2/v3/ea/iki --> first bit in bit15 of first halfword (good for psx)
@@ -474,14 +474,14 @@ The header is followed by the bitstream...<br/>
 ```
 For each block, the bitstream contains one DC value, up to 63 AC values,
 terminated by EOB (end of block).<br/>
-[CDROM File Video BS Compression DC Values](cdromfileformats.md#cdrom-file-video-bs-compression-dc-values)<br/>
-[CDROM File Video BS Compression AC Values](cdromfileformats.md#cdrom-file-video-bs-compression-ac-values)<br/>
+[CDROM File Video BS Compression DC Values](#cdrom-file-video-bs-compression-dc-values)<br/>
+[CDROM File Video BS Compression AC Values](#cdrom-file-video-bs-compression-ac-values)<br/>
 Apart from being used in STR movies, BS can be also used to store single
 pictures:<br/>
-[CDROM File Video BS Picture Files](cdromfileformats.md#cdrom-file-video-bs-picture-files)<br/>
+[CDROM File Video BS Picture Files](#cdrom-file-video-bs-picture-files)<br/>
 
 #### Wacwac (similar as BS, but with completely different Huffman codes)
-[CDROM File Video Wacwac MDEC Streams](cdromfileformats.md#cdrom-file-video-wacwac-mdec-streams)<br/>
+[CDROM File Video Wacwac MDEC Streams](#cdrom-file-video-wacwac-mdec-streams)<br/>
 
 #### Credits
 Thanks to Michael Sabin for info on various STR and BS variants:<br/>
@@ -523,7 +523,7 @@ contain a standard BS fileheader at offset 020h..027h).<br/>
 ```
 Less common, there is also a format for streaming polygon animations instead of
 BS compressed bitmaps:<br/>
-[CDROM File Video Polygon Streaming](cdromfileformats.md#cdrom-file-video-polygon-streaming)<br/>
+[CDROM File Video Polygon Streaming](#cdrom-file-video-polygon-streaming)<br/>
 
 #### STR Resolution
 The Width/Height entries are almost always multiples of 16 pixels. But there
@@ -1226,12 +1226,12 @@ Here are probably most of the USA games with videos at 1x speed.<br/>
 STR movies are usually interleaved with XA-ADPCM sectors (the audio sectors are
 automatically decoded by the CDROM hardware and consist of raw ADPCM data
 without STR headers).<br/>
-[CDROM File Audio Streaming XA-ADPCM](cdromfileformats.md#cdrom-file-audio-streaming-xa-adpcm)<br/>
+[CDROM File Audio Streaming XA-ADPCM](../cdrom-file-audio/SKILL.md#cdrom-file-audio-streaming-xa-adpcm)<br/>
 However, there are also movies without audio. And a few movies with SPU-ADPCM
 audio.<br/>
 
 #### SPU-ADPCM in Chunk-based formats
-[CDROM File Video Streaming Chunk-based formats](cdromfileformats.md#cdrom-file-video-streaming-chunk-based-formats)<br/>
+[CDROM File Video Streaming Chunk-based formats](#cdrom-file-video-streaming-chunk-based-formats)<br/>
 
 #### SPU-ADPCM in Chrono Cross/Legend of Mana Audio Sector
 Chrono Cross Disc 1 (HiddenDirectory\1793h..17A6h)<br/>
@@ -1642,7 +1642,7 @@ RIFF/WAVEfmt is just a standard .WAV file.<br/>
 In case of the ZZ\*.\* files on retail discs, the developers did intentionally
 append some non-functional dummy STR files (instead of appending zerofilled
 30Mbyte at end of disc).<br/>
-[CDROM File XYZ and Dummy/Null Files](cdromfileformats.md#cdrom-file-xyz-and-dummynull-files)<br/>
+[CDROM File XYZ and Dummy/Null Files](../cdrom-file-compression/SKILL.md#cdrom-file-xyz-and-dummynull-files)<br/>
 In case of the Demo Discs, the developers did probably have high hopes to
 release a demo version with working streaming data, just to find out that Sony
 had screwed up the data format (or maybe they had only accidentally included
@@ -1853,12 +1853,12 @@ Polygon streams contain vertices (for textures that are stored elsewhere).
 Usually needing only one sector per frame. This can be useful for animations
 that were recorded from real actors. Drawbacks are more edgy graphics and lower
 color depth (although that may fit in with the game engine).<br/>
-[CDROM File Video Polygon Streaming](cdromfileformats.md#cdrom-file-video-polygon-streaming)<br/>
+[CDROM File Video Polygon Streaming](#cdrom-file-video-polygon-streaming)<br/>
 
 #### MPEG1 (on VCD Video CDs)
 MPEG1 uses I/P/B-Frames, the I-Frames may reach similar compression as BS
 files. However, P-Frames and B-Frames do compress much better than BS files.<br/>
-[CDROM Video CDs (VCD)](cdromvideocdsvcd.md)<br/>
+[CDROM Video CDs (VCD)](../cdrom-vcd/SKILL.md)<br/>
 MPEG1 isn't used in any PSX games, but VCDs can be viewed on SCPH-5903 consoles
 (or via software decoder in nocash PSX kernel clone).<br/>
 
@@ -2024,14 +2024,14 @@ with picture frame(s), each frame starts with following header:<br/>
   ...  ..  Transparency Mask LZSS-compressed data
 ```
 For decompressing the transparency mask:<br/>
-[CDROM File Compression LZSS (Serial Experiments Lain)](cdromfileformats.md#cdrom-file-compression-lzss-serial-experiments-lain)<br/>
+[CDROM File Compression LZSS (Serial Experiments Lain)](../cdrom-file-compression/SKILL.md#cdrom-file-compression-lzss-serial-experiments-lain)<br/>
 The Transparency Mask is stored as scanlines (not as macroblocks), the
 upper/left pixel is in bit7-6 of first byte, the 2bit alpha values are ranging
 from 0=Transparent to 3=Solid.<br/>
 
 #### BS ea Headers (Electronic Arts)
 EA videos are chunk based (instead of using 20h-byte .STR headers).<br/>
-[CDROM File Video Streaming Chunk-based formats](cdromfileformats.md#cdrom-file-video-streaming-chunk-based-formats)<br/>
+[CDROM File Video Streaming Chunk-based formats](#cdrom-file-video-streaming-chunk-based-formats)<br/>
 VLC0 Chunk: Custom MDEC values (to be assigned to normal BS v2 Huffman codes).<br/>
 MDEC Chunks: Width/Height and BS v2 data (using MDEC values from VLC0 chunk).<br/>
 
@@ -2048,7 +2048,7 @@ The first 4 bytes are the MDEC(1) command, the "ID" is always 3800h (equivalent
 to selecting 16bpp output; for 24bpp this must be changed to 3000h before
 passing the command to the MDEC hardware). The remaining bytes are MDEC data
 (padded to 80h-byte boundary).<br/>
-[Macroblock Decoder (MDEC)](macroblockdecodermdec.md)<br/>
+[Macroblock Decoder (MDEC)](../mdec/SKILL.md)<br/>
 
 
 
@@ -2116,7 +2116,7 @@ Newer v3 decoders can wrap within 10bit (eg. add -4 to wrap DC from -200h to
 #### DC iki
 The DC values (including Quant values for each block) are separately stored as
 GT-ZIP compressed data in the IKI .BS header.<br/>
-[CDROM File Compression GT-ZIP (Gran Turismo 1 and 2)](cdromfileformats.md#cdrom-file-compression-gt-zip-gran-turismo-1-and-2)<br/>
+[CDROM File Compression GT-ZIP (Gran Turismo 1 and 2)](../cdrom-file-compression/SKILL.md#cdrom-file-compression-gt-zip-gran-turismo-1-and-2)<br/>
 Calculate NumBlocks=(Width+15)/16\*(height+15)/16\*6, decompress the DC values
 (until DecompressedSize=NumBlocks\*2). During Huffman decompression, read the DC
 values from the decompressed DC buffer (instead of from the Huffman bitstream):<br/>

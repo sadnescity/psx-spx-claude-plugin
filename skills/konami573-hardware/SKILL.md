@@ -14,14 +14,14 @@ other titles from the Bemani series of rhythm games.
 - [Register map](#register-map)
 - [JVS interface](#jvs-interface)
 - [I/O boards](#io-boards)
-- [Security cartridges](#security-cartridges)
-- [External modules](#external-modules)
-- [BIOS](#bios)
-- [Bootleg mod boards](#bootleg-mod-boards)
-- [Game-specific information](#game-specific-information)
-- [Notes](#notes)
-- [Pinouts](#pinouts)
-- [Credits, sources and links](#credits-sources-and-links)
+- [Security cartridges](../konami573-security-io/SKILL.md#security-cartridges)
+- [External modules](../konami573-security-io/SKILL.md#external-modules)
+- [BIOS](../konami573-security-io/SKILL.md#bios)
+- [Bootleg mod boards](../konami573-security-io/SKILL.md#bootleg-mod-boards)
+- [Game-specific information](../konami573-security-io/SKILL.md#game-specific-information)
+- [Notes](../konami573-security-io/SKILL.md#notes)
+- [Pinouts](../konami573-security-io/SKILL.md#pinouts)
+- [Credits, sources and links](../konami573-security-io/SKILL.md#credits-sources-and-links)
 
 This document is currently work-in-progress. Here is an incomplete list of
 things the authors believe need more research:

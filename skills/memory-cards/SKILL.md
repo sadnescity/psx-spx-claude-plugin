@@ -212,7 +212,7 @@ checksum 0Eh).<br/>
   60h-7Fh  Icon 16 Color Palette Data (each entry is 16bit CLUT)
 ```
 For more info on entries [50h..5Fh], see<br/>
-[Pocketstation File Header/Icons](pocketstation.md#pocketstation-file-headericons)<br/>
+[Pocketstation File Header/Icons](../pocketstation-software/SKILL.md#pocketstation-file-headericons)<br/>
 
 #### Icon Frame(s) (Block 1..15, Frame 1..3) (in first block of file only)
 ```
@@ -250,7 +250,7 @@ characters 20h..7Fh (so, in the 8bit form, the title could be theoretically up
 to 64 characters long, but, nethertheless, the BIOS displays only max 32
 chars).<br/>
 For displaying Titles, the BIOS includes a complete Shift-JIS character set,<br/>
-[BIOS Character Sets](kernelbios.md#bios-character-sets)<br/>
+[BIOS Character Sets](../bios-boot-internals/SKILL.md#bios-character-sets)<br/>
 Shift-JIS is focused on asian languages, and does NOT include european letters
 (eg. such with accent marks). Although the non-japanese PSX BIOSes DO include a
 european character set, the BIOS memory card manager DOESN'T seem to translate
@@ -386,4 +386,4 @@ contains software for transferring data to/from PC, for developing homebrew
 games).<br/>
 
 #### Pocketstation (Memory Card with built-in LCD screen and buttons)
-[Pocketstation](pocketstation.md)<br/>
+[Pocketstation](../pocketstation-hardware/SKILL.md)<br/>

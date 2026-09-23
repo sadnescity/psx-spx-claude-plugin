@@ -184,12 +184,12 @@ Otherwise --\> returns ee=00h.<br/>
 Purpose unknown. The command does not seem to be used by any games.<br/>
 
 #### Config Mode - Command 4Dh "M" - Get/Set RumbleProtocol
-[Controllers - Vibration/Rumble Control](controllersandmemorycards.md#controllers-vibrationrumble-control)<br/>
+[Controllers - Vibration/Rumble Control](#controllers---vibrationrumble-control)<br/>
 
 #### Config Mode - Command 40h "@" Dualshock2: Get/Set ButtonAttr?
 #### Config Mode - Command 41h "A" Dualshock2: Get Reply Capabilities
 #### Config Mode - Command 4Fh "O" Dualshock2: Set ReplyProtocol
-[Controllers - Analog Buttons (Dualshock2)](controllersandmemorycards.md#controllers-analog-buttons-dualshock2)<br/>
+[Controllers - Analog Buttons (Dualshock2)](#controllers---analog-buttons-dualshock2)<br/>
 
 #### Config Mode - Command 49h "I" - Unused
 #### Config Mode - Command 4Ah "J" - Unused
@@ -258,7 +258,7 @@ than 16 new commands (the rumble relevant commands are 43h and 4Dh, also,
 command 44h may be useful for activating analog inputs by software, and, once
 when rumble is unlocked, command 42h is used to control the rumble motors).
 Anyways, here's the full command set...<br/>
-[Controllers - Configuration Commands](controllersandmemorycards.md#controllers-configuration-commands)<br/>
+[Controllers - Configuration Commands](#controllers---configuration-commands)<br/>
 And, the rumble-specific config command is described below...<br/>
 
 #### Config Mode - Command 4Dh "M" - Get/Set RumbleProtocol

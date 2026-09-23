@@ -5,24 +5,24 @@ description: "CDROM disk format: physical layout (tracks, sessions, lead-in/out)
 
 #   CDROM Format
 #### General CDROM Disk Format
-[CDROM Disk Format](cdromformat.md#cdrom-disk-format)<br/>
-[CDROM Subchannels](cdromformat.md#cdrom-subchannels)<br/>
-[CDROM Sector Encoding](cdromformat.md#cdrom-sector-encoding)<br/>
-[CDROM Scrambling](cdromformat.md#cdrom-scrambling)<br/>
-[CDROM XA Subheader, File, Channel, Interleave](cdromformat.md#cdrom-xa-subheader-file-channel-interleave)<br/>
-[CDROM XA Audio ADPCM Compression](cdromformat.md#cdrom-xa-audio-adpcm-compression)<br/>
-[CDROM ISO Volume Descriptors](cdromformat.md#cdrom-iso-volume-descriptors)<br/>
-[CDROM ISO File and Directory Descriptors](cdromformat.md#cdrom-iso-file-and-directory-descriptors)<br/>
-[CDROM ISO Misc](cdromformat.md#cdrom-iso-misc)<br/>
-[CDROM File Formats](cdromfileformats.md)<br/>
-[CDROM Video CDs (VCD)](cdromvideocdsvcd.md)<br/>
+[CDROM Disk Format](#cdrom-disk-format)<br/>
+[CDROM Subchannels](#cdrom-subchannels)<br/>
+[CDROM Sector Encoding](#cdrom-sector-encoding)<br/>
+[CDROM Scrambling](#cdrom-scrambling)<br/>
+[CDROM XA Subheader, File, Channel, Interleave](../cdrom-xa-iso/SKILL.md#cdrom-xa-subheader-file-channel-interleave)<br/>
+[CDROM XA Audio ADPCM Compression](../cdrom-xa-iso/SKILL.md#cdrom-xa-audio-adpcm-compression)<br/>
+[CDROM ISO Volume Descriptors](../cdrom-xa-iso/SKILL.md#cdrom-iso-volume-descriptors)<br/>
+[CDROM ISO File and Directory Descriptors](../cdrom-xa-iso/SKILL.md#cdrom-iso-file-and-directory-descriptors)<br/>
+[CDROM ISO Misc](../cdrom-xa-iso/SKILL.md#cdrom-iso-misc)<br/>
+[CDROM File Formats](../cdrom-file-exe-tim/SKILL.md)<br/>
+[CDROM Video CDs (VCD)](../cdrom-vcd/SKILL.md)<br/>
 
 #### Playstation CDROM Protection
-[CDROM Protection - SCEx Strings](cdromformat.md#cdrom-protection-scex-strings)<br/>
-[CDROM Protection - Bypassing it](cdromformat.md#cdrom-protection-bypassing-it)<br/>
-[CDROM Protection - Modchips](cdromformat.md#cdrom-protection-modchips)<br/>
-[CDROM Protection - Chipless Modchips](cdromformat.md#cdrom-protection-chipless-modchips)<br/>
-[CDROM Protection - LibCrypt](cdromformat.md#cdrom-protection-libcrypt)<br/>
+[CDROM Protection - SCEx Strings](../cdrom-xa-iso/SKILL.md#cdrom-protection---scex-strings)<br/>
+[CDROM Protection - Bypassing it](../cdrom-xa-iso/SKILL.md#cdrom-protection---bypassing-it)<br/>
+[CDROM Protection - Modchips](../cdrom-xa-iso/SKILL.md#cdrom-protection---modchips)<br/>
+[CDROM Protection - Chipless Modchips](../cdrom-xa-iso/SKILL.md#cdrom-protection---chipless-modchips)<br/>
+[CDROM Protection - LibCrypt](../cdrom-xa-iso/SKILL.md#cdrom-protection---libcrypt)<br/>
 
 
 
@@ -119,7 +119,7 @@ but for Data Disks it'd be fatal.<br/>
 #### Subchannels
 Each frame contains 8 subchannel bits (named P,Q,R,S,T,U,V,W). So, a sector
 (with 98 frames) contains 98 bits (12.25 bytes) for each subchannel.<br/>
-[CDROM Subchannels](cdromformat.md#cdrom-subchannels)<br/>
+[CDROM Subchannels](#cdrom-subchannels)<br/>
 
 #### Error Correction
 Each Frame contains 8 bytes Error Correction information, which is mainly used

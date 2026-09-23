@@ -493,7 +493,7 @@ Joypads should be initialized via InitPAD2(buf1,22h,buf2,22h), and StartPAD2().
 The main program can read the pad data from the buf1/buf2 addresses (including
 Status, ID1, button states, and any kind of analogue inputs). For more info on
 ID1, Buttons and analogue inputs, see<br/>
-[Controllers and Memory Cards](controllersandmemorycards.md)<br/>
+[Controllers and Memory Cards](../controllers-digital-analog/SKILL.md)<br/>
 Note: The BIOS doesn't include any functions for sending custom data to the
 pads (such like for controlling rumble motors).<br/>
 

@@ -5,29 +5,29 @@ description: "PSX CDROM drive: I/O port registers (index 0-3), command protocol,
 
 #   CDROM Drive
 #### Playstation CDROM I/O Ports
-[CDROM Controller I/O Ports](cdromdrive.md#cdrom-controller-io-ports)<br/>
+[CDROM Controller I/O Ports](#cdrom-controller-io-ports)<br/>
 
 #### Playstation CDROM Commands
-[CDROM Controller Command Summary](cdromdrive.md#cdrom-controller-command-summary)<br/>
-[CDROM - Control Commands](cdromdrive.md#cdrom-control-commands)<br/>
-[CDROM - Seek Commands](cdromdrive.md#cdrom-seek-commands)<br/>
-[CDROM - Read Commands](cdromdrive.md#cdrom-read-commands)<br/>
-[CDROM - Status Commands](cdromdrive.md#cdrom-status-commands)<br/>
-[CDROM - CD Audio Commands](cdromdrive.md#cdrom-cd-audio-commands)<br/>
-[CDROM - Test Commands](cdromdrive.md#cdrom-test-commands)<br/>
-[CDROM - Secret Unlock Commands](cdromdrive.md#cdrom-secret-unlock-commands)<br/>
-[CDROM - Video CD Commands](cdromdrive.md#cdrom-video-cd-commands)<br/>
-[CDROM - Mainloop/Responses](cdromdrive.md#cdrom-mainloopresponses)<br/>
-[CDROM - Response Timings](cdromdrive.md#cdrom-response-timings)<br/>
-[CDROM - Response/Data Queueing](cdromdrive.md#cdrom-responsedata-queueing)<br/>
+[CDROM Controller Command Summary](#cdrom-controller-command-summary)<br/>
+[CDROM - Control Commands](#cdrom---control-commands)<br/>
+[CDROM - Seek Commands](#cdrom---seek-commands)<br/>
+[CDROM - Read Commands](#cdrom---read-commands)<br/>
+[CDROM - Status Commands](#cdrom---status-commands)<br/>
+[CDROM - CD Audio Commands](#cdrom---cd-audio-commands)<br/>
+[CDROM - Test Commands](../cdrom-test-protection/SKILL.md#cdrom---test-commands)<br/>
+[CDROM - Secret Unlock Commands](../cdrom-test-protection/SKILL.md#cdrom---secret-unlock-commands)<br/>
+[CDROM - Video CD Commands](../cdrom-test-protection/SKILL.md#cdrom---video-cd-commands)<br/>
+[CDROM - Mainloop/Responses](../cdrom-test-protection/SKILL.md#cdrom---mainloopresponses)<br/>
+[CDROM - Response Timings](../cdrom-test-protection/SKILL.md#cdrom---response-timings)<br/>
+[CDROM - Response/Data Queueing](../cdrom-test-protection/SKILL.md#cdrom---responsedata-queueing)<br/>
 
 #### General CDROM Disk Format
-[CDROM Format](cdromformat.md)<br/>
-[CDROM File Formats](cdromfileformats.md)<br/>
-[CDROM Video CDs (VCD)](cdromvideocdsvcd.md)<br/>
+[CDROM Format](../cdrom-format-sectors/SKILL.md)<br/>
+[CDROM File Formats](../cdrom-file-exe-tim/SKILL.md)<br/>
+[CDROM Video CDs (VCD)](../cdrom-vcd/SKILL.md)<br/>
 
 #### Playstation CDROM Coprocessor
-[CDROM Internal Info on PSX CDROM Controller](cdrominternalinfoonpsxcdromcontroller.md)<br/>
+[CDROM Internal Info on PSX CDROM Controller](../cdrom-internal-hc05/SKILL.md)<br/>
 
 
 
@@ -909,7 +909,7 @@ in BCD.<br/>
   asect:  sector number on entire disk (00h to 74h)
 ```
 Note: GetlocP is also used for reading the LibCrypt protection data:<br/>
-[CDROM Protection - LibCrypt](cdromformat.md#cdrom-protection-libcrypt)<br/>
+[CDROM Protection - LibCrypt](../cdrom-xa-iso/SKILL.md#cdrom-protection---libcrypt)<br/>
 
 #### GetTN - Command 13h --\> INT3(stat,first,last) ;BCD
 Get first track number, and last track number in the TOC of the current

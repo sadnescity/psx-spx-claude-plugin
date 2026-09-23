@@ -5,33 +5,33 @@ description: "PSX external pinouts: controller/memory card port pins, A/V multi-
 
 #   Pinouts
 #### External Connectors
-[Pinouts - Controller Ports and Memory-Card Ports](pinouts.md#pinouts-controller-ports-and-memory-card-ports)<br/>
-[Pinouts - Audio, Video, Power, Expansion Ports](pinouts.md#pinouts-audio-video-power-expansion-ports)<br/>
-[Pinouts - SIO Pinouts](pinouts.md#pinouts-sio-pinouts)<br/>
+[Pinouts - Controller Ports and Memory-Card Ports](#pinouts---controller-ports-and-memory-card-ports)<br/>
+[Pinouts - Audio, Video, Power, Expansion Ports](#pinouts---audio-video-power-expansion-ports)<br/>
+[Pinouts - SIO Pinouts](#pinouts---sio-pinouts)<br/>
 
 #### Internal Pinouts
-[Pinouts - Chipset Summary](pinouts.md#pinouts-chipset-summary)<br/>
-[Pinouts - CPU Pinouts](pinouts.md#pinouts-cpu-pinouts)<br/>
-[Pinouts - GPU Pinouts (for old 160-pin GPU)](pinouts.md#pinouts-gpu-pinouts-for-old-160-pin-gpu)<br/>
-[Pinouts - GPU Pinouts (for new 208-pin GPU)](pinouts.md#pinouts-gpu-pinouts-for-new-208-pin-gpu)<br/>
-[Pinouts - SPU Pinouts](pinouts.md#pinouts-spu-pinouts)<br/>
-[Pinouts - DRV Pinouts](pinouts.md#pinouts-drv-pinouts)<br/>
-[Pinouts - VCD Pinouts](pinouts.md#pinouts-vcd-pinouts)<br/>
-[Pinouts - HC05 Pinouts](pinouts.md#pinouts-hc05-pinouts)<br/>
-[Pinouts - MEM Pinouts](pinouts.md#pinouts-mem-pinouts)<br/>
-[Pinouts - CLK Pinouts](pinouts.md#pinouts-clk-pinouts)<br/>
-[Pinouts - PWR Pinouts](pinouts.md#pinouts-pwr-pinouts)<br/>
-[Pinouts - Component List and Chipset Pin-Outs for Digital Joypad, SCPH-1080](pinouts.md#pinouts-component-list-and-chipset-pin-outs-for-digital-joypad-scph-1080)<br/>
-[Pinouts - Component List and Chipset Pin-Outs for Analog Joypad, SCPH-1150](pinouts.md#pinouts-component-list-and-chipset-pin-outs-for-analog-joypad-scph-1150)<br/>
-[Pinouts - Component List and Chipset Pin-Outs for Analog Joypad, SCPH-1200](pinouts.md#pinouts-component-list-and-chipset-pin-outs-for-analog-joypad-scph-1200)<br/>
-[Pinouts - Component List and Chipset Pin-Outs for Analog Joypad, SCPH-110](pinouts.md#pinouts-component-list-and-chipset-pin-outs-for-analog-joypad-scph-110)<br/>
-[Pinouts - Component List and Chipset Pin-Outs for Namco Lightgun, NPC-103](pinouts.md#pinouts-component-list-and-chipset-pin-outs-for-namco-lightgun-npc-103)<br/>
-[Pinouts - Component List and Chipset Pin-Outs for Multitap, SCPH-1070](pinouts.md#pinouts-component-list-and-chipset-pin-outs-for-multitap-scph-1070)<br/>
-[Pinouts - Memory Cards](pinouts.md#pinouts-memory-cards)<br/>
+[Pinouts - Chipset Summary](#pinouts---chipset-summary)<br/>
+[Pinouts - CPU Pinouts](../pinouts-internal/SKILL.md#pinouts---cpu-pinouts)<br/>
+[Pinouts - GPU Pinouts (for old 160-pin GPU)](../pinouts-internal/SKILL.md#pinouts---gpu-pinouts-for-old-160-pin-gpu)<br/>
+[Pinouts - GPU Pinouts (for new 208-pin GPU)](../pinouts-internal/SKILL.md#pinouts---gpu-pinouts-for-new-208-pin-gpu)<br/>
+[Pinouts - SPU Pinouts](../pinouts-internal/SKILL.md#pinouts---spu-pinouts)<br/>
+[Pinouts - DRV Pinouts](../pinouts-internal/SKILL.md#pinouts---drv-pinouts)<br/>
+[Pinouts - VCD Pinouts](../pinouts-internal/SKILL.md#pinouts---vcd-pinouts)<br/>
+[Pinouts - HC05 Pinouts](../pinouts-internal/SKILL.md#pinouts---hc05-pinouts)<br/>
+[Pinouts - MEM Pinouts](../pinouts-internal/SKILL.md#pinouts---mem-pinouts)<br/>
+[Pinouts - CLK Pinouts](../pinouts-internal/SKILL.md#pinouts---clk-pinouts)<br/>
+[Pinouts - PWR Pinouts](../pinouts-internal/SKILL.md#pinouts---pwr-pinouts)<br/>
+[Pinouts - Component List and Chipset Pin-Outs for Digital Joypad, SCPH-1080](../pinouts-internal/SKILL.md#pinouts---component-list-and-chipset-pin-outs-for-digital-joypad-scph-1080)<br/>
+[Pinouts - Component List and Chipset Pin-Outs for Analog Joypad, SCPH-1150](../pinouts-internal/SKILL.md#pinouts---component-list-and-chipset-pin-outs-for-analog-joypad-scph-1150)<br/>
+[Pinouts - Component List and Chipset Pin-Outs for Analog Joypad, SCPH-1200](../pinouts-internal/SKILL.md#pinouts---component-list-and-chipset-pin-outs-for-analog-joypad-scph-1200)<br/>
+[Pinouts - Component List and Chipset Pin-Outs for Analog Joypad, SCPH-110](../pinouts-internal/SKILL.md#pinouts---component-list-and-chipset-pin-outs-for-analog-joypad-scph-110)<br/>
+[Pinouts - Component List and Chipset Pin-Outs for Namco Lightgun, NPC-103](../pinouts-internal/SKILL.md#pinouts---component-list-and-chipset-pin-outs-for-namco-lightgun-npc-103)<br/>
+[Pinouts - Component List and Chipset Pin-Outs for Multitap, SCPH-1070](../pinouts-internal/SKILL.md#pinouts---component-list-and-chipset-pin-outs-for-multitap-scph-1070)<br/>
+[Pinouts - Memory Cards](../pinouts-internal/SKILL.md#pinouts---memory-cards)<br/>
 
 #### Mods/Upgrades
-[Mods - Nocash PSX-XBOO Upload](pinouts.md#mods-nocash-psx-xboo-upload)<br/>
-[Mods - PAL/NTSC Color Mods](pinouts.md#mods-palntsc-color-mods)<br/>
+[Mods - Nocash PSX-XBOO Upload](../pinouts-internal/SKILL.md#mods---nocash-psx-xboo-upload)<br/>
+[Mods - PAL/NTSC Color Mods](../pinouts-internal/SKILL.md#mods---palntsc-color-mods)<br/>
 
 
 

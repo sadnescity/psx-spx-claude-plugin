@@ -4,11 +4,11 @@ description: "PSX CDROM drive: test commands (version/region/chipset/SCEx), secr
 ---
 
 ##   CDROM - Test Commands
-[CDROM - Test Commands - Version, Switches, Region, Chipset, SCEx](cdromdrive.md#cdrom-test-commands-version-switches-region-chipset-scex)<br/>
-[CDROM - Test Commands - Test Drive Mechanics](cdromdrive.md#cdrom-test-commands-test-drive-mechanics)<br/>
-[CDROM - Test Commands - Prototype Debug Transmission](cdromdrive.md#cdrom-test-commands-prototype-debug-transmission)<br/>
-[CDROM - Test Commands - Read/Write Decoder RAM and I/O Ports](cdromdrive.md#cdrom-test-commands-readwrite-decoder-ram-and-io-ports)<br/>
-[CDROM - Test Commands - Read HC05 SUB-CPU RAM and I/O Ports](cdromdrive.md#cdrom-test-commands-read-hc05-sub-cpu-ram-and-io-ports)<br/>
+[CDROM - Test Commands - Version, Switches, Region, Chipset, SCEx](#cdrom---test-commands---version-switches-region-chipset-scex)<br/>
+[CDROM - Test Commands - Test Drive Mechanics](#cdrom---test-commands---test-drive-mechanics)<br/>
+[CDROM - Test Commands - Prototype Debug Transmission](#cdrom---test-commands---prototype-debug-transmission)<br/>
+[CDROM - Test Commands - Read/Write Decoder RAM and I/O Ports](#cdrom---test-commands---readwrite-decoder-ram-and-io-ports)<br/>
+[CDROM - Test Commands - Read HC05 SUB-CPU RAM and I/O Ports](#cdrom---test-commands---read-hc05-sub-cpu-ram-and-io-ports)<br/>
 
 
 

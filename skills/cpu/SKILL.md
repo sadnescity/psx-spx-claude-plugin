@@ -5,19 +5,19 @@ description: "PSX CPU (MIPS R3000A): registers (R0-R31, HI/LO, PC), opcode encod
 
 #   CPU Specifications
 #### CPU
-[CPU Registers](cpuspecifications.md#cpu-registers)<br/>
-[CPU Opcode Encoding](cpuspecifications.md#cpu-opcode-encoding)<br/>
-[CPU Load/Store Opcodes](cpuspecifications.md#cpu-loadstore-opcodes)<br/>
-[CPU ALU Opcodes](cpuspecifications.md#cpu-alu-opcodes)<br/>
-[CPU Jump Opcodes](cpuspecifications.md#cpu-jump-opcodes)<br/>
-[CPU Coprocessor Opcodes](cpuspecifications.md#cpu-coprocessor-opcodes)<br/>
-[CPU Pseudo Opcodes](cpuspecifications.md#cpu-pseudo-opcodes)<br/>
+[CPU Registers](#cpu-registers)<br/>
+[CPU Opcode Encoding](#cpu-opcode-encoding)<br/>
+[CPU Load/Store Opcodes](#cpu-loadstore-opcodes)<br/>
+[CPU ALU Opcodes](#cpu-alu-opcodes)<br/>
+[CPU Jump Opcodes](#cpu-jump-opcodes)<br/>
+[CPU Coprocessor Opcodes](#cpu-coprocessor-opcodes)<br/>
+[CPU Pseudo Opcodes](#cpu-pseudo-opcodes)<br/>
 
 #### System Control Coprocessor (COP0)
-[COP0 - Register Summary](cpuspecifications.md#cop0-register-summary)<br/>
-[COP0 - Exception Handling](cpuspecifications.md#cop0-exception-handling)<br/>
-[COP0 - Misc](cpuspecifications.md#cop0-misc)<br/>
-[COP0 - Debug Registers](cpuspecifications.md#cop0-debug-registers)<br/>
+[COP0 - Register Summary](#cop0---register-summary)<br/>
+[COP0 - Exception Handling](#cop0---exception-handling)<br/>
+[COP0 - Misc](#cop0---misc)<br/>
+[COP0 - Debug Registers](#cop0---debug-registers)<br/>
 
 
 
@@ -846,7 +846,7 @@ handler at 80000080h (not 80000040h).
 The debug registers are mis-used by "Legacy of Kain: Soul Reaver" (and maybe
 also other games) for storing libcrypt copy-protection related values (ie. just
 as a "hidden" location for storing data, not for actual debugging purposes).<br/>
-[CDROM Protection - LibCrypt](cdromformat.md#cdrom-protection-libcrypt)
+[CDROM Protection - LibCrypt](../cdrom-xa-iso/SKILL.md#cdrom-protection---libcrypt)
 
 #### Note (Cheat Devices/Expansion ROMs)
 The Expansion ROM header supports only Pre-Boot and Post-Boot vectors, but no

@@ -67,7 +67,7 @@ at 0000h.<br/>
 
 #### Dotclock/Hblank
 For more info on dotclock and hblank timings, see:<br/>
-[GPU Timings](graphicsprocessingunitgpu.md#gpu-timings)<br/>
+[GPU Timings](../gpu/SKILL.md#gpu-timings)<br/>
 Caution: Reading the Current Counter Value can be a little unstable (when using
 dotclk or hblank as clock source); the GPU clock isn't in sync with the CPU
 clock, so the timer may get changed during the CPU read cycle. As a workaround:

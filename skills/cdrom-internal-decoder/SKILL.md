@@ -645,10 +645,10 @@ Whereas,<br/>
 
 ##   CDROM Internal Commands CX(0x..Ex) - CXD2545Q Servo/Signal Combo
 #### CXD2545Q - CX(0x) and CX(2x) - same as CXA1782BR Servo Amplifier
-[CDROM Internal Commands CX(0x..3x) - CXA1782BR Servo Amplifier](cdrominternalinfoonpsxcdromcontroller.md#cdrom-internal-commands-cx0x3x-cxa1782br-servo-amplifier)<br/>
+[CDROM Internal Commands CX(0x..3x) - CXA1782BR Servo Amplifier](#cdrom-internal-commands-cx0x3x---cxa1782br-servo-amplifier)<br/>
 
 #### CXD2545Q - CX(4x..Ex) - same as CXD2510Q Signal Processor
-[CDROM Internal Commands CX(4x..Ex) - CXD2510Q Signal Processor](cdrominternalinfoonpsxcdromcontroller.md#cdrom-internal-commands-cx4xex-cxd2510q-signal-processor)<br/>
+[CDROM Internal Commands CX(4x..Ex) - CXD2510Q Signal Processor](#cdrom-internal-commands-cx4xex---cxd2510q-signal-processor)<br/>
 One small difference is that the CXD2545Q supports a new "M Track Move"
 function as part of the CX(4xxx) command. And, some "don't care" bits are now
 reserved (ie. some commands need to be padded with additional leading "0"
@@ -681,7 +681,7 @@ bits).<br/>
   PLUS  8bit  Eight more bits on PSone (!)
 ```
 Allows to change the default preset coefficient values,<br/>
-[CDROM Internal Coefficients (for CXD2545Q)](cdrominternalinfoonpsxcdromcontroller.md#cdrom-internal-coefficients-for-cxd2545q)<br/>
+[CDROM Internal Coefficients (for CXD2545Q)](#cdrom-internal-coefficients-for-cxd2545q)<br/>
 
 #### CXD2545Q - CX(34Fxxx) - Write to Special Register
 ```

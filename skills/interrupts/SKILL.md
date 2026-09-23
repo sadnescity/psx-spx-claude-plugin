@@ -26,7 +26,7 @@ Mask: Read/Write I\_MASK (0=Disabled, 1=Enabled)<br/>
 ```
 
 #### Secondary IRQ10 Controller (Port 1F802030h)
-[EXP2 DTL-H2000 I/O Ports](expansionportpio.md#exp2-dtl-h2000-io-ports)<br/>
+[EXP2 DTL-H2000 I/O Ports](../expansion-port/SKILL.md#exp2-dtl-h2000-io-ports)<br/>
 
 #### Interrupt Request / Execution
 The interrupt request bits in I\_STAT are edge-triggered, ie. the get set ONLY
@@ -55,7 +55,7 @@ won't be ever set in future).<br/>
 Relevant COP0 registers are cop0r13 (CAUSE, reason flags), and cop0r12 (SR,
 control flags), and cop0r14 (EPC, return address), and, cop0cmd=10h (aka RFE
 opcode) is used to prepare the return from interrupts. For more info, see<br/>
-[COP0 - Exception Handling](cpuspecifications.md#cop0-exception-handling)<br/>
+[COP0 - Exception Handling](../cpu/SKILL.md#cop0---exception-handling)<br/>
 
 #### PSX specific COP0 Notes
 COP0 has six hardware interrupt bits, of which, the PSX uses only cop0r13.bit10

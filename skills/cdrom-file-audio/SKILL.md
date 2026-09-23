@@ -92,7 +92,7 @@ Version=00000003h and up)?<br/>
 #### VAG ADPCM Data
 The ADPCM data uses PSX SPU-ADPCM encoding (even on PS2 and up, except PS4 with
 Version=0002001h or Version=00030000h, which do use HEVAG encoding).<br/>
-[SPU ADPCM Samples](soundprocessingunitspu.md#spu-adpcm-samples)<br/>
+[SPU ADPCM Samples](../spu/SKILL.md#spu-adpcm-samples)<br/>
 The data does usually start at offset 0030h (except, some files have extra
 header data or padding at that location).<br/>
 The first 10h-byte ADPCM block is usually all zero (used to initialize the
@@ -457,7 +457,7 @@ There a several games that have sound files with ID "AKAO".<br/>
   XXX does that include different AKAO formats... for Samples and Midi?
 ```
 AKAO is also used in several streaming movies:<br/>
-[CDROM File Video Streaming Audio](cdromfileformats.md#cdrom-file-video-streaming-audio)<br/>
+[CDROM File Video Streaming Audio](../cdrom-file-video-3d/SKILL.md#cdrom-file-video-streaming-audio)<br/>
 
 #### Others
 Alone in the Dark IV has MIDB and DSND chunks (which contain sound files).<br/>

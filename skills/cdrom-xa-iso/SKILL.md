@@ -476,7 +476,7 @@ Playstation disks usually have only two Volume Descriptors,<br/>
   078h ..   Same as for Primary Volume Descriptor (see there)
 ```
 In practice, this is used for Joliet:<br/>
-[CDROM Extension Joliet](cdromformat.md#cdrom-extension-joliet)<br/>
+[CDROM Extension Joliet](#cdrom-extension-joliet)<br/>
 
 #### Volume Partition Descriptor (none such on PSX disks)
 ```
@@ -759,7 +759,7 @@ with underscores instead of spaces, and somehow assigning names like
 #### Secondary Volume Descriptor (aka Supplementary Volume Descriptor)
 This is using the same format as ISO Primary Volume Descriptor (but with some
 changed entries).<br/>
-[CDROM ISO Volume Descriptors](cdromformat.md#cdrom-iso-volume-descriptors)<br/>
+[CDROM ISO Volume Descriptors](#cdrom-iso-volume-descriptors)<br/>
 Changed entries are:<br/>
 ```
   000h 1     Volume Descriptor Type (02h=Supplementary instead of 01h=Primary)
@@ -782,7 +782,7 @@ zeropadding), indicating the ISO 2022 Unicode charset:<br/>
 #### Directory Records and Path Tables
 This is using the standard ISO format (but with 16bit Unicode characters
 instead of 8bit ASCII chars).<br/>
-[CDROM ISO File and Directory Descriptors](cdromformat.md#cdrom-iso-file-and-directory-descriptors)<br/>
+[CDROM ISO File and Directory Descriptors](#cdrom-iso-file-and-directory-descriptors)<br/>
 
 #### File and Directory Name Characters
 All characters are stored in 16bit Big Endian format. The LEN\_FI filename entry
@@ -898,7 +898,7 @@ position). So, eventually, a customized BIOS could convert the "raw" data to
 There is an "official" backdoor that allows to disable the SCEx protection by
 software via secret commands (for example, sending those commands can be done
 via BIOS patches, nocash BIOS clone, or Expansion ROMs).<br/>
-[CDROM - Secret Unlock Commands](cdromdrive.md#cdrom-secret-unlock-commands)<br/>
+[CDROM - Secret Unlock Commands](../cdrom-test-protection/SKILL.md#cdrom---secret-unlock-commands)<br/>
 
 #### Booting via Memory Card
 Some games that load data from memory cards may get confused if the save data
@@ -1069,7 +1069,7 @@ wires to unlock the CDROM:<br/>
 With the "sync" connection, the SCEx signal from the disk is disabled (ie. even
 original licensed disks are no longer recognized, unless SCEx is output via A20
 by software). For more variants, see:<br/>
-[CDROM Protection - Chipless Modchips](cdromformat.md#cdrom-protection-chipless-modchips)<br/>
+[CDROM Protection - Chipless Modchips](#cdrom-protection---chipless-modchips)<br/>
 
 
 
@@ -1208,4 +1208,4 @@ storage in this case), for example, the 16bit key is stored in LSBs of the
 "cop0r3" register.<br/>
 In particular, the encryption is used for some of the BIGFILE.DAT folder
 headers:<br/>
-[CDROM File Archive BIGFILE.DAT (Soul Reaver)](cdromfileformats.md#cdrom-file-archive-bigfiledat-soul-reaver)<br/>
+[CDROM File Archive BIGFILE.DAT (Soul Reaver)](../cdrom-file-archives/SKILL.md#cdrom-file-archive-bigfiledat-soul-reaver)<br/>

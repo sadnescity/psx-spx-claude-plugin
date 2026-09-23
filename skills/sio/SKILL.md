@@ -172,13 +172,13 @@ moment; barely enough to allow I\_STAT.8 to sense a edge).<br/>
 #### Note
 For more details on how SIO0 is used to communicate with controllers and memory
 cards, see:<br/>
-[Controller and Memory Card Overview](controllersandmemorycards.md#controller-and-memory-card-overview)<br/>
+[Controller and Memory Card Overview](../controllers-digital-analog/SKILL.md#controller-and-memory-card-overview)<br/>
 For serial port pinouts, PSone SIO1 upgrading, and for building RS232 adaptors,
 see:<br/>
-[Pinouts - SIO Pinouts](pinouts.md#pinouts-sio-pinouts)<br/>
+[Pinouts - SIO Pinouts](../pinouts-external/SKILL.md#pinouts---sio-pinouts)<br/>
 Aside from the internal SIO port, the PSX BIOS supports two additional external
 serial ports, connected to the expansion port.<br/>
-[EXP2 Dual Serial Port (for TTY Debug Terminal)](expansionportpio.md#exp2-dual-serial-port-for-tty-debug-terminal)<br/>
+[EXP2 Dual Serial Port (for TTY Debug Terminal)](../expansion-port/SKILL.md#exp2-dual-serial-port-for-tty-debug-terminal)<br/>
 
 #### SIO1 link cable games
 The serial ports on two consoles can be connected with an SCPH-1040 Link Cable

@@ -74,7 +74,7 @@ This has an effect when performing a narrower write to a wider address, for exam
 the DMA controller, but not others such as the CD-ROM controller.
 
 Emulators should therefore treat all access widths as having 32 bits of data, but
-depending on the device perform masking/splitting (see [Memory Control](memorycontrol.md)).
+depending on the device perform masking/splitting (see [Memory Control](../memory-control/SKILL.md)).
 
 The CD audio visualizer (aka Soundscope) in the SCPH-7xxx series of consoles is an
 example of where this behavior is required, as it issues halfword writes to the DMA

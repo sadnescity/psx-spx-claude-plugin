@@ -1,20 +1,32 @@
 #!/usr/bin/env python3
 """Build script for psx-spx Claude Code plugin skills.
 
-Reads source markdown files from /tmp/psx-spx-repo/docs/ and generates
-Claude Code plugin skills at ~/RomHacking/psx-spx/skills/<name>/SKILL.md.
+Reads source markdown files from the psx-spx docs directory ($PSX_SPX_DOCS,
+default /tmp/psx-spx-repo/docs, a checkout of
+https://github.com/psx-spx/psx-spx.github.io) and generates Claude Code plugin
+skills at <repo>/skills/<name>/SKILL.md ($PSX_SPX_SKILLS overrides).
 
 Each skill gets YAML frontmatter (name + description) prepended to the
 markdown content.
+
+Internal links of the original site (``file.md#anchor``) are rewritten to point
+at the skill that contains the target section (``../<skill>/SKILL.md#anchor``,
+or ``#anchor`` inside the same skill), using GitHub-flavoured markdown anchors
+computed from the generated headings. Links whose target is not part of the
+plugin are turned into plain text and listed at the end of the build.
 """
 
+import html
 import os
 import re
 import shutil
 import sys
+import unicodedata
+import urllib.parse
 
-SOURCE_DIR = "/tmp/psx-spx-repo/docs"
-OUTPUT_DIR = os.path.expanduser("~/RomHacking/psx-spx/skills")
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+SOURCE_DIR = os.environ.get("PSX_SPX_DOCS", "/tmp/psx-spx-repo/docs")
+OUTPUT_DIR = os.environ.get("PSX_SPX_SKILLS", os.path.join(SCRIPT_DIR, "skills"))
 
 # ---------------------------------------------------------------------------
 # Skill configuration
@@ -370,66 +382,254 @@ def make_frontmatter(name: str, description: str) -> str:
     return f'---\nname: {name}\ndescription: "{escaped}"\n---\n\n'
 
 
-def build_intact_skill(skill: dict) -> None:
-    """Build a single intact skill (entire source file)."""
-    source_path = os.path.join(SOURCE_DIR, skill["source"])
-    if not os.path.exists(source_path):
-        print(f"  ERROR: source not found: {source_path}")
-        sys.exit(1)
-
-    with open(source_path, "r", encoding="utf-8") as f:
-        content = f.read()
-
-    out_dir = os.path.join(OUTPUT_DIR, skill["name"])
-    os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, "SKILL.md")
-
-    with open(out_path, "w", encoding="utf-8") as f:
-        f.write(make_frontmatter(skill["name"], skill["description"]))
-        f.write(content)
-
-    print(f"  {skill['name']}: intact ({len(content)} bytes)")
+# ---------------------------------------------------------------------------
+# Headings and anchors
+# ---------------------------------------------------------------------------
+FENCE_RE = re.compile(r"^\s{0,3}(`{3,}|~{3,})")
+ATX_RE = re.compile(r"^\s{0,3}(#{1,6})(?:[ \t]+(.*?))?[ \t]*$")
+TAG_RE = re.compile(r"</?[A-Za-z][A-Za-z0-9-]*(?:\s[^<>]*)?/?>")
+ENTITY_RE = re.compile(r"&(?:#[0-9]+|#[xX][0-9a-fA-F]+|[A-Za-z][A-Za-z0-9]*);")
+ASCII_PUNCT = set("!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~")
 
 
-def build_split_skill(skill: dict) -> None:
-    """Build split skills from a single source file."""
-    source_path = os.path.join(SOURCE_DIR, skill["source"])
-    if not os.path.exists(source_path):
-        print(f"  ERROR: source not found: {source_path}")
-        sys.exit(1)
-
-    with open(source_path, "r", encoding="utf-8") as f:
-        lines = f.readlines()
-
-    h2_list = find_h2_line_indices(lines)
-
-    for split in skill["splits"]:
-        # Determine start line
-        if split["start_heading"] is None:
-            start_line = 0
+def iter_outside_fences(lines: list[str]):
+    """Yield (index, line, in_fence) for each line, tracking ``` / ~~~ fences."""
+    fence = None
+    for i, line in enumerate(lines):
+        m = FENCE_RE.match(line)
+        if fence is None:
+            if m:
+                fence = m.group(1)
+                yield i, line, True
+                continue
+            yield i, line, False
         else:
-            start_line = find_heading_line(h2_list, split["start_heading"])
+            yield i, line, True
+            if m and m.group(1)[0] == fence[0] and len(m.group(1)) >= len(fence) \
+                    and line.strip() == m.group(1):
+                fence = None
 
-        # Determine end line
-        if split["end_heading"] is None:
-            end_line = len(lines)
+
+def parse_headings(lines: list[str]) -> list[tuple[int, str]]:
+    """Return (line_index, raw heading text) for every ATX heading outside fences."""
+    result = []
+    for i, line, in_fence in iter_outside_fences(lines):
+        if in_fence:
+            continue
+        m = ATX_RE.match(line.rstrip("\n"))
+        if not m:
+            continue
+        text = m.group(2) or ""
+        # Optional closing sequence of #'s (must be preceded by a space)
+        text = re.sub(r"(?:^|[ \t]+)#+[ \t]*$", "", text)
+        result.append((i, text.strip()))
+    return result
+
+
+def render_heading_text(raw: str) -> str:
+    """Approximate the plain text GitHub renders for a heading's inline markdown."""
+    out = []
+    i = 0
+    n = len(raw)
+    while i < n:
+        c = raw[i]
+        if c == "\\" and i + 1 < n and raw[i + 1] in ASCII_PUNCT:
+            out.append(raw[i + 1])
+            i += 2
+        elif c == "`":
+            j = i
+            while j < n and raw[j] == "`":
+                j += 1
+            ticks = raw[i:j]
+            end = raw.find(ticks, j)
+            if end == -1:
+                out.append(ticks)
+                i = j
+            else:
+                out.append(raw[j:end])
+                i = end + len(ticks)
+        elif c == "<" and TAG_RE.match(raw, i):
+            i = TAG_RE.match(raw, i).end()
+        elif c == "&" and ENTITY_RE.match(raw, i):
+            ent = ENTITY_RE.match(raw, i).group(0)
+            out.append(html.unescape(ent))
+            i += len(ent)
+        elif c == "*":
+            i += 1  # emphasis markers (punctuation: dropped by slugs anyway)
         else:
-            end_line = find_heading_line(h2_list, split["end_heading"])
+            out.append(c)
+            i += 1
+    return "".join(out).strip()
 
-        chunk = "".join(lines[start_line:end_line])
 
-        out_dir = os.path.join(OUTPUT_DIR, split["name"])
-        os.makedirs(out_dir, exist_ok=True)
-        out_path = os.path.join(out_dir, "SKILL.md")
+def gfm_slug(text: str) -> str:
+    """GitHub-flavoured markdown anchor (github-slugger) for rendered heading text."""
+    text = text.lower()
+    # Keep letters, marks, numbers, connector punctuation (_), spaces and '-'
+    kept = []
+    for ch in text:
+        cat = unicodedata.category(ch)
+        if ch in (" ", "-") or cat[0] in ("L", "M", "N") or cat == "Pc":
+            kept.append(ch)
+    return "".join(kept).replace(" ", "-")
 
-        with open(out_path, "w", encoding="utf-8") as f:
-            f.write(make_frontmatter(split["name"], split["description"]))
-            f.write(chunk)
 
-        print(
-            f"  {split['name']}: lines {start_line + 1}-{end_line} "
-            f"({len(chunk)} bytes)"
-        )
+def mkdocs_slug(text: str) -> str:
+    """Python-Markdown toc default slugify (used by the original mkdocs site)."""
+    value = unicodedata.normalize("NFKD", text).encode("ascii", "ignore").decode("ascii")
+    value = re.sub(r"[^\w\s-]", "", value).strip().lower()
+    return re.sub(r"[-\s]+", "-", value)
+
+
+def loose_key(anchor: str) -> str:
+    return re.sub(r"[^a-z0-9]", "", anchor.lower())
+
+
+def dedup_slugs(slugs: list[str], sep: str) -> list[str]:
+    """Make slugs unique the way GitHub (sep='-') / Python-Markdown (sep='_') do."""
+    seen = set()
+    result = []
+    for slug in slugs:
+        candidate = slug
+        k = 0
+        while candidate in seen:
+            k += 1
+            candidate = f"{slug}{sep}{k}"
+        seen.add(candidate)
+        result.append(candidate)
+    return result
+
+
+def gfm_anchors(lines: list[str]) -> dict[int, str]:
+    """Map heading line index -> GitHub anchor, for a whole markdown document."""
+    heads = parse_headings(lines)
+    slugs = dedup_slugs([gfm_slug(render_heading_text(t)) for _, t in heads], "-")
+    return {idx: slug for (idx, _), slug in zip(heads, slugs)}
+
+
+# ---------------------------------------------------------------------------
+# Planning: which lines of which source file go into which skill
+# ---------------------------------------------------------------------------
+def plan_chunks() -> tuple[list[dict], dict[str, list[str]]]:
+    """Return (chunks, source_lines). Each chunk: name, description, source, start, end."""
+    chunks = []
+    sources = {}
+    for skill in SKILLS:
+        source_path = os.path.join(SOURCE_DIR, skill["source"])
+        if not os.path.exists(source_path):
+            print(f"  ERROR: source not found: {source_path}")
+            sys.exit(1)
+        with open(source_path, "r", encoding="utf-8") as f:
+            lines = f.readlines()
+        sources[skill["source"]] = lines
+
+        if "splits" not in skill:
+            chunks.append({"name": skill["name"], "description": skill["description"],
+                           "source": skill["source"], "start": 0, "end": len(lines)})
+            continue
+
+        h2_list = find_h2_line_indices(lines)
+        for split in skill["splits"]:
+            start = 0 if split["start_heading"] is None else \
+                find_heading_line(h2_list, split["start_heading"])
+            end = len(lines) if split["end_heading"] is None else \
+                find_heading_line(h2_list, split["end_heading"])
+            chunks.append({"name": split["name"], "description": split["description"],
+                           "source": skill["source"], "start": start, "end": end})
+    return chunks, sources
+
+
+# ---------------------------------------------------------------------------
+# Link rewriting
+# ---------------------------------------------------------------------------
+LINK_RE = re.compile(r"(!?)\[((?:[^\[\]\n]|\[[^\[\]\n]*\])*)\]\(([^()\s]*)\)")
+
+
+class LinkResolver:
+    def __init__(self, chunks: list[dict], sources: dict[str, list[str]]):
+        self.chunks = chunks
+        self.by_source = {}
+        for ch in chunks:
+            self.by_source.setdefault(ch["source"], []).append(ch)
+        # Anchor lookup tables per source file: anchor -> heading line index
+        self.lookup = {}
+        for src, lines in sources.items():
+            heads = parse_headings(lines)
+            texts = [render_heading_text(t) for _, t in heads]
+            idxs = [i for i, _ in heads]
+            mk = dedup_slugs([mkdocs_slug(t) for t in texts], "_")
+            gf = dedup_slugs([gfm_slug(t) for t in texts], "-")
+            loose = {}
+            for i, s in zip(idxs, gf):
+                loose.setdefault(loose_key(s), i)
+            self.lookup[src] = (dict(zip(mk, idxs)), dict(zip(gf, idxs)), loose)
+        # GitHub anchors of each generated skill: line index (in source) -> anchor
+        for ch in chunks:
+            body = sources[ch["source"]][ch["start"]:ch["end"]]
+            ch["anchors"] = {ch["start"] + k: v for k, v in gfm_anchors(body).items()}
+        self.rewritten = 0
+        self.unresolved = []  # (skill, link text, original target)
+        self.assets = []      # (skill, asset filename)
+
+    def chunk_at(self, src: str, line: int) -> dict:
+        for ch in self.by_source[src]:
+            if ch["start"] <= line < ch["end"]:
+                return ch
+        raise KeyError((src, line))
+
+    def find_heading(self, src: str, frag: str):
+        mk, gf, loose = self.lookup[src]
+        for table, key in ((mk, frag), (gf, frag.lower()), (loose, loose_key(frag))):
+            if key in table:
+                return table[key]
+        return None
+
+    def resolve(self, cur: dict, target: str):
+        """Return new href, or None if the target is not part of the plugin."""
+        path, _, frag = target.partition("#")
+        path = urllib.parse.unquote(path)
+        frag = urllib.parse.unquote(frag)
+        src = path or cur["source"]
+        if src not in self.by_source:
+            return None
+        if frag:
+            line = self.find_heading(src, frag)
+            if line is None:
+                return None
+            ch = self.chunk_at(src, line)
+            anchor = "#" + ch["anchors"][line]
+        else:
+            ch = self.chunk_at(src, 0)
+            anchor = ""
+        if ch is cur:
+            return anchor or "SKILL.md"
+        return f"../{ch['name']}/SKILL.md{anchor}"
+
+    def rewrite(self, cur: dict, text: str) -> str:
+        def repl(m):
+            bang, label, target = m.groups()
+            if re.match(r"^[a-zA-Z][a-zA-Z0-9+.-]*:", target) or target.startswith("//"):
+                return m.group(0)  # external (http, https, mailto, ...)
+            path = target.partition("#")[0]
+            if path and not path.endswith(".md"):
+                # Non-markdown asset (e.g. an image): ship it next to the skill
+                if os.path.exists(os.path.join(SOURCE_DIR, path)):
+                    self.assets.append((cur["name"], path))
+                    return m.group(0)
+                self.unresolved.append((cur["name"], label, target))
+                return label
+            new = self.resolve(cur, target)
+            if new is None:
+                self.unresolved.append((cur["name"], label, target))
+                return label
+            self.rewritten += 1
+            return f"{bang}[{label}]({new})"
+
+        out = []
+        lines = text.splitlines(keepends=True)
+        for _, line, in_fence in iter_outside_fences(lines):
+            out.append(line if in_fence else LINK_RE.sub(repl, line))
+        return "".join(out)
 
 
 def main():
@@ -442,22 +642,29 @@ def main():
     print(f"Output: {OUTPUT_DIR}")
     print()
 
-    intact_count = 0
-    split_count = 0
+    chunks, sources = plan_chunks()
+    resolver = LinkResolver(chunks, sources)
 
-    for skill in SKILLS:
-        if "splits" in skill:
-            print(f"Split: {skill['source']}")
-            build_split_skill(skill)
-            split_count += len(skill["splits"])
-        else:
-            print(f"Intact: {skill['source']}")
-            build_intact_skill(skill)
-            intact_count += 1
+    for ch in chunks:
+        body = "".join(sources[ch["source"]][ch["start"]:ch["end"]])
+        body = resolver.rewrite(ch, body)
+        out_dir = os.path.join(OUTPUT_DIR, ch["name"])
+        os.makedirs(out_dir, exist_ok=True)
+        with open(os.path.join(out_dir, "SKILL.md"), "w", encoding="utf-8") as f:
+            f.write(make_frontmatter(ch["name"], ch["description"]))
+            f.write(body)
+        print(f"  {ch['name']}: {ch['source']} lines {ch['start'] + 1}-{ch['end']} "
+              f"({len(body)} bytes)")
 
-    total = intact_count + split_count
+    for name, asset in resolver.assets:
+        shutil.copy2(os.path.join(SOURCE_DIR, asset), os.path.join(OUTPUT_DIR, name, asset))
+
     print()
-    print(f"Done: {intact_count} intact + {split_count} split = {total} skills")
+    print(f"Done: {len(chunks)} skills")
+    print(f"Links rewritten: {resolver.rewritten}, assets copied: {len(resolver.assets)}, "
+          f"unresolved (turned into plain text): {len(resolver.unresolved)}")
+    for name, label, target in resolver.unresolved:
+        print(f"  UNRESOLVED [{name}] {label!r} -> {target}")
 
 
 if __name__ == "__main__":

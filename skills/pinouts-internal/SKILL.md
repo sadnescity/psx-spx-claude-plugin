@@ -511,7 +511,7 @@ Audio amplifier, for raising the signals to 5V levels.<br/>
 
 ##   Pinouts - DRV Pinouts
 #### IC304 - 52pin/80pin - Motorola HC05 8bit CPU
-[Pinouts - HC05 Pinouts](pinouts.md#pinouts-hc05-pinouts)<br/>
+[Pinouts - HC05 Pinouts](#pinouts---hc05-pinouts)<br/>
 
 #### IC305 - SONY CXD1815Q - CDROM Decoder/FIFO (used on PU-8, PU-16, PU-18)
 ```
@@ -1090,7 +1090,7 @@ OSC input (internally HC05 is running at OSC/2, ie. around 2MHz):<br/>
 #### HC05 - 32pin/64pin Versions
 Sony's Digital Joypad and Mouse contain 32pin CPUs, which are probably also
 HC05's:<br/>
-[Pinouts - Component List and Chipset Pin-Outs for Digital Joypad, SCPH-1080](pinouts.md#pinouts-component-list-and-chipset-pin-outs-for-digital-joypad-scph-1080)<br/>
+[Pinouts - Component List and Chipset Pin-Outs for Digital Joypad, SCPH-1080](#pinouts---component-list-and-chipset-pin-outs-for-digital-joypad-scph-1080)<br/>
 Moreover, some old memory cards contain a 64pin Motorola SC419510FU (probably
 also a HC05) with separate Atmel AT29LV010A (128Kx8 FLASH).<br/>
 
@@ -2276,7 +2276,7 @@ memory cards before 1998?<br/>
 
 #### Note
 For the actual pin-outs of the cart-edge connector, see<br/>
-[Pinouts - Controller Ports and Memory-Card Ports](pinouts.md#pinouts-controller-ports-and-memory-card-ports)<br/>
+[Pinouts - Controller Ports and Memory-Card Ports](../pinouts-external/SKILL.md#pinouts---controller-ports-and-memory-card-ports)<br/>
 
 
 
@@ -2317,10 +2317,10 @@ For the actual pin-outs of the cart-edge connector, see<br/>
 The nocash PSX bios outputs the "data" signal on the A20 address line, so
 (aside from the BIOS chip) one only needs to install a 1N4148 diode and two
 wires to unlock the CDROM. For more variants, see:<br/>
-[CDROM Protection - Chipless Modchips](cdromformat.md#cdrom-protection-chipless-modchips)<br/>
+[CDROM Protection - Chipless Modchips](../cdrom-xa-iso/SKILL.md#cdrom-protection---chipless-modchips)<br/>
 
 #### Composite NTSC/PAL Mod (optional)
-[Mods - PAL/NTSC Color Mods](pinouts.md#mods-palntsc-color-mods)<br/>
+[Mods - PAL/NTSC Color Mods](#mods---palntsc-color-mods)<br/>
 
 #### Component List
 ```

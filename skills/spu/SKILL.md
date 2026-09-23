@@ -4,20 +4,20 @@ description: "PSX SPU (Sound Processing Unit): ADPCM samples/pitch, volume/ADSR 
 ---
 
 #   Sound Processing Unit (SPU)
-[SPU Overview](soundprocessingunitspu.md#spu-overview)<br/>
-[SPU ADPCM Samples](soundprocessingunitspu.md#spu-adpcm-samples)<br/>
-[SPU ADPCM Pitch](soundprocessingunitspu.md#spu-adpcm-pitch)<br/>
-[SPU Volume and ADSR Generator](soundprocessingunitspu.md#spu-volume-and-adsr-generator)<br/>
-[SPU Voice Flags](soundprocessingunitspu.md#spu-voice-flags)<br/>
-[SPU Noise Generator](soundprocessingunitspu.md#spu-noise-generator)<br/>
-[SPU Control and Status Register](soundprocessingunitspu.md#spu-control-and-status-register)<br/>
-[SPU Memory Access](soundprocessingunitspu.md#spu-memory-access)<br/>
-[SPU Interrupt](soundprocessingunitspu.md#spu-interrupt)<br/>
-[SPU Reverb Registers](soundprocessingunitspu.md#spu-reverb-registers)<br/>
-[SPU Reverb Formula](soundprocessingunitspu.md#spu-reverb-formula)<br/>
-[SPU Reverb Examples](soundprocessingunitspu.md#spu-reverb-examples)<br/>
-[SPU Unknown Registers](soundprocessingunitspu.md#spu-unknown-registers)<br/>
-[SPU Internal State Machine from SPU RAM Timing](soundprocessingunitspu.md#spu-internal-state-machine-from-spu-ram-timing)<br/>
+[SPU Overview](#spu-overview)<br/>
+[SPU ADPCM Samples](#spu-adpcm-samples)<br/>
+[SPU ADPCM Pitch](#spu-adpcm-pitch)<br/>
+[SPU Volume and ADSR Generator](#spu-volume-and-adsr-generator)<br/>
+[SPU Voice Flags](#spu-voice-flags)<br/>
+[SPU Noise Generator](#spu-noise-generator)<br/>
+[SPU Control and Status Register](#spu-control-and-status-register)<br/>
+[SPU Memory Access](#spu-memory-access)<br/>
+[SPU Interrupt](#spu-interrupt)<br/>
+[SPU Reverb Registers](#spu-reverb-registers)<br/>
+[SPU Reverb Formula](#spu-reverb-formula)<br/>
+[SPU Reverb Examples](#spu-reverb-examples)<br/>
+[SPU Unknown Registers](#spu-unknown-registers)<br/>
+[SPU Internal State Machine from SPU RAM Timing](#spu-internal-state-machine-from-spu-ram-timing)<br/>
 
 
 ##   SPU Overview

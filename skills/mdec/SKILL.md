@@ -7,10 +7,10 @@ description: "PSX MDEC (Macroblock Decoder): I/O ports, decode commands, quant/s
 The MDEC is a JPEG-style Macroblock Decoder, that can decompress pictures (or a
 series of pictures, for being displayed as a movie).<br/>
 
-[MDEC I/O Ports](macroblockdecodermdec.md#mdec-io-ports)<br/>
-[MDEC Commands](macroblockdecodermdec.md#mdec-commands)<br/>
-[MDEC Decompression](macroblockdecodermdec.md#mdec-decompression)<br/>
-[MDEC Data Format](macroblockdecodermdec.md#mdec-data-format)<br/>
+[MDEC I/O Ports](#mdec-io-ports)<br/>
+[MDEC Commands](#mdec-commands)<br/>
+[MDEC Decompression](#mdec-decompression)<br/>
+[MDEC Data Format](#mdec-data-format)<br/>
 
 
 

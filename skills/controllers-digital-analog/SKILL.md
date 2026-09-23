@@ -5,52 +5,52 @@ description: "PSX controllers: communication protocol (active-low select, clock,
 
 #   Controllers and Memory Cards
 #### Controllers/Memory Cards
-[Controller and Memory Card Overview](controllersandmemorycards.md#controller-and-memory-card-overview)<br/>
-[Controller and Memory Card Signals](controllersandmemorycards.md#controller-and-memory-card-signals)<br/>
-[Controller and Memory Card Multitap Adaptor](controllersandmemorycards.md#controller-and-memory-card-multitap-adaptor)<br/>
+[Controller and Memory Card Overview](#controller-and-memory-card-overview)<br/>
+[Controller and Memory Card Signals](#controller-and-memory-card-signals)<br/>
+[Controller and Memory Card Multitap Adaptor](#controller-and-memory-card-multitap-adaptor)<br/>
 
 #### Controllers
-[Controllers - Communication Sequence](controllersandmemorycards.md#controllers-communication-sequence)<br/>
-[Controllers - Standard Digital/Analog Controllers](controllersandmemorycards.md#controllers-standard-digitalanalog-controllers)<br/>
-[Controllers - Mouse](controllersandmemorycards.md#controllers-mouse)<br/>
-[Controllers - Racing Controllers](controllersandmemorycards.md#controllers-racing-controllers)<br/>
-[Controllers - Lightguns](controllersandmemorycards.md#controllers-lightguns)<br/>
-[Controllers - Configuration Commands](controllersandmemorycards.md#controllers-configuration-commands)<br/>
-[Controllers - Vibration/Rumble Control](controllersandmemorycards.md#controllers-vibrationrumble-control)<br/>
-[Controllers - Analog Buttons (Dualshock2)](controllersandmemorycards.md#controllers-analog-buttons-dualshock2)<br/>
-[Controllers - Dance Mats](controllersandmemorycards.md#controllers-dance-mats)<br/>
-[Controllers - Pop'n Controllers](controllersandmemorycards.md#controllers-popn-controllers)<br/>
-[Controllers - Taiko Controllers (Tatacon)](controllersandmemorycards.md#controllers-taiko-controllers-tatacon)<br/>
-[Controllers - Densha de Go! / Jet de Go! Controllers](controllersandmemorycards.md#controllers-densha-de-go-jet-de-go-controllers)<br/>
-[Controllers - Fishing Controllers](controllersandmemorycards.md#controllers-fishing-controllers)<br/>
-[Controllers - PS2 DVD Remote](controllersandmemorycards.md#controllers-ps2-dvd-remote)<br/>
-[Controllers - I-Mode Adaptor (Mobile Internet)](controllersandmemorycards.md#controllers-i-mode-adaptor-mobile-internet)<br/>
-[Controllers - Additional Inputs](controllersandmemorycards.md#controllers-additional-inputs)<br/>
-[Controllers - Misc](controllersandmemorycards.md#controllers-misc)<br/>
+[Controllers - Communication Sequence](#controllers---communication-sequence)<br/>
+[Controllers - Standard Digital/Analog Controllers](#controllers---standard-digitalanalog-controllers)<br/>
+[Controllers - Mouse](#controllers---mouse)<br/>
+[Controllers - Racing Controllers](#controllers---racing-controllers)<br/>
+[Controllers - Lightguns](#controllers---lightguns)<br/>
+[Controllers - Configuration Commands](../controllers-special/SKILL.md#controllers---configuration-commands)<br/>
+[Controllers - Vibration/Rumble Control](../controllers-special/SKILL.md#controllers---vibrationrumble-control)<br/>
+[Controllers - Analog Buttons (Dualshock2)](../controllers-special/SKILL.md#controllers---analog-buttons-dualshock2)<br/>
+[Controllers - Dance Mats](../controllers-special/SKILL.md#controllers---dance-mats)<br/>
+[Controllers - Pop'n Controllers](../controllers-special/SKILL.md#controllers---popn-controllers)<br/>
+[Controllers - Taiko Controllers (Tatacon)](../controllers-special/SKILL.md#controllers---taiko-controllers-tatacon)<br/>
+[Controllers - Densha de Go! / Jet de Go! Controllers](../controllers-special/SKILL.md#controllers---densha-de-go--jet-de-go-controllers)<br/>
+[Controllers - Fishing Controllers](../controllers-special/SKILL.md#controllers---fishing-controllers)<br/>
+[Controllers - PS2 DVD Remote](../controllers-special/SKILL.md#controllers---ps2-dvd-remote)<br/>
+[Controllers - I-Mode Adaptor (Mobile Internet)](../controllers-special/SKILL.md#controllers---i-mode-adaptor-mobile-internet)<br/>
+[Controllers - Additional Inputs](../controllers-special/SKILL.md#controllers---additional-inputs)<br/>
+[Controllers - Misc](../controllers-special/SKILL.md#controllers---misc)<br/>
 
 #### Memory Cards
-[Memory Card Read/Write Commands](controllersandmemorycards.md#memory-card-readwrite-commands)<br/>
-[Memory Card Data Format](controllersandmemorycards.md#memory-card-data-format)<br/>
-[Memory Card Images](controllersandmemorycards.md#memory-card-images)<br/>
-[Memory Card Notes](controllersandmemorycards.md#memory-card-notes)<br/>
+[Memory Card Read/Write Commands](../memory-cards/SKILL.md#memory-card-readwrite-commands)<br/>
+[Memory Card Data Format](../memory-cards/SKILL.md#memory-card-data-format)<br/>
+[Memory Card Images](../memory-cards/SKILL.md#memory-card-images)<br/>
+[Memory Card Notes](../memory-cards/SKILL.md#memory-card-notes)<br/>
 
 #### Pocketstation (Memory Card with built-in LCD screen and buttons)
-[Pocketstation](pocketstation.md)<br/>
+[Pocketstation](../pocketstation-hardware/SKILL.md)<br/>
 
 #### Pinouts
-[Pinouts - Controller Ports and Memory-Card Ports](pinouts.md#pinouts-controller-ports-and-memory-card-ports)<br/>
+[Pinouts - Controller Ports and Memory-Card Ports](../pinouts-external/SKILL.md#pinouts---controller-ports-and-memory-card-ports)<br/>
 
 
 
 ##   Controller and Memory Card Overview
 Controllers and memory cards connect to the console using a serial protocol and
 are accessed through SIO0 registers:<br/>
-[Serial Interfaces (SIO)](serialinterfacessio.md)<br/>
+[Serial Interfaces (SIO)](../sio/SKILL.md)<br/>
 The protocol used is similar to standard SPI, with no start/stop bytes and no
 parity (even though SIO0 has support for it). Unlike typical SPI, only one byte
 is transferred at a time and a separate wire (/ACK) is used by the device to
 signal the PS1 that it is ready to exchange the next byte. For more details see:<br/>
-[Controller and Memory Card Signals](controllersandmemorycards.md#controller-and-memory-card-signals)<br/>
+[Controller and Memory Card Signals](#controller-and-memory-card-signals)<br/>
 
 #### Device addressing
 Each controller port and its respective memory card slot are wired in parallel,
@@ -109,7 +109,7 @@ sending the byte.<br/>
 
 #### BIOS Functions
 Controllers can be probably accessed via InitPad and StartPad functions,<br/>
-[BIOS Joypad Functions](kernelbios.md#bios-joypad-functions)<br/>
+[BIOS Joypad Functions](../bios-irq-threads-timer/SKILL.md#bios-joypad-functions)<br/>
 Memory cards can be accessed by the filesystem (with device names "bu00:"
 (slot1) and "bu10:" (slot2) or so). Before using that device names, it seems to
 be required to call InitCard, StartCard, and \_bu\_init (?).<br/>
@@ -327,7 +327,7 @@ accepting switching commands with address 61h. Unknown if the PS2 multitap is
 backwards compatible with the SCPH-1070 protocol.<br/>
 
 #### See also
-[Pinouts - Component List and Chipset Pin-Outs for Multitap, SCPH-1070](pinouts.md#pinouts-component-list-and-chipset-pin-outs-for-multitap-scph-1070)<br/>
+[Pinouts - Component List and Chipset Pin-Outs for Multitap, SCPH-1070](../pinouts-internal/SKILL.md#pinouts---component-list-and-chipset-pin-outs-for-multitap-scph-1070)<br/>
 
 
 
@@ -351,12 +351,12 @@ backwards compatible with the SCPH-1070 protocol.<br/>
 ```
 The TAP byte should be usually zero, unless one wants to activate Multitap
 (multi-player mode), for details, see<br/>
-[Controller and Memory Card Multitap Adaptor](controllersandmemorycards.md#controller-and-memory-card-multitap-adaptor)<br/>
+[Controller and Memory Card Multitap Adaptor](#controller-and-memory-card-multitap-adaptor)<br/>
 The two MOT bytes are meant to control the rumble motors (for normal non-rumble
 controllers, that bytes should be 00h), however, the MOT bytes have no effect
 unless rumble is enabled via config commands, for details, see<br/>
-[Controllers - Configuration Commands](controllersandmemorycards.md#controllers-configuration-commands)<br/>
-[Controllers - Vibration/Rumble Control](controllersandmemorycards.md#controllers-vibrationrumble-control)<br/>
+[Controllers - Configuration Commands](../controllers-special/SKILL.md#controllers---configuration-commands)<br/>
+[Controllers - Vibration/Rumble Control](../controllers-special/SKILL.md#controllers---vibrationrumble-control)<br/>
 
 #### Controller ID (Halfword Number 0)
 ```
@@ -503,10 +503,10 @@ confusing (that's probably why the LED=Green mode wasn't implemented on the
 Dual Shock).<br/>
 
 #### See also
-[Pinouts - Component List and Chipset Pin-Outs for Digital Joypad, SCPH-1080](pinouts.md#pinouts-component-list-and-chipset-pin-outs-for-digital-joypad-scph-1080)<br/>
-[Pinouts - Component List and Chipset Pin-Outs for Analog Joypad, SCPH-1150](pinouts.md#pinouts-component-list-and-chipset-pin-outs-for-analog-joypad-scph-1150)<br/>
-[Pinouts - Component List and Chipset Pin-Outs for Analog Joypad, SCPH-1200](pinouts.md#pinouts-component-list-and-chipset-pin-outs-for-analog-joypad-scph-1200)<br/>
-[Pinouts - Component List and Chipset Pin-Outs for Analog Joypad, SCPH-110](pinouts.md#pinouts-component-list-and-chipset-pin-outs-for-analog-joypad-scph-110)<br/>
+[Pinouts - Component List and Chipset Pin-Outs for Digital Joypad, SCPH-1080](../pinouts-internal/SKILL.md#pinouts---component-list-and-chipset-pin-outs-for-digital-joypad-scph-1080)<br/>
+[Pinouts - Component List and Chipset Pin-Outs for Analog Joypad, SCPH-1150](../pinouts-internal/SKILL.md#pinouts---component-list-and-chipset-pin-outs-for-analog-joypad-scph-1150)<br/>
+[Pinouts - Component List and Chipset Pin-Outs for Analog Joypad, SCPH-1200](../pinouts-internal/SKILL.md#pinouts---component-list-and-chipset-pin-outs-for-analog-joypad-scph-1200)<br/>
+[Pinouts - Component List and Chipset Pin-Outs for Analog Joypad, SCPH-110](../pinouts-internal/SKILL.md#pinouts---component-list-and-chipset-pin-outs-for-analog-joypad-scph-110)<br/>
 
 
 
@@ -630,7 +630,7 @@ Cable:<br/>
 Some keyboard adaptors are also including a mouse adaptor feature (either by
 simulating normal Sony Mouse controller data, or via more uncommon ways like
 using the PSX expansion port).<br/>
-[Controllers - Keyboards](controllersandmemorycards.md#controllers-keyboards)<br/>
+[Controllers - Keyboards](../controllers-special/SKILL.md#controllers---keyboards)<br/>
 
 #### RS232 Mice
 Below is some info on RS232 serial mice. That info isn't directly PSX related
@@ -903,12 +903,12 @@ each other).<br/>
 Namco's Cinch-based lightguns are extracting Vsync/Hsync timings from the video
 signal (via a cinch adaptor) (so they are working completely independed of
 software timings).<br/>
-[Controllers - Lightguns - Namco (GunCon)](controllersandmemorycards.md#controllers-lightguns-namco-guncon)<br/>
+[Controllers - Lightguns - Namco (GunCon)](#controllers---lightguns---namco-guncon)<br/>
 
 #### Konami Lightgun (IRQ10)
 Konami's IRQ10-based lightguns are using the lightgun input on the controller
 slot (which requires IRQ10/timings being properly handled at software side).<br/>
-[Controllers - Lightguns - Konami Justifier/Hyperblaster (IRQ10)](controllersandmemorycards.md#controllers-lightguns-konami-justifierhyperblaster-irq10)<br/>
+[Controllers - Lightguns - Konami Justifier/Hyperblaster (IRQ10)](#controllers---lightguns---konami-justifierhyperblaster-irq10)<br/>
 The IRQ10-method is reportedly less accurate (although that may be just due to
 bugs at software side).<br/>
 
@@ -920,7 +920,7 @@ additionally have a rumble/vibration function; though unknown how that rumble
 feature is accessed, and which games are supporting it).<br/>
 
 #### Lightgun Games
-[Controllers - Lightguns - PSX Lightgun Games](controllersandmemorycards.md#controllers-lightguns-psx-lightgun-games)<br/>
+[Controllers - Lightguns - PSX Lightgun Games](#controllers---lightguns---psx-lightgun-games)<br/>
 
 #### Compatibilty Notes (IRQ10 vs Cinch, PAL vs NTSC, Calibration)
 Some lightguns are reportedly working only with PAL or only with NTSC games
@@ -1032,7 +1032,7 @@ X=X\*320/385).<br/>
 ```
 
 #### See also
-[Pinouts - Component List and Chipset Pin-Outs for Namco Lightgun, NPC-103](pinouts.md#pinouts-component-list-and-chipset-pin-outs-for-namco-lightgun-npc-103)<br/>
+[Pinouts - Component List and Chipset Pin-Outs for Namco Lightgun, NPC-103](../pinouts-internal/SKILL.md#pinouts---component-list-and-chipset-pin-outs-for-namco-lightgun-npc-103)<br/>
 
 
 
@@ -1090,10 +1090,10 @@ should not block the bus for longer periods). In practice, most programmers
 probably don't realize how to do that, to the worst, Sony seems to have
 delivered a slightly bugged library (libgun) to developers.<br/>
 For details on Timers, see:<br/>
-[Timers](timers.md)<br/>
+[Timers](../timers/SKILL.md)<br/>
 In some consoles, IRQ10 seems to be routed through a Secondary IRQ Controller,
 see:<br/>
-[EXP2 DTL-H2000 I/O Ports](expansionportpio.md#exp2-dtl-h2000-io-ports)<br/>
+[EXP2 DTL-H2000 I/O Ports](../expansion-port/SKILL.md#exp2-dtl-h2000-io-ports)<br/>
 
 #### IRQ10 Priority
 For processing IRQ10 as soon as possible, it should be assigned higher priority
@@ -1104,7 +1104,7 @@ processed shortly before processing the priority chains (the resulting IRQ
 priority isn't actually higher as when using 1st element of chain 0; the main
 difference is that it skips some time consuming code which pushes registers
 R4..R30). For details on that patch, see:<br/>
-[BIOS Patches](kernelbios.md#bios-patches)<br/>
+[BIOS Patches](../bios-boot-internals/SKILL.md#bios-patches)<br/>
 Even if IRQ10 has highest priority, execution of (older) other IRQs may cause a
 new IRQ10 to be executed delayed (because IRQs are disabled during IRQ
 handling), to avoid that problem: Best don't enable any other IRQs except IRQ0

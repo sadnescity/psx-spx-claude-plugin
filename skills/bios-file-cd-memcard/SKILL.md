@@ -4,33 +4,33 @@ description: "PSX BIOS kernel functions: file I/O (open/read/write/close), CDROM
 ---
 
 #   Kernel (BIOS)
-[BIOS Overview](kernelbios.md#bios-overview)<br/>
-[BIOS Memory Map](kernelbios.md#bios-memory-map)<br/>
-[BIOS Function Summary](kernelbios.md#bios-function-summary)<br/>
-[BIOS File Functions](kernelbios.md#bios-file-functions)<br/>
-[BIOS File Execute and Flush Cache](kernelbios.md#bios-file-execute-and-flush-cache)<br/>
-[BIOS CDROM Functions](kernelbios.md#bios-cdrom-functions)<br/>
-[BIOS Memory Card Functions](kernelbios.md#bios-memory-card-functions)<br/>
-[BIOS Interrupt/Exception Handling](kernelbios.md#bios-interruptexception-handling)<br/>
-[BIOS Event Functions](kernelbios.md#bios-event-functions)<br/>
-[BIOS Event Summary](kernelbios.md#bios-event-summary)<br/>
-[BIOS Thread Functions](kernelbios.md#bios-thread-functions)<br/>
-[BIOS Timer Functions](kernelbios.md#bios-timer-functions)<br/>
-[BIOS Joypad Functions](kernelbios.md#bios-joypad-functions)<br/>
-[BIOS GPU Functions](kernelbios.md#bios-gpu-functions)<br/>
-[BIOS Memory Allocation](kernelbios.md#bios-memory-allocation)<br/>
-[BIOS Memory Fill/Copy/Compare (SLOW)](kernelbios.md#bios-memory-fillcopycompare-slow)<br/>
-[BIOS String Functions](kernelbios.md#bios-string-functions)<br/>
-[BIOS Number/String/Character Conversion](kernelbios.md#bios-numberstringcharacter-conversion)<br/>
-[BIOS Misc Functions](kernelbios.md#bios-misc-functions)<br/>
-[BIOS Internal Boot Functions](kernelbios.md#bios-internal-boot-functions)<br/>
-[BIOS More Internal Functions](kernelbios.md#bios-more-internal-functions)<br/>
-[BIOS PC File Server](kernelbios.md#bios-pc-file-server)<br/>
-[BIOS TTY Console (std_io)](kernelbios.md#bios-tty-console-std_io)<br/>
-[BIOS Character Sets](kernelbios.md#bios-character-sets)<br/>
-[BIOS Control Blocks](kernelbios.md#bios-control-blocks)<br/>
-[BIOS Versions](kernelbios.md#bios-versions)<br/>
-[BIOS Patches](kernelbios.md#bios-patches)<br/>
+[BIOS Overview](#bios-overview)<br/>
+[BIOS Memory Map](#bios-memory-map)<br/>
+[BIOS Function Summary](#bios-function-summary)<br/>
+[BIOS File Functions](#bios-file-functions)<br/>
+[BIOS File Execute and Flush Cache](#bios-file-execute-and-flush-cache)<br/>
+[BIOS CDROM Functions](#bios-cdrom-functions)<br/>
+[BIOS Memory Card Functions](#bios-memory-card-functions)<br/>
+[BIOS Interrupt/Exception Handling](../bios-irq-threads-timer/SKILL.md#bios-interruptexception-handling)<br/>
+[BIOS Event Functions](../bios-irq-threads-timer/SKILL.md#bios-event-functions)<br/>
+[BIOS Event Summary](../bios-irq-threads-timer/SKILL.md#bios-event-summary)<br/>
+[BIOS Thread Functions](../bios-irq-threads-timer/SKILL.md#bios-thread-functions)<br/>
+[BIOS Timer Functions](../bios-irq-threads-timer/SKILL.md#bios-timer-functions)<br/>
+[BIOS Joypad Functions](../bios-irq-threads-timer/SKILL.md#bios-joypad-functions)<br/>
+[BIOS GPU Functions](../bios-irq-threads-timer/SKILL.md#bios-gpu-functions)<br/>
+[BIOS Memory Allocation](../bios-irq-threads-timer/SKILL.md#bios-memory-allocation)<br/>
+[BIOS Memory Fill/Copy/Compare (SLOW)](../bios-irq-threads-timer/SKILL.md#bios-memory-fillcopycompare-slow)<br/>
+[BIOS String Functions](../bios-irq-threads-timer/SKILL.md#bios-string-functions)<br/>
+[BIOS Number/String/Character Conversion](../bios-irq-threads-timer/SKILL.md#bios-numberstringcharacter-conversion)<br/>
+[BIOS Misc Functions](../bios-irq-threads-timer/SKILL.md#bios-misc-functions)<br/>
+[BIOS Internal Boot Functions](../bios-boot-internals/SKILL.md#bios-internal-boot-functions)<br/>
+[BIOS More Internal Functions](../bios-boot-internals/SKILL.md#bios-more-internal-functions)<br/>
+[BIOS PC File Server](../bios-boot-internals/SKILL.md#bios-pc-file-server)<br/>
+[BIOS TTY Console (std_io)](../bios-boot-internals/SKILL.md#bios-tty-console-std_io)<br/>
+[BIOS Character Sets](../bios-boot-internals/SKILL.md#bios-character-sets)<br/>
+[BIOS Control Blocks](../bios-boot-internals/SKILL.md#bios-control-blocks)<br/>
+[BIOS Versions](../bios-boot-internals/SKILL.md#bios-versions)<br/>
+[BIOS Patches](../bios-boot-internals/SKILL.md#bios-patches)<br/>
 
 
 
@@ -843,7 +843,7 @@ being reserved for loading executables).<br/>
 
 #### Note
 For more info about EXE files and their headers, see<br/>
-[CDROM File Formats](cdromfileformats.md)<br/>
+[CDROM File Formats](../cdrom-file-exe-tim/SKILL.md)<br/>
 
 
 
@@ -852,8 +852,8 @@ For more info about EXE files and their headers, see<br/>
 CDROMs are basically accessed via normal file functions, with device name
 "cdrom:" (which is an abbreviation for "cdrom0:", anyways, the port number is
 ignored).<br/>
-[BIOS File Functions](kernelbios.md#bios-file-functions)<br/>
-[BIOS File Execute and Flush Cache](kernelbios.md#bios-file-execute-and-flush-cache)<br/>
+[BIOS File Functions](#bios-file-functions)<br/>
+[BIOS File Execute and Flush Cache](#bios-file-execute-and-flush-cache)<br/>
 Before starting the boot executable, the BIOS automatically calls _96_init(), so
 the game doesn't need to do any initializations before using CDROM file
 functions.<br/>
@@ -945,14 +945,14 @@ Internally used CDROM functions for initialization and IRQ handling.<br/>
 #### General File Functions
 Memory Cards aka Backup Units (bu) are basically accessed via normal file
 functions, with device names "bu00:" (Slot 1) and "bu10:" (Slot 2),<br/>
-[BIOS File Functions](kernelbios.md#bios-file-functions)<br/>
+[BIOS File Functions](#bios-file-functions)<br/>
 Before using the file functions for memory cards, first call
 InitCARD2(pad\_enable), then StartCARD2(), and then \_bu\_init().<br/>
 
 #### File Header, Filesize, and Sector Alignment
 The first 100h..200h bytes (2..4 sectors) of the file must contain the title
 and icon bitmap(s). For details, see:<br/>
-[Memory Card Data Format](controllersandmemorycards.md#memory-card-data-format)<br/>
+[Memory Card Data Format](../memory-cards/SKILL.md#memory-card-data-format)<br/>
 The filesize must be a multiple of 2000h bytes (one block), the maximum size
 would be 1E000h bytes (when using all 15 blocks on the memory card). The
 filesize must be specified when creating the file (ie. accessmode bit9=1, and

@@ -23,48 +23,48 @@ description: "PSX file formats - compression: LZSS variants (Moto Racer, Dino Cr
 ```
 
 #### Compressed Files
-[CDROM File Compression LZSS (Moto Racer 1 and 2)](cdromfileformats.md#cdrom-file-compression-lzss-moto-racer-1-and-2)<br/>
-[CDROM File Compression LZSS (Dino Crisis 1 and 2)](cdromfileformats.md#cdrom-file-compression-lzss-dino-crisis-1-and-2)<br/>
-[CDROM File Compression LZSS (Serial Experiments Lain)](cdromfileformats.md#cdrom-file-compression-lzss-serial-experiments-lain)<br/>
-[CDROM File Compression ZOO/LZSS](cdromfileformats.md#cdrom-file-compression-zoolzss)<br/>
-[CDROM File Compression Ulz/ULZ (Namco)](cdromfileformats.md#cdrom-file-compression-ulzulz-namco)<br/>
-[CDROM File Compression SLZ/01Z (chunk-based compressed archive)](cdromfileformats.md#cdrom-file-compression-slz01z-chunk-based-compressed-archive)<br/>
-[CDROM File Compression LZ5 and LZ5-variants](cdromfileformats.md#cdrom-file-compression-lz5-and-lz5-variants)<br/>
-[CDROM File Compression PCK (Destruction Derby Raw)](cdromfileformats.md#cdrom-file-compression-pck-destruction-derby-raw)<br/>
-[CDROM File Compression GT-ZIP (Gran Turismo 1 and 2)](cdromfileformats.md#cdrom-file-compression-gt-zip-gran-turismo-1-and-2)<br/>
-[CDROM File Compression GT20 and PreGT20](cdromfileformats.md#cdrom-file-compression-gt20-and-pregt20)<br/>
-[CDROM File Compression HornedLZ](cdromfileformats.md#cdrom-file-compression-hornedlz)<br/>
-[CDROM File Compression LZS (Gundam Battle Assault 2)](cdromfileformats.md#cdrom-file-compression-lzs-gundam-battle-assault-2)<br/>
-[CDROM File Compression BZZ](cdromfileformats.md#cdrom-file-compression-bzz)<br/>
-[CDROM File Compression RESOURCE (Star Wars Rebel Assault 2)](cdromfileformats.md#cdrom-file-compression-resource-star-wars-rebel-assault-2)<br/>
-[CDROM File Compression TIM-RLE4/RLE8](cdromfileformats.md#cdrom-file-compression-tim-rle4rle8)<br/>
-[CDROM File Compression RLE_16](cdromfileformats.md#cdrom-file-compression-rle_16)<br/>
-[CDROM File Compression PIM/PRS (Legend of Mana)](cdromfileformats.md#cdrom-file-compression-pimprs-legend-of-mana)<br/>
-[CDROM File Compression BPE (Byte Pair Encoding)](cdromfileformats.md#cdrom-file-compression-bpe-byte-pair-encoding)<br/>
-[CDROM File Compression RNC (Rob Northen Compression)](cdromfileformats.md#cdrom-file-compression-rnc-rob-northen-compression)<br/>
-[CDROM File Compression Darkworks](cdromfileformats.md#cdrom-file-compression-darkworks)<br/>
-[CDROM File Compression Blues](cdromfileformats.md#cdrom-file-compression-blues)<br/>
-[CDROM File Compression Z (Running Wild)](cdromfileformats.md#cdrom-file-compression-z-running-wild)<br/>
-[CDROM File Compression ZAL (Z-Axis)](cdromfileformats.md#cdrom-file-compression-zal-z-axis)<br/>
-[CDROM File Compression EA Methods](cdromfileformats.md#cdrom-file-compression-ea-methods)<br/>
-[CDROM File Compression ZIP/GZIP/ZLIB (Inflate/Deflate)](cdromfileformats.md#cdrom-file-compression-zipgzipzlib-inflatedeflate)<br/>
-[CDROM File Compression LArc/LHarc/LHA (LZS/LZH)](cdromfileformats.md#cdrom-file-compression-larclharclha-lzslzh)<br/>
-[CDROM File Compression UPX](cdromfileformats.md#cdrom-file-compression-upx)<br/>
-[CDROM File Compression LZMA](cdromfileformats.md#cdrom-file-compression-lzma)<br/>
-[CDROM File Compression FLAC audio](cdromfileformats.md#cdrom-file-compression-flac-audio)<br/>
+[CDROM File Compression LZSS (Moto Racer 1 and 2)](#cdrom-file-compression-lzss-moto-racer-1-and-2)<br/>
+[CDROM File Compression LZSS (Dino Crisis 1 and 2)](#cdrom-file-compression-lzss-dino-crisis-1-and-2)<br/>
+[CDROM File Compression LZSS (Serial Experiments Lain)](#cdrom-file-compression-lzss-serial-experiments-lain)<br/>
+[CDROM File Compression ZOO/LZSS](#cdrom-file-compression-zoolzss)<br/>
+[CDROM File Compression Ulz/ULZ (Namco)](#cdrom-file-compression-ulzulz-namco)<br/>
+[CDROM File Compression SLZ/01Z (chunk-based compressed archive)](#cdrom-file-compression-slz01z-chunk-based-compressed-archive)<br/>
+[CDROM File Compression LZ5 and LZ5-variants](#cdrom-file-compression-lz5-and-lz5-variants)<br/>
+[CDROM File Compression PCK (Destruction Derby Raw)](#cdrom-file-compression-pck-destruction-derby-raw)<br/>
+[CDROM File Compression GT-ZIP (Gran Turismo 1 and 2)](#cdrom-file-compression-gt-zip-gran-turismo-1-and-2)<br/>
+[CDROM File Compression GT20 and PreGT20](#cdrom-file-compression-gt20-and-pregt20)<br/>
+[CDROM File Compression HornedLZ](#cdrom-file-compression-hornedlz)<br/>
+[CDROM File Compression LZS (Gundam Battle Assault 2)](#cdrom-file-compression-lzs-gundam-battle-assault-2)<br/>
+[CDROM File Compression BZZ](#cdrom-file-compression-bzz)<br/>
+[CDROM File Compression RESOURCE (Star Wars Rebel Assault 2)](#cdrom-file-compression-resource-star-wars-rebel-assault-2)<br/>
+[CDROM File Compression TIM-RLE4/RLE8](#cdrom-file-compression-tim-rle4rle8)<br/>
+[CDROM File Compression RLE_16](#cdrom-file-compression-rle_16)<br/>
+[CDROM File Compression PIM/PRS (Legend of Mana)](#cdrom-file-compression-pimprs-legend-of-mana)<br/>
+[CDROM File Compression BPE (Byte Pair Encoding)](#cdrom-file-compression-bpe-byte-pair-encoding)<br/>
+[CDROM File Compression RNC (Rob Northen Compression)](#cdrom-file-compression-rnc-rob-northen-compression)<br/>
+[CDROM File Compression Darkworks](#cdrom-file-compression-darkworks)<br/>
+[CDROM File Compression Blues](#cdrom-file-compression-blues)<br/>
+[CDROM File Compression Z (Running Wild)](#cdrom-file-compression-z-running-wild)<br/>
+[CDROM File Compression ZAL (Z-Axis)](#cdrom-file-compression-zal-z-axis)<br/>
+[CDROM File Compression EA Methods](#cdrom-file-compression-ea-methods)<br/>
+[CDROM File Compression ZIP/GZIP/ZLIB (Inflate/Deflate)](#cdrom-file-compression-zipgzipzlib-inflatedeflate)<br/>
+[CDROM File Compression LArc/LHarc/LHA (LZS/LZH)](#cdrom-file-compression-larclharclha-lzslzh)<br/>
+[CDROM File Compression UPX](#cdrom-file-compression-upx)<br/>
+[CDROM File Compression LZMA](#cdrom-file-compression-lzma)<br/>
+[CDROM File Compression FLAC audio](#cdrom-file-compression-flac-audio)<br/>
 Some other archvies that aren't used by any PSX games, but, anyways...<br/>
-[CDROM File Compression ARJ](cdromfileformats.md#cdrom-file-compression-arj)<br/>
-[CDROM File Compression ARC](cdromfileformats.md#cdrom-file-compression-arc)<br/>
-[CDROM File Compression RAR](cdromfileformats.md#cdrom-file-compression-rar)<br/>
-[CDROM File Compression ZOO](cdromfileformats.md#cdrom-file-compression-zoo)<br/>
-[CDROM File Compression nCompress.Z](cdromfileformats.md#cdrom-file-compression-ncompressz)<br/>
-[CDROM File Compression Octal Oddities (TAR, CPIO, RPM)](cdromfileformats.md#cdrom-file-compression-octal-oddities-tar-cpio-rpm)<br/>
-[CDROM File Compression MacBinary, BinHex, PackIt, StuffIt, Compact Pro](cdromfileformats.md#cdrom-file-compression-macbinary-binhex-packit-stuffit-compact-pro)<br/>
+[CDROM File Compression ARJ](#cdrom-file-compression-arj)<br/>
+[CDROM File Compression ARC](#cdrom-file-compression-arc)<br/>
+[CDROM File Compression RAR](#cdrom-file-compression-rar)<br/>
+[CDROM File Compression ZOO](#cdrom-file-compression-zoo)<br/>
+[CDROM File Compression nCompress.Z](#cdrom-file-compression-ncompressz)<br/>
+[CDROM File Compression Octal Oddities (TAR, CPIO, RPM)](#cdrom-file-compression-octal-oddities-tar-cpio-rpm)<br/>
+[CDROM File Compression MacBinary, BinHex, PackIt, StuffIt, Compact Pro](#cdrom-file-compression-macbinary-binhex-packit-stuffit-compact-pro)<br/>
 
 #### Compressed Archives
 Some Archives have "built-in" compression.<br/>
-[CDROM File Archive WAD (Doom)](cdromfileformats.md#cdrom-file-archive-wad-doom)<br/>
-[CDROM File Archive BIGFILE.DAT (Gex - Enter the Gecko)](cdromfileformats.md#cdrom-file-archive-bigfiledat-gex-enter-the-gecko)<br/>
+[CDROM File Archive WAD (Doom)](../cdrom-file-archives/SKILL.md#cdrom-file-archive-wad-doom)<br/>
+[CDROM File Archive BIGFILE.DAT (Gex - Enter the Gecko)](../cdrom-file-archives/SKILL.md#cdrom-file-archive-bigfiledat-gex---enter-the-gecko)<br/>
 
 
 
@@ -1083,8 +1083,8 @@ This is using simple RLE compression with 16bit len/data units (suitable for
 
 #### Other RLE16 variants
 A similar RLE16 variant is used in Croc 1, and another variant in Croc 2.<br/>
-[CDROM File Archive Croc 1 (DIR, WAD, etc.)](cdromfileformats.md#cdrom-file-archive-croc-1-dir-wad-etc)<br/>
-[CDROM File Archive Croc 2 (DIR, WAD, etc.)](cdromfileformats.md#cdrom-file-archive-croc-2-dir-wad-etc)<br/>
+[CDROM File Archive Croc 1 (DIR, WAD, etc.)](../cdrom-file-archives/SKILL.md#cdrom-file-archive-croc-1-dir-wad-etc)<br/>
+[CDROM File Archive Croc 2 (DIR, WAD, etc.)](../cdrom-file-archives/SKILL.md#cdrom-file-archive-croc-2-dir-wad-etc)<br/>
 
 
 
@@ -1215,7 +1215,7 @@ Electronic Arts games support several compression methods, including a BPE
 variant. That BPE variant is a bit unusual: It does have only one compression
 block (with a single dictionary for the whole file), and uses escape codes for
 rarely used bytes.<br/>
-[CDROM File Compression EA Methods](cdromfileformats.md#cdrom-file-compression-ea-methods)<br/>
+[CDROM File Compression EA Methods](#cdrom-file-compression-ea-methods)<br/>
 
 
 
@@ -1576,10 +1576,10 @@ decompressor would also accept invalid methods like 1031h or 3431h, but doesn't
 actually support 16bit mode for those).<br/>
 
 #### Compression Formats
-[CDROM File Compression EA Methods (LZSS RefPack)](cdromfileformats.md#cdrom-file-compression-ea-methods-lzss-refpack)<br/>
-[CDROM File Compression EA Methods (Huffman)](cdromfileformats.md#cdrom-file-compression-ea-methods-huffman)<br/>
-[CDROM File Compression EA Methods (BPE)](cdromfileformats.md#cdrom-file-compression-ea-methods-bpe)<br/>
-[CDROM File Compression EA Methods (RLE)](cdromfileformats.md#cdrom-file-compression-ea-methods-rle)<br/>
+[CDROM File Compression EA Methods (LZSS RefPack)](#cdrom-file-compression-ea-methods-lzss-refpack)<br/>
+[CDROM File Compression EA Methods (Huffman)](#cdrom-file-compression-ea-methods-huffman)<br/>
+[CDROM File Compression EA Methods (BPE)](#cdrom-file-compression-ea-methods-bpe)<br/>
+[CDROM File Compression EA Methods (RLE)](#cdrom-file-compression-ea-methods-rle)<br/>
 
 #### Usage in PSX games
 The compression can be used to compress whole files:<br/>
@@ -1830,16 +1830,16 @@ decompress\_bpe:<br/>
 Inflate/Deflate is a common (de-)compression algorithm, used by ZIP, ZLIB, and
 GZIP.<br/>
 
-[Inflate - Core Functions](cdromfileformats.md#inflate-core-functions)<br/>
-[Inflate - Initialization &amp; Tree Creation](cdromfileformats.md#inflate-initialization-tree-creation)<br/>
-[Inflate - Headers and Checksums](cdromfileformats.md#inflate-headers-and-checksums)<br/>
+[Inflate - Core Functions](#inflate---core-functions)<br/>
+[Inflate - Initialization &amp; Tree Creation](#inflate---initialization--tree-creation)<br/>
+[Inflate - Headers and Checksums](#inflate---headers-and-checksums)<br/>
 
 #### PSX Disk Images
 In PSX cdrom-images, ZLIB is used by the .CDZ cdrom-image format:<br/>
-[CDROM Disk Image/Containers CDZ](cdromfileformats.md#cdrom-disk-imagecontainers-cdz)<br/>
+[CDROM Disk Image/Containers CDZ](../cdrom-file-disc-images/SKILL.md#cdrom-disk-imagecontainers-cdz)<br/>
 In PSX cdrom-images, Inflate is used by .PBP and .CHD cdrom-image formats:<br/>
-[CDROM Disk Images PBP (Sony)](cdromfileformats.md#cdrom-disk-images-pbp-sony)<br/>
-[CDROM Disk Images CHD (MAME)](cdromfileformats.md#cdrom-disk-images-chd-mame)<br/>
+[CDROM Disk Images PBP (Sony)](../cdrom-file-disc-images/SKILL.md#cdrom-disk-images-pbp-sony)<br/>
+[CDROM Disk Images CHD (MAME)](../cdrom-file-disc-images/SKILL.md#cdrom-disk-images-chd-mame)<br/>
 
 #### PSX Games
 In PSX games, ZLIB is used by:<br/>
@@ -2097,7 +2097,7 @@ LHA archives are used by at least one PSX game:<br/>
   PSX Championship Surfer (MagDemo43: HWX\*.DAT)    ;method lh5
 ```
 And, there are various PSX games with compression based on LArc's method lz5:<br/>
-[CDROM File Compression LZ5 and LZ5-variants](cdromfileformats.md#cdrom-file-compression-lz5-and-lz5-variants)<br/>
+[CDROM File Compression LZ5 and LZ5-variants](#cdrom-file-compression-lz5-and-lz5-variants)<br/>
 
 #### Overall File Format
 Default archive filename extension is .LZH for LHarc/LHA (lh\*-methods), or .LZS
@@ -2350,7 +2350,7 @@ are stored as so:<br/>
 #### .xz files (XZ Utils)
 This is a slightly overcomplicated format with LZMA2 compression and optional
 filters.<br/>
-[CDROM File Compression XZ](cdromfileformats.md#cdrom-file-compression-xz)<br/>
+[CDROM File Compression XZ](#cdrom-file-compression-xz)<br/>
 
 #### .7z files (7-Zip archives)
 ```
@@ -3117,7 +3117,7 @@ must be reproduced here).<br/>
 This is more straight non-randomized LZW with Clear codes (and weird gaps after
 Clear codes). The compression (and gaps) are same as for nCompress (apart from
 different headers):<br/>
-[CDROM File Compression nCompress.Z](cdromfileformats.md#cdrom-file-compression-ncompressz)<br/>
+[CDROM File Compression nCompress.Z](#cdrom-file-compression-ncompressz)<br/>
 ```
   ARC Method 8 with 1-byte header (0Ch) --> nCompress 3-byte header 1Fh,9Dh,8Ch
   ARC Method 9 without header           --> nCompress 3-byte header 1Fh,9Dh,8Dh

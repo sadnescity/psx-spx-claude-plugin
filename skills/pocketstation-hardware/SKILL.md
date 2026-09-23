@@ -4,30 +4,30 @@ description: "Pocketstation hardware: ARM7TDMI CPU, I/O map, memory map (2KB RAM
 ---
 
 #   Pocketstation
-[Pocketstation Overview](pocketstation.md#pocketstation-overview)<br/>
-[Pocketstation I/O Map](pocketstation.md#pocketstation-io-map)<br/>
-[Pocketstation Memory Map](pocketstation.md#pocketstation-memory-map)<br/>
-[Pocketstation IO Video and Audio](pocketstation.md#pocketstation-io-video-and-audio)<br/>
-[Pocketstation IO Interrupts and Buttons](pocketstation.md#pocketstation-io-interrupts-and-buttons)<br/>
-[Pocketstation IO Timers and Real-Time Clock](pocketstation.md#pocketstation-io-timers-and-real-time-clock)<br/>
-[Pocketstation IO Infrared](pocketstation.md#pocketstation-io-infrared)<br/>
-[Pocketstation IO Memory-Control](pocketstation.md#pocketstation-io-memory-control)<br/>
-[Pocketstation IO Communication Ports](pocketstation.md#pocketstation-io-communication-ports)<br/>
-[Pocketstation IO Power Control](pocketstation.md#pocketstation-io-power-control)<br/>
-[Pocketstation SWI Function Summary](pocketstation.md#pocketstation-swi-function-summary)<br/>
-[Pocketstation SWI Misc Functions](pocketstation.md#pocketstation-swi-misc-functions)<br/>
-[Pocketstation SWI Communication Functions](pocketstation.md#pocketstation-swi-communication-functions)<br/>
-[Pocketstation SWI Execute Functions](pocketstation.md#pocketstation-swi-execute-functions)<br/>
-[Pocketstation SWI Date/Time/Alarm Functions](pocketstation.md#pocketstation-swi-datetimealarm-functions)<br/>
-[Pocketstation SWI Flash Functions](pocketstation.md#pocketstation-swi-flash-functions)<br/>
-[Pocketstation SWI Useless Functions](pocketstation.md#pocketstation-swi-useless-functions)<br/>
-[Pocketstation BU Command Summary](pocketstation.md#pocketstation-bu-command-summary)<br/>
-[Pocketstation BU Standard Memory Card Commands](pocketstation.md#pocketstation-bu-standard-memory-card-commands)<br/>
-[Pocketstation BU Basic Pocketstation Commands](pocketstation.md#pocketstation-bu-basic-pocketstation-commands)<br/>
-[Pocketstation BU Custom Pocketstation Commands](pocketstation.md#pocketstation-bu-custom-pocketstation-commands)<br/>
-[Pocketstation File Header/Icons](pocketstation.md#pocketstation-file-headericons)<br/>
-[Pocketstation File Images](pocketstation.md#pocketstation-file-images)<br/>
-[Pocketstation XBOO Cable](pocketstation.md#pocketstation-xboo-cable)<br/>
+[Pocketstation Overview](#pocketstation-overview)<br/>
+[Pocketstation I/O Map](#pocketstation-io-map)<br/>
+[Pocketstation Memory Map](#pocketstation-memory-map)<br/>
+[Pocketstation IO Video and Audio](#pocketstation-io-video-and-audio)<br/>
+[Pocketstation IO Interrupts and Buttons](#pocketstation-io-interrupts-and-buttons)<br/>
+[Pocketstation IO Timers and Real-Time Clock](#pocketstation-io-timers-and-real-time-clock)<br/>
+[Pocketstation IO Infrared](#pocketstation-io-infrared)<br/>
+[Pocketstation IO Memory-Control](#pocketstation-io-memory-control)<br/>
+[Pocketstation IO Communication Ports](#pocketstation-io-communication-ports)<br/>
+[Pocketstation IO Power Control](#pocketstation-io-power-control)<br/>
+[Pocketstation SWI Function Summary](../pocketstation-software/SKILL.md#pocketstation-swi-function-summary)<br/>
+[Pocketstation SWI Misc Functions](../pocketstation-software/SKILL.md#pocketstation-swi-misc-functions)<br/>
+[Pocketstation SWI Communication Functions](../pocketstation-software/SKILL.md#pocketstation-swi-communication-functions)<br/>
+[Pocketstation SWI Execute Functions](../pocketstation-software/SKILL.md#pocketstation-swi-execute-functions)<br/>
+[Pocketstation SWI Date/Time/Alarm Functions](../pocketstation-software/SKILL.md#pocketstation-swi-datetimealarm-functions)<br/>
+[Pocketstation SWI Flash Functions](../pocketstation-software/SKILL.md#pocketstation-swi-flash-functions)<br/>
+[Pocketstation SWI Useless Functions](../pocketstation-software/SKILL.md#pocketstation-swi-useless-functions)<br/>
+[Pocketstation BU Command Summary](../pocketstation-software/SKILL.md#pocketstation-bu-command-summary)<br/>
+[Pocketstation BU Standard Memory Card Commands](../pocketstation-software/SKILL.md#pocketstation-bu-standard-memory-card-commands)<br/>
+[Pocketstation BU Basic Pocketstation Commands](../pocketstation-software/SKILL.md#pocketstation-bu-basic-pocketstation-commands)<br/>
+[Pocketstation BU Custom Pocketstation Commands](../pocketstation-software/SKILL.md#pocketstation-bu-custom-pocketstation-commands)<br/>
+[Pocketstation File Header/Icons](../pocketstation-software/SKILL.md#pocketstation-file-headericons)<br/>
+[Pocketstation File Images](../pocketstation-software/SKILL.md#pocketstation-file-images)<br/>
+[Pocketstation XBOO Cable](../pocketstation-software/SKILL.md#pocketstation-xboo-cable)<br/>
 
 
 

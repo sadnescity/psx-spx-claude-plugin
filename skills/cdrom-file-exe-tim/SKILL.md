@@ -5,51 +5,51 @@ description: "PSX file formats - executables and textures: PSX-EXE header and SY
 
 #   CDROM File Formats
 #### Official PSX File Formats
-[CDROM File Official Sony File Formats](cdromfileformats.md#cdrom-file-official-sony-file-formats)<br/>
+[CDROM File Official Sony File Formats](#cdrom-file-official-sony-file-formats)<br/>
 
 #### Executables
-[CDROM File Playstation EXE and SYSTEM.CNF](cdromfileformats.md#cdrom-file-playstation-exe-and-systemcnf)<br/>
-[CDROM File PsyQ .CPE Files (Debug Executables)](cdromfileformats.md#cdrom-file-psyq-cpe-files-debug-executables)<br/>
-[CDROM File PsyQ .SYM Files (Debug Information)](cdromfileformats.md#cdrom-file-psyq-sym-files-debug-information)<br/>
+[CDROM File Playstation EXE and SYSTEM.CNF](#cdrom-file-playstation-exe-and-systemcnf)<br/>
+[CDROM File PsyQ .CPE Files (Debug Executables)](#cdrom-file-psyq-cpe-files-debug-executables)<br/>
+[CDROM File PsyQ .SYM Files (Debug Information)](#cdrom-file-psyq-sym-files-debug-information)<br/>
 
 #### Video Files
-[CDROM File Video Texture Image TIM/PXL/CLT (Sony)](cdromfileformats.md#cdrom-file-video-texture-image-timpxlclt-sony)<br/>
-[CDROM File Video Texture/Bitmap (Other)](cdromfileformats.md#cdrom-file-video-texturebitmap-other)<br/>
-[CDROM File Video 2D Graphics CEL/BGD/TSQ/ANM/SDF (Sony)](cdromfileformats.md#cdrom-file-video-2d-graphics-celbgdtsqanmsdf-sony)<br/>
-[CDROM File Video 3D Graphics TMD/PMD/TOD/HMD/RSD (Sony)](cdromfileformats.md#cdrom-file-video-3d-graphics-tmdpmdtodhmdrsd-sony)<br/>
-[CDROM File Video STR Streaming and BS Picture Compression (Sony)](cdromfileformats.md#cdrom-file-video-str-streaming-and-bs-picture-compression-sony)<br/>
+[CDROM File Video Texture Image TIM/PXL/CLT (Sony)](#cdrom-file-video-texture-image-timpxlclt-sony)<br/>
+[CDROM File Video Texture/Bitmap (Other)](#cdrom-file-video-texturebitmap-other)<br/>
+[CDROM File Video 2D Graphics CEL/BGD/TSQ/ANM/SDF (Sony)](../cdrom-file-video-3d/SKILL.md#cdrom-file-video-2d-graphics-celbgdtsqanmsdf-sony)<br/>
+[CDROM File Video 3D Graphics TMD/PMD/TOD/HMD/RSD (Sony)](../cdrom-file-video-3d/SKILL.md#cdrom-file-video-3d-graphics-tmdpmdtodhmdrsd-sony)<br/>
+[CDROM File Video STR Streaming and BS Picture Compression (Sony)](../cdrom-file-video-3d/SKILL.md#cdrom-file-video-str-streaming-and-bs-picture-compression-sony)<br/>
 
 #### Audio Files
-[CDROM File Audio Single Samples VAG (Sony)](cdromfileformats.md#cdrom-file-audio-single-samples-vag-sony)<br/>
-[CDROM File Audio Sample Sets VAB and VH/VB (Sony)](cdromfileformats.md#cdrom-file-audio-sample-sets-vab-and-vhvb-sony)<br/>
-[CDROM File Audio Sequences SEQ/SEP (Sony)](cdromfileformats.md#cdrom-file-audio-sequences-seqsep-sony)<br/>
-[CDROM File Audio Other Formats](cdromfileformats.md#cdrom-file-audio-other-formats)<br/>
-[CDROM File Audio Streaming XA-ADPCM](cdromfileformats.md#cdrom-file-audio-streaming-xa-adpcm)<br/>
-[CDROM File Audio CD-DA Tracks](cdromfileformats.md#cdrom-file-audio-cd-da-tracks)<br/>
+[CDROM File Audio Single Samples VAG (Sony)](../cdrom-file-audio/SKILL.md#cdrom-file-audio-single-samples-vag-sony)<br/>
+[CDROM File Audio Sample Sets VAB and VH/VB (Sony)](../cdrom-file-audio/SKILL.md#cdrom-file-audio-sample-sets-vab-and-vhvb-sony)<br/>
+[CDROM File Audio Sequences SEQ/SEP (Sony)](../cdrom-file-audio/SKILL.md#cdrom-file-audio-sequences-seqsep-sony)<br/>
+[CDROM File Audio Other Formats](../cdrom-file-audio/SKILL.md#cdrom-file-audio-other-formats)<br/>
+[CDROM File Audio Streaming XA-ADPCM](../cdrom-file-audio/SKILL.md#cdrom-file-audio-streaming-xa-adpcm)<br/>
+[CDROM File Audio CD-DA Tracks](../cdrom-file-audio/SKILL.md#cdrom-file-audio-cd-da-tracks)<br/>
 
 #### Virtual Filesystem Archives
 PSX titles are quite often using virtual filesystems, with numerous custom file
 archive formats.<br/>
-[CDROM File Archives with Filename](cdromfileformats.md#cdrom-file-archives-with-filename)<br/>
-[CDROM File Archives with Offset and Size](cdromfileformats.md#cdrom-file-archives-with-offset-and-size)<br/>
-[CDROM File Archives with Offset](cdromfileformats.md#cdrom-file-archives-with-offset)<br/>
-[CDROM File Archives with Size](cdromfileformats.md#cdrom-file-archives-with-size)<br/>
-[CDROM File Archives with Chunks](cdromfileformats.md#cdrom-file-archives-with-chunks)<br/>
-[CDROM File Archives with Folders](cdromfileformats.md#cdrom-file-archives-with-folders)<br/>
-[CDROM File Archives in Hidden Sectors](cdromfileformats.md#cdrom-file-archives-in-hidden-sectors)<br/>
+[CDROM File Archives with Filename](../cdrom-file-archives/SKILL.md#cdrom-file-archives-with-filename)<br/>
+[CDROM File Archives with Offset and Size](../cdrom-file-archives/SKILL.md#cdrom-file-archives-with-offset-and-size)<br/>
+[CDROM File Archives with Offset](../cdrom-file-archives/SKILL.md#cdrom-file-archives-with-offset)<br/>
+[CDROM File Archives with Size](../cdrom-file-archives/SKILL.md#cdrom-file-archives-with-size)<br/>
+[CDROM File Archives with Chunks](../cdrom-file-archives/SKILL.md#cdrom-file-archives-with-chunks)<br/>
+[CDROM File Archives with Folders](../cdrom-file-archives/SKILL.md#cdrom-file-archives-with-folders)<br/>
+[CDROM File Archives in Hidden Sectors](../cdrom-file-archives/SKILL.md#cdrom-file-archives-in-hidden-sectors)<br/>
 More misc stuff...<br/>
-[CDROM File Archive HED/DAT/BNS/STR (Ape Escape)](cdromfileformats.md#cdrom-file-archive-heddatbnsstr-ape-escape)<br/>
-[CDROM File Archive WAD.WAD, BIG.BIN, JESTERS.PKG (Crash/Herc/Pandemonium)](cdromfileformats.md#cdrom-file-archive-wadwad-bigbin-jesterspkg-crashhercpandemonium)<br/>
-[CDROM File Archive BIGFILE.BIG (Gex)](cdromfileformats.md#cdrom-file-archive-bigfilebig-gex)<br/>
-[CDROM File Archive BIGFILE.DAT (Gex - Enter the Gecko)](cdromfileformats.md#cdrom-file-archive-bigfiledat-gex-enter-the-gecko)<br/>
-[CDROM File Archive FF9 DB (Final Fantasy IX)](cdromfileformats.md#cdrom-file-archive-ff9-db-final-fantasy-ix)<br/>
-[CDROM File Archive Ace Combat 2 and 3](cdromfileformats.md#cdrom-file-archive-ace-combat-2-and-3)<br/>
-[CDROM File Archive NSD/NSF (Crash Bandicoot 1-3)](cdromfileformats.md#cdrom-file-archive-nsdnsf-crash-bandicoot-1-3)<br/>
-[CDROM File Archive STAGE.DIR and *.DAT (Metal Gear Solid)](cdromfileformats.md#cdrom-file-archive-stagedir-and-dat-metal-gear-solid)<br/>
-[CDROM File Archive DRACULA.DAT (Dracula)](cdromfileformats.md#cdrom-file-archive-draculadat-dracula)<br/>
-[CDROM File Archive Croc 1 (DIR, WAD, etc.)](cdromfileformats.md#cdrom-file-archive-croc-1-dir-wad-etc)<br/>
-[CDROM File Archive Croc 2 (DIR, WAD, etc.)](cdromfileformats.md#cdrom-file-archive-croc-2-dir-wad-etc)<br/>
-[CDROM File Archive Headerless Archives](cdromfileformats.md#cdrom-file-archive-headerless-archives)<br/>
+[CDROM File Archive HED/DAT/BNS/STR (Ape Escape)](../cdrom-file-archives/SKILL.md#cdrom-file-archive-heddatbnsstr-ape-escape)<br/>
+[CDROM File Archive WAD.WAD, BIG.BIN, JESTERS.PKG (Crash/Herc/Pandemonium)](../cdrom-file-archives/SKILL.md#cdrom-file-archive-wadwad-bigbin-jesterspkg-crashhercpandemonium)<br/>
+[CDROM File Archive BIGFILE.BIG (Gex)](../cdrom-file-archives/SKILL.md#cdrom-file-archive-bigfilebig-gex)<br/>
+[CDROM File Archive BIGFILE.DAT (Gex - Enter the Gecko)](../cdrom-file-archives/SKILL.md#cdrom-file-archive-bigfiledat-gex---enter-the-gecko)<br/>
+[CDROM File Archive FF9 DB (Final Fantasy IX)](../cdrom-file-archives/SKILL.md#cdrom-file-archive-ff9-db-final-fantasy-ix)<br/>
+[CDROM File Archive Ace Combat 2 and 3](../cdrom-file-archives/SKILL.md#cdrom-file-archive-ace-combat-2-and-3)<br/>
+[CDROM File Archive NSD/NSF (Crash Bandicoot 1-3)](../cdrom-file-archives/SKILL.md#cdrom-file-archive-nsdnsf-crash-bandicoot-1-3)<br/>
+[CDROM File Archive STAGE.DIR and *.DAT (Metal Gear Solid)](../cdrom-file-archives/SKILL.md#cdrom-file-archive-stagedir-and-dat-metal-gear-solid)<br/>
+[CDROM File Archive DRACULA.DAT (Dracula)](../cdrom-file-archives/SKILL.md#cdrom-file-archive-draculadat-dracula)<br/>
+[CDROM File Archive Croc 1 (DIR, WAD, etc.)](../cdrom-file-archives/SKILL.md#cdrom-file-archive-croc-1-dir-wad-etc)<br/>
+[CDROM File Archive Croc 2 (DIR, WAD, etc.)](../cdrom-file-archives/SKILL.md#cdrom-file-archive-croc-2-dir-wad-etc)<br/>
+[CDROM File Archive Headerless Archives](../cdrom-file-archives/SKILL.md#cdrom-file-archive-headerless-archives)<br/>
 Using archives can avoid issues with the PSX's poorly implemented ISO
 filesystem: The PSX kernel supports max 800h bytes per directory, and lacks
 proper caching for most recently accessed directories (additionally, some
@@ -57,21 +57,21 @@ archives can load the whole file/directory tree from continous sectors, which
 could be difficult in ISO filesystems).<br/>
 
 #### Compression
-[CDROM File Compression](cdromfileformats.md#cdrom-file-compression)<br/>
+[CDROM File Compression](../cdrom-file-compression/SKILL.md#cdrom-file-compression)<br/>
 
 #### Misc
-[CDROM File XYZ and Dummy/Null Files](cdromfileformats.md#cdrom-file-xyz-and-dummynull-files)<br/>
+[CDROM File XYZ and Dummy/Null Files](../cdrom-file-compression/SKILL.md#cdrom-file-xyz-and-dummynull-files)<br/>
 
 #### General CDROM Disk Images
-[CDROM Disk Images CCD/IMG/SUB (CloneCD)](cdromfileformats.md#cdrom-disk-images-ccdimgsub-clonecd)<br/>
-[CDROM Disk Images CDI (DiscJuggler)](cdromfileformats.md#cdrom-disk-images-cdi-discjuggler)<br/>
-[CDROM Disk Images CUE/BIN/CDT (Cdrwin)](cdromfileformats.md#cdrom-disk-images-cuebincdt-cdrwin)<br/>
-[CDROM Disk Images MDS/MDF (Alcohol 120%)](cdromfileformats.md#cdrom-disk-images-mdsmdf-alcohol-120)<br/>
-[CDROM Disk Images NRG (Nero)](cdromfileformats.md#cdrom-disk-images-nrg-nero)<br/>
-[CDROM Disk Image/Containers CDZ](cdromfileformats.md#cdrom-disk-imagecontainers-cdz)<br/>
-[CDROM Disk Image/Containers ECM](cdromfileformats.md#cdrom-disk-imagecontainers-ecm)<br/>
-[CDROM Subchannel Images](cdromfileformats.md#cdrom-subchannel-images)<br/>
-[CDROM Disk Images Other Formats](cdromfileformats.md#cdrom-disk-images-other-formats)<br/>
+[CDROM Disk Images CCD/IMG/SUB (CloneCD)](../cdrom-file-disc-images/SKILL.md#cdrom-disk-images-ccdimgsub-clonecd)<br/>
+[CDROM Disk Images CDI (DiscJuggler)](../cdrom-file-disc-images/SKILL.md#cdrom-disk-images-cdi-discjuggler)<br/>
+[CDROM Disk Images CUE/BIN/CDT (Cdrwin)](../cdrom-file-disc-images/SKILL.md#cdrom-disk-images-cuebincdt-cdrwin)<br/>
+[CDROM Disk Images MDS/MDF (Alcohol 120%)](../cdrom-file-disc-images/SKILL.md#cdrom-disk-images-mdsmdf-alcohol-120)<br/>
+[CDROM Disk Images NRG (Nero)](../cdrom-file-disc-images/SKILL.md#cdrom-disk-images-nrg-nero)<br/>
+[CDROM Disk Image/Containers CDZ](../cdrom-file-disc-images/SKILL.md#cdrom-disk-imagecontainers-cdz)<br/>
+[CDROM Disk Image/Containers ECM](../cdrom-file-disc-images/SKILL.md#cdrom-disk-imagecontainers-ecm)<br/>
+[CDROM Subchannel Images](../cdrom-file-disc-images/SKILL.md#cdrom-subchannel-images)<br/>
+[CDROM Disk Images Other Formats](../cdrom-file-disc-images/SKILL.md#cdrom-disk-images-other-formats)<br/>
 
 #### FILENAME.EXT
 The BIOS seems to support only (max) 8-letter filenames with 3-letter
@@ -586,7 +586,7 @@ can be 4bpp, 8bpp, or 16bpp).<br/>
 
 #### Compressed TIMs
 Ape Escape (Sony 1999) is using a customized TIM format with 4bpp compression:<br/>
-[CDROM File Compression TIM-RLE4/RLE8](cdromfileformats.md#cdrom-file-compression-tim-rle4rle8)<br/>
+[CDROM File Compression TIM-RLE4/RLE8](../cdrom-file-compression/SKILL.md#cdrom-file-compression-tim-rle4rle8)<br/>
 Other than that, TIMs can be compressed via generic compression functions (like
 LZSS, GZIP), or via bitmap dedicated compression formats (like BS, JPG, GIF).<br/>
 
@@ -684,8 +684,8 @@ texture/bitmap formats:<br/>
 ```
 
 #### Targa TGA and Paintbrush PCX
-[CDROM File Video Texture/Bitmap (TGA)](cdromfileformats.md#cdrom-file-video-texturebitmap-tga)<br/>
-[CDROM File Video Texture/Bitmap (PCX)](cdromfileformats.md#cdrom-file-video-texturebitmap-pcx)<br/>
+[CDROM File Video Texture/Bitmap (TGA)](#cdrom-file-video-texturebitmap-tga)<br/>
+[CDROM File Video Texture/Bitmap (PCX)](#cdrom-file-video-texturebitmap-pcx)<br/>
 
 #### PSI bitmap - Power Spike (MagDemo43: POWER\GAME.IDX\\*.BIZ\\*.PSI)
 ```
@@ -842,7 +842,7 @@ doesn't contain any bitmap/palette data for such blank regions.<br/>
 #### BMR Bitmaps
 These are 16bpp bitmaps, stored either in uncompressed .BMR files, or in
 compressed .RLE files:<br/>
-[CDROM File Compression RLE_16](cdromfileformats.md#cdrom-file-compression-rle_16)<br/>
+[CDROM File Compression RLE_16](../cdrom-file-compression/SKILL.md#cdrom-file-compression-rle_16)<br/>
 ```
   Apocalypse (MagDemo16: APOC\CD.HED\*.RLE and *.BMR)
   Spider-Man 1 older version (MagDemo31: SPIDEY\CD.HED\*.RLE)
@@ -1042,7 +1042,7 @@ WCW Mayhem (MagDemo28: WCWDEMO\\*.BIG\\*.PSH) (with chunk C0h/C1h = RefPack)<br/
   004h 2Ch  Unknown (reportedly Hot spot / Pix region, but differs on PSX?)
 ```
 The whole .PSH file or the bitmap chunks can be compressed:<br/>
-[CDROM File Compression EA Methods](cdromfileformats.md#cdrom-file-compression-ea-methods)<br/>
+[CDROM File Compression EA Methods](../cdrom-file-compression/SKILL.md#cdrom-file-compression-ea-methods)<br/>
 Variants of the .PSH format are also used on PC, PS2, PSP, XBOX (with other
 Chunk Types for other texture/palette formats, and for optional extra data).
 For details, see: <http://wiki.xentax.com/index.php/EA_SSH_FSH_Image>
