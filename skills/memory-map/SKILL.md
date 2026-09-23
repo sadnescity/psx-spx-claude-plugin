@@ -1,6 +1,6 @@
 ---
 name: memory-map
-description: "PSX Memory Map: KUSEG/KSEG0/KSEG1/KSEG2 regions, Main RAM (2MB), scratchpad, I/O ports, expansion regions, BIOS ROM, cache control. Address mirroring, memory exceptions, write queue behavior. Use when working with memory addresses, address translation, or RAM layout."
+description: "PSX Memory Map: KUSEG/KSEG0/KSEG1/KSEG2 regions, Main RAM (2MB), scratchpad, I/O ports, DEV0/DEV8/DEV1 expansion regions, BIOS ROM, cache control. i-cache organization (direct-mapped lines, physical tags, fill behavior, stale code after self-modification), address mirroring, memory exceptions, write queue behavior. Use when working with memory addresses, address translation, RAM layout, or instruction cache effects."
 ---
 
 #   Memory Map
@@ -8,11 +8,11 @@ description: "PSX Memory Map: KUSEG/KSEG0/KSEG1/KSEG2 regions, Main RAM (2MB), s
 ```
   KUSEG     KSEG0     KSEG1
   00000000h 80000000h A0000000h  2048K  Main RAM (first 64K reserved for BIOS)
-  1F000000h 9F000000h BF000000h  8192K  Expansion Region 1 (ROM/RAM)
+  1F000000h 9F000000h BF000000h  8192K  DEV0 expansion (ROM/RAM)
   1F800000h 9F800000h    --      1K     Scratchpad (D-Cache used as Fast RAM)
   1F801000h 9F801000h BF801000h  4K     I/O Ports
-  1F802000h 9F802000h BF802000h  8K     Expansion Region 2 (I/O Ports)
-  1FA00000h 9FA00000h BFA00000h  2048K  Expansion Region 3 (SRAM BIOS region for DTL cards)
+  1F802000h 9F802000h BF802000h  8K     DEV8 expansion (I/O Ports)
+  1FA00000h 9FA00000h BFA00000h  2048K  DEV1 expansion (SRAM BIOS region for DTL cards)
   1FC00000h 9FC00000h BFC00000h  512K   BIOS ROM (Kernel) (4096K max)
         FFFE0000h (in KSEG2)     0.5K   Internal CPU control registers (Cache Control)
 ```
@@ -47,18 +47,65 @@ remaining 1.5GB causes an exception).<br/>
 #### i-Cache
 The i-Cache can hold 4096 bytes, or 1024 instructions.<br/>
 It is only active in the cached regions (KUSEG and KSEG0).<br/>
-There are reportedly some restrictions... not sure there... eventually it is
-using the LSBs of the address as cache-line number... so, for example, it
-couldn't simultaneously memorize opcodes at BOTH address 80001234h, AND at
-address 800F1234h (?)<br/>
+The cache is direct-mapped with 256 lines of 4 words (16 bytes) each. The cache
+line index is determined by address bits [11:4], meaning addresses that differ
+only in bits [31:12] map to the same line. For example, 80001234h and 800F1234h
+both map to line 23h and cannot be cached simultaneously.<br/>
+
+##### Tag format
+Each cache line has a tag that stores the physical address and per-word valid
+bits:
+```
+  Tag = physical_address[31:12] | valid[3:0]
+```
+The tag stores the **physical** address, not the virtual address. KUSEG
+(00000000h) and KSEG0 (80000000h) accesses to the same physical location
+produce identical tags. KSEG1 (A0000000h) bypasses the cache entirely.<br/>
+The 4 valid bits correspond to the 4 words in the line. Bit 0 = word 0, bit 3 =
+word 3. A set bit means that word contains valid cached data. After a full line
+fill, all 4 bits are set (0Fh). After a tag-only flush, valid bits are cleared
+but code words remain in the cache SRAM.<br/>
+
+##### Fill behavior
+On a cache miss, the CPU fills the line sequentially **from the accessed word to
+the end of the line**, with no wrapping:
+```
+  Entry at word 0: fills words 0,1,2,3  (valid = 0Fh)
+  Entry at word 1: fills words 1,2,3    (valid = 0Eh)
+  Entry at word 2: fills words 2,3      (valid = 0Ch)
+  Entry at word 3: fills word 3 only    (valid = 08h)
+```
+The IBLKSZ field in the [BIU/Cache Configuration Register](../memory-control/SKILL.md#fffe0130h---bcc-biucache-configuration-register-rw)
+(bits 8-9 of FFFE0130h) limits the maximum burst length. With IBLKSZ=0 (2-word
+refill), entry at word 0 fills only words 0 and 1 (valid = 03h). Entry at words
+1, 2, or 3 is unaffected by IBLKSZ and always fills to end-of-line.<br/>
+When the tag matches but a specific word's valid bit is 0, the CPU treats it as
+a miss and performs a **full line refill** from RAM, replacing all 4 code words
+and setting valid to 0Fh. Consecutive fills to the same line (with matching
+tags) OR into the valid bits, progressively filling the line.<br/>
+
+##### Isolation and self-modifying code
+Store instructions (SW etc.) to RAM addresses do **not** affect the i-cache.
+The i-cache is completely independent of the data write path. Writing new code
+to a cached address (via either KSEG0 or KSEG1) leaves the i-cache contents
+unchanged. The CPU will continue to execute the stale cached instructions until
+the cache is explicitly flushed. This behavior is relied upon by some games
+(e.g. Formula One 2001) that loads new code over itself and expect the cache to
+serve old instructions until an explicit FlushCache syscall.<br/>
 
 #### Scratchpad
 MIPS CPUs usually have a d-Cache, but, in the PSX, Sony has assigned it as
 what's referenced as the "Scratchpad",  mapped to a fixed memory location at
 1F800000h..1F8003FFh, ie. it's used as Fast RAM, rather than as cache.<br/>
-There \<might\> be a way to disable that behavior (via Port FFFE0130h or
-so), but, the Kernel is accessing I/O ports via KUSEG, so activating Data Cache
-would cause the Kernel to access cached I/O ports.<br/>
+The scratchpad SRAM and the data cache hardware can be reconfigured via Port
+FFFE0130h: with bit 3 (RAM) cleared and bit 7 (DS) set, the scratchpad becomes
+a tag-less write-on-load buffer where every cached load spills its result into
+scratchpad at slot `(load_addr >> 2) AND 0FFh`. See the
+[BIU/Cache Configuration Register](../memory-control/SKILL.md#fffe0130h---bcc-biucache-configuration-register-rw)
+section for the full hardware-verified behavior. This mode is incompatible
+with normal kernel operation - the BIOS accesses I/O ports through KUSEG
+(cached) addresses, and activating the d-cache kernel-wide would attempt to
+cache I/O port reads.<br/>
 The purpose of the scratchpad is to have a more flexible cache system available
 to the programmer. Neither the kernel nor the Sony libraries will try to make use
 of it, so it is therefore completely up for grabs to the programmer. A good example
@@ -129,7 +176,7 @@ Therefore, using KSEG1 that disables the write queue is the only way to ensure t
 operations are done in the proper way.
 
 The above is valid for most of the hardware connected to the main CPU, such as the CDROM
-controller, exp1, exp2, the SPU, or the GPU. Therefore, using BF80180xh to access the
+controller, DEV0, DEV8, the SPU, or the GPU. Therefore, using BF80180xh to access the
 CDROM registers is more correct than using 1F80180xh.
 
 It is noteworthy that the Sony code will still incorrectly use KUSEG as the memory map
@@ -155,7 +202,7 @@ For Info on Exception vectors, Unused/Garbage memory locations, I/O Ports,
 Expansion ROM Headers, and Memory Waitstate Control, etc. see:<br/>
 [I/O Map](../io-map/SKILL.md)<br/>
 [Memory Control](../memory-control/SKILL.md)<br/>
-[EXP1 Expansion ROM Header](../expansion-port/SKILL.md#exp1-expansion-rom-header)<br/>
+[DEV0 Expansion ROM Header](../expansion-port/SKILL.md#dev0-expansion-rom-header)<br/>
 [BIOS Memory Map](../bios-file-cd-memcard/SKILL.md#bios-memory-map)<br/>
 [BIOS Memory Allocation](../bios-irq-threads-timer/SKILL.md#bios-memory-allocation)<br/>
 [COP0 - Exception Handling](../cpu/SKILL.md#cop0---exception-handling)<br/>

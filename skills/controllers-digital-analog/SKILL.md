@@ -1093,7 +1093,7 @@ For details on Timers, see:<br/>
 [Timers](../timers/SKILL.md)<br/>
 In some consoles, IRQ10 seems to be routed through a Secondary IRQ Controller,
 see:<br/>
-[EXP2 DTL-H2000 I/O Ports](../expansion-port/SKILL.md#exp2-dtl-h2000-io-ports)<br/>
+[DEV8 DTL-H2000 I/O Ports](../expansion-port/SKILL.md#dev8-dtl-h2000-io-ports)<br/>
 
 #### IRQ10 Priority
 For processing IRQ10 as soon as possible, it should be assigned higher priority

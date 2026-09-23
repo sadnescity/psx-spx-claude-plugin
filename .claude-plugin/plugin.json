@@ -1,7 +1,7 @@
 {
   "name": "psx-spx",
   "description": "Complete PSX hardware reference archived from psx-spx.consoledev.net. CPU, GPU, memory, DMA, CDROM, SPU, GTE, MDEC, controllers, BIOS, and more.",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "author": { "name": "psx-spx contributors (archived)" },
   "homepage": "https://psx-spx.consoledev.net",
   "license": "CC0-1.0"

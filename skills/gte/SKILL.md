@@ -12,6 +12,7 @@ description: "PSX GTE (Geometry Transformation Engine, COP2): data/control regis
 [GTE General Purpose Calculation Commands](#gte-general-purpose-calculation-commands)<br/>
 [GTE Color Calculation Commands](#gte-color-calculation-commands)<br/>
 [GTE Division Inaccuracy](#gte-division-inaccuracy)<br/>
+[GTE Pipeline Timings](../gte-pipeline-timings/SKILL.md)<br/>
 
 
 
@@ -221,12 +222,12 @@ does it have a move-on-write function...<br/>
 ```
 Used as Output for RTPS/RTPT, and as Input for various commands.<br/>
 
-#### XX...
+#### MAC0 - Sum of Products Value 0 (R/W)
 ```
   cop2r24  MAC0  rw|MAC0 1,31,0            | Sum of products value 0
 ```
 
-#### XX...
+#### MAC1..MAC3 - Sum of Products Values 1-3 (R/W)
 ```
   cop2r25  MAC1  rw|MAC1 1,31,0            | Sum of products value 1
   cop2r26  MAC2  rw|MAC2 1,31,0            | Sum of products value 2
@@ -274,8 +275,9 @@ See GTE Saturation chapter.<br/>
 Maths overflows are indicated in FLAG register. In most cases, the result is
 saturated to MIN/MAX values (except MAC0,MAC1,MAC2,MAC3 which aren't
 saturated). For IR1,IR2,IR3 many commands allow to select the MIN value via
-"lm" bit of the GTE opcode (though not all commands, RTPS/RTPT always act as if
-lm=0).<br/>
+"lm" bit of the GTE opcode (though for RTPS/RTPT, only the IR3 saturation flag
+(FLAG.22) always acts as if lm=0; the stored values of IR1, IR2, and IR3 all
+respect the lm bit).<br/>
 
 #### cop2r63 (cnt31) - FLAG - Returns any calculation errors.
 ```
@@ -394,9 +396,9 @@ sorted by their fake numbers gives a more or less well arranged list:<br/>
   1Eh  -          N/A
   1Fh  -          N/A
 ```
-For the sort-effect, DCPT should use fake=08h, but Sony seems to have
-accidently numbered it fake=0Fh in their devkit (giving it the same fake number
-as for NCDT). Also, "Wipeout 2097" accidently uses 0140006h (fake=01h and
+For the sort-effect, DPCT should use fake=08h, but Sony seems to have
+accidentally numbered it fake=0Fh in their devkit (giving it the same fake number
+as for NCDT). Also, "Wipeout 2097" accidentally uses 0140006h (fake=01h and
 distorted bit18) instead of 1400006h (fake=14h) for NCLIP.<br/>
 
 #### Additional Functions
@@ -404,7 +406,16 @@ The LZCS/LZCR registers offer a Count-Leading-Zeroes/Leading-Ones function.<br/>
 The IRGB/ORGB registers allow to convert between 48bit and 15bit RGB colors.<br/>
 These registers work without needing to send any COP2 commands. However, unlike
 for commands (which do automatically halt the CPU when needed), one must insert
-dummy opcodes between writing and reading the registers.<br/>
+dummy opcodes between writing and reading the registers. This is the general cop2
+register store delay, see "Caution - Store Delay" in the CPU chapter.<br/>
+For LZCS/LZCR the required gap was measured on hardware as 2 cached opcodes (or 1
+uncached opcode) between the MTC2 and the MFC2. With fewer, the MFC2 returns the
+result of the PREVIOUS LZCS write, and does so silently - the stale value is always
+a well-formed count in range 1..32, never a partial result.<br/>
+The count does not depend on the input value: leading-zero and leading-one runs of
+1..32 were swept, with popcount varied at fixed run length, and none of them move
+it. Verified on SCPH-1000, SCPH-1001, SCPH-5501 and SCPH-7001; not verified on PAL
+units. Note the measured unit is opcodes rather than cycles.<br/>
 
 
 
@@ -431,13 +442,15 @@ in the FLAG register gets set; that happens if the vertex is exceeding the
 at the camara position (SZ3=0), or behind the camera (negative Z coordinates
 are saturated to SZ3=0). For details on the division, see:<br/>
 [GTE Division Inaccuracy](#gte-division-inaccuracy)<br/>
+[GTE Pipeline Timings](../gte-pipeline-timings/SKILL.md)<br/>
 For "far plane clipping", one can use the SZ3 saturation flag (MaxZ=FFFFh), or
 the IR3 saturation flag (MaxZ=7FFFh) (eg. used by Wipeout 2097), or one can
 compare the SZ3 value with any desired MaxZ value by software.<br/>
-Note: The command does saturate IR1,IR2,IR3 to -8000h..+7FFFh (regardless of lm
-bit). When using RTP with sf=0, then the IR3 saturation flag (FLAG.22) gets set
-\<only\> if "MAC3 SAR 12" exceeds -8000h..+7FFFh (although IR3 is saturated
-when "MAC3" exceeds -8000h..+7FFFh).<br/>
+Note: IR1 and IR2 are saturated per the lm bit as normal. The IR3 saturation
+flag (FLAG.22) is always checked as if lm=0, while the stored IR3 is clamped
+from MAC3 per the actual lm bit. When using RTPS/RTPT with sf=0, FLAG.22 gets set
+\<only\> if "MAC3 SAR 12" exceeds -8000h..+7FFFh (although IR3 is set from
+MAC3 using the lm-dependent range).<br/>
 
 #### COP2 1400006h - 8 Cycles - NCLIP - Normal clipping
 ```
@@ -485,10 +498,12 @@ Multiplies a vector with either the rotation matrix, the light matrix or the
 color matrix and then adds the translation vector or background color vector.<br/>
 The GTE also allows selection of the far color vector (FC), but this vector is
 not added correctly by the hardware: The return values are reduced to the last
-portion of the formula, ie. MAC1=(Mx13\*Vx3) SAR (sf\*12), and similar for MAC2
-and MAC3, nethertheless, some bits in the FLAG register seem to be adjusted as
+two portions of the formula, ie. MAC1=(Mx12\*Vx2+Mx13\*Vx3) SAR (sf\*12), and similar for MAC2
+and MAC3, nevertheless, some bits in the FLAG register seem to be adjusted as
 if the full operation would have been executed. Setting Mx=3 selects a garbage
-matrix (with elements -60h, +60h, IR0, RT13, RT13, RT13, RT22, RT22, RT22).<br/>
+matrix (with elements `-R*10h, +R*10h, IR0, RT13, RT13, RT13, RT22, RT22, RT22`),
+where R is the red component of RGBC (ie. RGBC[0] multiplied by 10h, negated for
+the first element).<br/>
 
 #### COP2 0A00428h+sf\*80000h - 5 Cycles - SQR(sf) - Square vector
 ```
@@ -512,6 +527,9 @@ can be translated to "cross product", "vector product", or "outer product".<br/>
 
 #### LZCS/LZCR registers - ? Cycles - Count-Leading-Zeroes/Leading-Ones
 The LZCS/LZCR registers offer a Count-Leading-Zeroes/Leading-Ones function.<br/>
+The execution time above is unknown. Separately from it, the write to LZCS is
+subject to the cop2 store delay: 2 cached opcodes before reading LZCR. See
+"Additional Functions" above and "Caution - Store Delay" in the CPU chapter.<br/>
 
 
 
@@ -548,7 +566,7 @@ BK=Background color, and, for CDP, IR0=Interpolation value, FC=Far color.<br/>
 
 #### COP2 0680029h - 8 Cycles - DCPL - Depth Cue Color light
 #### COP2 0780010h - 8 Cycles - DPCS - Depth Cueing (single)
-#### COP2 0x8002Ah - 17 Cycles - DPCT - Depth Cueing (triple)
+#### COP2 0F8002Ah - 17 Cycles - DPCT - Depth Cueing (triple)
 #### COP2 0980011h - 8 Cycles - INTPL - Interpolation of a vector and far color
 In: [IR1,IR2,IR3]=Vector, FC=Far Color, IR0=Interpolation value, CODE=MSB of
 RGBC, and, for DCPL, R,G,B=LSBs of RGBC.<br/>
@@ -566,7 +584,7 @@ kept read from RGBC as usually), so, after DPCT execution, the RGB0,RGB1,RGB2
 Fifo entries are modified.<br/>
 
 #### COP2 190003Dh - 5 Cycles - GPF(sf,lm) - General purpose Interpolation
-#### COP2 1A0003Eh - 5 Cycles - GPL(sf,?) - General Interpolation with base
+#### COP2 1A0003Eh - 5 Cycles - GPL(sf,lm) - General Interpolation with base
 ```
   [MAC1,MAC2,MAC3] = [0,0,0]                            ;<--- for GPF only
   [MAC1,MAC2,MAC3] = [MAC1,MAC2,MAC3] SHL (sf*12)       ;<--- for GPL only
@@ -654,7 +672,7 @@ the GTE's unr\_table[000h..100h] consists of following values:<br/>
   07h,07h,06h,06h,05h,05h,04h,04h,03h,03h,02h,02h,01h,01h,00h,00h ;/
   00h    ;<-- one extra table entry (for "(d-7FC0h)/80h"=100h)    ;-100h
 ```
-Above can be generated as "unr\_table[i]=min(0,(40000h/(i+100h)+1)/2-101h)".<br/>
+Above can be generated as "unr\_table[i]=max(0,(40000h/(i+100h)+1)/2-101h)".<br/>
 Some special cases: NNNNh/0001h uses a big multiplier (d=20000h), in practice,
 this can occur only for 0000h/0001h and 0001h/0001h (due to the H\<SZ3\*2
 overflow check).<br/>

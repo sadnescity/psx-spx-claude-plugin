@@ -118,13 +118,13 @@ things the authors believe need more research:
 ## Register map
 
 All standard PS1 registers, with the exception of the CD-ROM drive's, are
-present and accessible. System 573-specific hardware is mapped into the EXP1
+present and accessible. System 573-specific hardware is mapped into the DEV0
 region at `0x1f000000`. IRQ10 and DMA5, normally reserved for the expansion bus
 (and lightguns) on a regular PS1, are used to access the ATAPI drive, while IRQ2
 and DMA3 go unused.
 
-**NOTE**: EXP1 must be configured prior to accessing any of these registers. The
-configuration value written by Konami's code to the EXP1 delay/size register at
+**NOTE**: DEV0 must be configured prior to accessing any of these registers. The
+configuration value written by Konami's code to the DEV0 delay/size register at
 `0x1f801008` is `0x24173f47`. Afterwards, *all* bus writes shall be 16 or 32
 bits wide. The behavior of 8-bit writes is undefined, but 8-bit reads work as
 intended.
@@ -789,7 +789,12 @@ In order to perform a JVS transaction the 573 must:
     packet and wait for a response from a device on the bus.
 4.  Wait for the status code to become 0, signalling a valid response has been
     received and can be read out. A timeout should be implemented here, as the
-    MCU will wait for a response indefinitely even if no device is present.
+    MCU will wait for a response indefinitely even if no device is present. The
+    MCU has no concept of a broadcast, so this also applies to the JVS reset
+    command: nothing on the bus answers a reset, so the MCU blocks on it forever
+    and `JVSDRDY` never drops again. The status and error codes read 1 and 3
+    throughout - busy, no error - and no further packet will be written out. The
+    only way out is resetting the MCU through bit 8 of `0x1f400000`.
 5.  Read the packet, again two bytes at a time, from `0x1f40000a`, waiting for
     `JVSIRDY` to go high before each read and clearing it by writing to
     `0x1f520000` after each read. The status code will be set to 2 after the

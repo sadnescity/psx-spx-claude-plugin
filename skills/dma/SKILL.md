@@ -32,8 +32,9 @@ getting interrupted by a higher priority DMA channel).<br/>
 In SyncMode=1 and SyncMode=2, the hardware does update MADR (it will contain
 the start address of the currently transferred block; at transfer end, it'll
 hold the end-address in SyncMode=1, or the end marker in SyncMode=2)<br/>
-Notes: Address bits 0-1 are writeable, but any updated current/end addresses are
-word-aligned with bits 0-1 forced to zero.<br/>
+Notes: Address bits 0-1 are writeable and the register keeps whatever was written
+to it. The hardware ignores the last two bits when issuing memory fetch commands,
+but the register itself still has the full value.<br/>
 The address counter wraps around when counting down from 000000h to FFFFFCh,
 leading to words after wraparound not being written to RAM (as FFFFFCh is past
 the default 8 MB main RAM region).<br/>
@@ -135,12 +136,17 @@ priority setting, then the priority is determined by the channel number
   31    Master interrupt flag (R)
 ```
 IRQ flags in bit (24+n) are set upon DMAn completion - but caution - they are
-set ONLY if enabled in bit (16+n) (unlike interrupt flags in I_STAT, which are
-always set regardless of whether the respective IRQ is masked).<br/>
-Bit 31 is a simple readonly flag that follows the following rules:<br/>
+set ONLY if BOTH bit (16+n) AND bit 23 are enabled (unlike interrupt flags in
+I_STAT, which are always set regardless of whether the respective IRQ is masked).<br/>
+Bit 31 is a simple readonly flag that is recalculated on every write to DICR:<br/>
 ```
-  IF b15=1 OR (b23=1 AND (b16-22 AND b24-30)>0) THEN b31=1 ELSE b31=0
+  IF b15=1 OR (b23=1 AND b(24-30)>0) THEN b31=1 ELSE b31=0
 ```
+Note that the per-channel enable bits (b16-22) do not factor into the bit 31
+calculation. They only gate whether a DMA completion sets the corresponding flag
+bit (b24-30). Once a flag bit is set, it contributes to the master flag
+regardless of whether the channel enable is still on. Flag bits persist until
+explicitly acknowledged by writing 1 to them.<br/>
 Upon 0-to-1 transition of Bit 31, the IRQ3 flag in I\_STAT gets set.<br/>
 Bits 24-30 are acknowledged (reset to zero) when writing a "1" to that bits (and
 additionally, IRQ3 must be acknowledged via I\_STAT).<br/>
@@ -183,11 +189,13 @@ is formatted like this:<br/>
   24-31 Number of extra words to transfer for this node
 ```
 
-The transfer is stopped once an end marker is reached. On some (earlier?) CPU
-revisions any address with bit 23 set will be interpreted as an end marker,
-while on other revisions all bits must be set (i.e. the address must be FFFFFF).
-This change was probably necessary as later CPU versions added support for up to
-16 MB RAM addressing, which made addresses in the 800000-FFFFFC range valid.<br/>
+The transfer is stopped once an end marker is reached, or an error occurs. The
+normal end marker is when all bits of the address is set, aka FFFFFFh. On a
+console with its default memory settings, any address above 8MB is invalid,
+so it is possible to stop a transfer by toggling the high bit to 1. This will
+trigger a DMA error, reflected into the DICR register. Some games might use
+this to end a DMA chain instead of the normal FFFFFFh marker, which obviously
+can't work when the memory settings of the console is set to 16MB.<br/>
 
 #### DMA Transfer Rates
 ```

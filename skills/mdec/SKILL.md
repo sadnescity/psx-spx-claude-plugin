@@ -112,6 +112,10 @@ unsigned parameter bytes for the Color Quant Table (used for Cb and Cr).<br/>
 The command is followed by 64 signed halfwords with 14bit fractional part, the
 values should be usually/always the same values (based on the standard JPEG
 constants, although, MDEC(3) allows to use other values than that constants).<br/>
+There is no usable scale matrix until MDEC(3) has been issued: software that
+never sends one decodes to flat mid-grey, so the table is not left in place by
+the BIOS. On the other hand, the Reset bit does NOT clear the scale matrix nor
+the quant tables, so they only need uploading once, not after every reset.<br/>
 
 #### MDEC(0) - No function
 This command has no function. Command bits 25-28 are reflected to Status bits
@@ -147,7 +151,7 @@ These commands act identical as MDEC(0).<br/>
   n=[src], src=src+2, k=0           ;get first entry, init dest addr k=0
   if n=FE00h then @@skip            ;ignore padding (FE00h as first halfword)
   q_scale=(n SHR 10) AND 3Fh        ;contains scale value (not "skip" value)
-  val=signed10bit(n AND 3FFh)*qt[k] ;calc first value (without q_scale/8) (?)
+  val=signed10bit(n AND 3FFh)*qt[k] ;calc first value (without q_scale/8)
  @@lop:
   if q_scale=0 then val=signed10bit(n AND 3FFh)*2   ;special mode without qt[k]
   val=minmax(val,-400h,+3FFh)            ;saturate to signed 11bit range
@@ -229,16 +233,16 @@ final fraction passed on to the y\_to\_mono stage.<br/>
       R=[Crblk+((x+xx)/2)+((y+yy)/2)*8], B=[Cbblk+((x+xx)/2)+((y+yy)/2)*8]
       G=(-0.3437*B)+(-0.7143*R), R=(1.402*R), B=(1.772*B)
       Y=[Yblk+(x)+(y)*8]
-      R=MinMax(-128,127,(Y+R))
-      G=MinMax(-128,127,(Y+G))
-      B=MinMax(-128,127,(Y+B))
+      R=(Y+R) AND 1FFh, G=(Y+G) AND 1FFh, B=(Y+B) AND 1FFh ;clip to signed 9bit
+      R=MinMax(-128,127,R)                   ;saturate from 9bit to signed 8bit
+      G=MinMax(-128,127,G)
+      B=MinMax(-128,127,B)
       if unsigned then BGR=BGR xor 808080h  ;aka add 128 to the R,G,B values
       dst[(x+xx)+(y+yy)*16]=BGR
     next x
   next y
 ```
-Note: The exact fixed point resolution for "yuv\_to\_rgb" is unknown. And,
-there's probably also some 9bit limit (similar as in "y\_to\_mono").<br/>
+Note: The exact fixed point resolution for "yuv\_to\_rgb" is unknown.<br/>
 
 #### y\_to\_mono
 ```

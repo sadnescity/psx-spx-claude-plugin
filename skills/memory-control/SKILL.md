@@ -1,6 +1,6 @@
 ---
 name: memory-control
-description: "PSX Memory Control registers: expansion base addresses, delay/size configuration for EXP1/EXP2/EXP3/BIOS/SPU/CDROM, COM_DELAY, RAM_SIZE, cache configuration (BIU register at FFFE0130h). Use when configuring memory timings or cache behavior."
+description: "PSX Memory Control registers: DEV0/DEV8 base addresses, delay/size configuration for DEV0/DEV1/DEV2 (BIOS)/DEV4 (SPU)/DEV5 (CDROM)/DEV8 (formerly EXP1/EXP2/EXP3), COM_DELAY, DRAM_CTRL (aka RAM_SIZE) and main RAM array organization, BIU/cache configuration register (FFFE0130h) including d-cache mode. Use when configuring memory timings, RAM size, or cache behavior."
 ---
 
 #   Memory Control
@@ -8,15 +8,15 @@ The Memory Control registers are initialized by the BIOS, and, normally
 software doesn't need to change that settings. Some registers are useful for
 expansion hardware (allowing to increase the memory size and bus width).<br/>
 
-#### 1F801000h - Expansion 1 Base Address (usually 1F000000h)
+#### 1F801000h - DEV0 Base Address (usually 1F000000h)
 ```
   0-23   Base address       (R/W)
   24-31  Fixed, always 1Fh  (R)
 ```
 The behavior of this register is somewhat inconsistent. Normally, the base
-address is forcefully aligned to the EXP1 region's size by masking off the
+address is forcefully aligned to the DEV0 region's size by masking off the
 bottommost N bits (where N = number of address lines, as set in register
-1F801008h). For instance, if the number of EXP1 address lines is set to 8,
+1F801008h). For instance, if the number of DEV0 address lines is set to 8,
 setting this register to 1F000000h or 1F0000FFh has the same effect.<br/>
 When performing a PIO DMA transfer, however, all bits of this register are
 output on the bus regardless of the currently set region size. The System 573
@@ -27,18 +27,18 @@ Note: presumably the masking lets the bus interface compute addresses quickly by
 replacing masked off bits with the LSBs of the incoming address value from the
 CPU, thus only requiring a few multiplexers instead of a full adder.<br/>
 
-#### 1F801004h - Expansion 2 Base Address (usually 1F802000h)
+#### 1F801004h - DEV8 Base Address (usually 1F802000h)
 Same as 1F801000h, however trying to use ANY other value than 1F802000h seems to
-disable the Expansion 2 region, rather than mapping it to the specified address
+disable the DEV8 region, rather than mapping it to the specified address
 (ie. Port 1F801004h doesn't seem to work).<br/>
-For Expansion 3, the address seems to be fixed (1FA00000h).<br/>
+For DEV1, the address seems to be fixed (1FA00000h).<br/>
 
-#### 1F801008h - Expansion 1 Delay/Size (usually 0013243Fh) (512Kbytes, 8bit bus) (573: 24173F47h)
-#### 1F80100Ch - Expansion 3 Delay/Size (usually 00003022h) (1 byte)
-#### 1F801010h - BIOS ROM Delay/Size (usually 0013243Fh) (512Kbytes, 8bit bus)
-#### 1F801014h - SPU Delay/Size (200931E1h) (use 220931E1h for SPU-RAM reads)
-#### 1F801018h - CDROM Delay/Size (00020843h or 00020943h)
-#### 1F80101Ch - Expansion 2 Delay/Size (usually 00070777h) (128 bytes, 8bit bus)
+#### 1F801008h - DEV0 Delay/Size (usually 0013243Fh) (512Kbytes, 8bit bus) (573: 24173F47h)
+#### 1F80100Ch - DEV1 Delay/Size (usually 00003022h) (1 byte)
+#### 1F801010h - DEV2 (BIOS ROM) Delay/Size (usually 0013243Fh) (512Kbytes, 8bit bus)
+#### 1F801014h - DEV4 (SPU) Delay/Size (200931E1h) (use 220931E1h for SPU-RAM reads)
+#### 1F801018h - DEV5 (CD-ROM) Delay/Size (00020843h or 00020943h)
+#### 1F80101Ch - DEV8 Delay/Size (usually 00070777h) (128 bytes, 8bit bus)
 ```
   0-3   Write Delay        (00h..0Fh=01h..10h Cycles)
   4-7   Read Delay         (00h..0Fh=01h..10h Cycles)
@@ -79,9 +79,9 @@ bfc00014 is still read using the old timings since reset, and then the instructi
 at bfc00018 is finally read using the sped up timings.
 
 Reads and writes access times aren't symmetrical, and are each controlled with
-their own values. By default, EXP1 will be set to 16 cycles when writing, which
+their own values. By default, DEV0 will be set to 16 cycles when writing, which
 is the slowest possible. If the programmer wants to write to a flash chip on
-EXP1, or communicate with a computer, speeding up write access is recommended.
+DEV0, or communicate with a computer, speeding up write access is recommended.
 
 The fastest a port could go would be by setting the lowest 16 bits to zero, which
 will result in 3 CPU cycles for a single byte access.
@@ -122,11 +122,11 @@ the CPU is doing Wide DMA reads, the low 16-bits of the address bus will become
 inputs.
 
 Trying to access addresses that exceed the selected size causes a bus exception.
-Maximum size would be Expansion 1 = 17h (8MB), BIOS = 16h (4MB), Expansion 2 =
-0Dh (8KB), Expansion 3 = 15h (2MB). Trying to select larger sizes would overlap
-the internal I/O ports, and crash the PSX. The Size bits seem to be ignored for
-SPU/CDROM. The SPU timings seem to be applied for both the 200h-byte SPU region
-at 1F801C00h and for the 200h-byte unknown region at 1F801E00h.<br/>
+Maximum size would be DEV0 = 17h (8MB), DEV2 = 16h (4MB), DEV8 = 0Dh (8KB),
+DEV1 = 15h (2MB). Trying to select larger sizes would overlap the internal I/O
+ports, and crash the PSX. The Size bits seem to be ignored for SPU/CDROM. The
+SPU timings seem to be applied for both the 200h-byte SPU region at 1F801C00h
+and for the 200h-byte unknown region at 1F801E00h.<br/>
 
 #### 1F801020h - COM\_DELAY / COMMON\_DELAY (00031125h or 0000132Ch or 00001325h)
 ```
@@ -154,56 +154,74 @@ If the access is done from code in (uncached) RAM, then 0..4 cycles are added
 to the Total value (the exact number seems to vary depending on the used COMx
 values or so).<br/>
 
-#### 1F801060h - RAM\_SIZE (R/W) (usually 00000B88h) (or 00000888h)
+#### 1F801060h - DRAM\_CTRL? (R/W) (usually 00000B88h) (or 00000888h)
 ```
-  0-2   Unknown (no effect)
-  3     Crashes when zero (except PU-7 and EARLY-PU-8, which <do> set bit3=0)
-  4-6   Unknown (no effect)
+  0-2   Unknown
+  3     /CAS and /WE wiring   (0=common /CAS with per-byte /WE, 1=per-byte /CAS with common /WE)
+  4-5   Refresh period        (0=256 cycles, 1=320 cycles, 2=384 cycles, 3=448 cycles)
+  6     Unknown
   7     Delay on simultaneous CODE+DATA fetch from RAM (0=None, 1=One Cycle)
-  8     Unknown (no effect) (should be set for 8MB, cleared for 2MB)
-  9     RAM chip size 1 (0=1MB or 2MB, 1=4MB or 8MB)
-  10    Enable /RAS1 bank (0=disable/bus fault on access, 1=enable)
-  11    RAM chip size 2 (0=1MB or 4MB, 1=2MB or 8MB)
-  12-15 Unknown (no effect)
-  16-31 Unknown (Garbage)
+  8     Unknown               (should be set for 8MB, cleared for 2MB)
+  9     RAM chip size 2       (chip size = 1MB << ((size2<<1) | size1))
+  10    Enable /RAS1 bank     (0=disable/bus fault on access, 1=enable)
+  11    RAM chip size 1
+  12-15 Unknown
+  16-31 Unused (Garbage)
 ```
 Possible values for bits 9-11 are:<br/>
 ```
   000 = 1MB bank on /RAS0 + 15MB unmapped
   001 = 4MB bank on /RAS0 + 12MB unmapped
-  010 = 1MB bank on /RAS0 + 1MB bank on /RAS1 (?) + 14MB unmapped
-  011 = 4MB bank on /RAS0 + 4MB bank on /RAS1 (?) + 8MB unmapped
+  010 = 1MB bank on /RAS0 + 1MB bank on /RAS1 + 14MB unmapped
+  011 = 4MB bank on /RAS0 + 4MB bank on /RAS1 + 8MB unmapped
   100 = 2MB bank on /RAS0 + 14MB unmapped
   101 = 8MB bank on /RAS0 + 8MB unmapped
-  110 = 2MB bank on /RAS0 + 2MB bank on /RAS1 (?) + 12MB unmapped
-  111 = 8MB bank on /RAS0 + 8MB bank on /RAS1 (?)
+  110 = 2MB bank on /RAS0 + 2MB bank on /RAS1 + 12MB unmapped
+  111 = 8MB bank on /RAS0 + 8MB bank on /RAS1
 ```
 The BIOS writes different values depending on the console revision:<br/>
 ```
 PU-7, EARLY-PU-8:
-  0B80h    Single 2MB bank (four 512Kx8 chips) on /RAS0
+  0B80h    Single 2MB bank (four 512Kx8 chips), byte masking via /WE
            (incorrectly set as an 8MB bank, correct setting would be 0880h)
 Later consoles:
-  0B88h    Single 2MB bank (one 512Kx32 chip) on /RAS0
+  0B88h    Single 2MB bank (one 512Kx32 chip), byte masking via /CAS
            (incorrectly set as an 8MB bank, correct setting would be 0888h)
 DTL-H2000, DTL-H2700, DTL-H2500:
-  0B88h    Single 8MB bank (four 2Mx8 chips) on /RAS0
+  0B88h    Single 8MB bank (four 2Mx8 chips), byte masking via /CAS
            (correctly set as 8MB)
 System 573 (700A01, 700B01 if ASIC revision bit = 1):
-  0C80h    Two 2MB banks (four 512Kx8 chips each) on /RAS0 and /RAS1 respectively
+  0C80h    Two 2MB banks (four 512Kx8 chips each), byte masking via /WE
            (correctly set as 4MB)
 System 573 (700B01 if ASIC revision bit = 0):
-  4788h    Two 4MB banks on /RAS0 and /RAS1 respectively
+  4788h    Two 4MB banks, byte masking via /CAS
            (probably an incorrect setting for the two alternate 1Mx16 RAM
            footprints on revision D of the PCB, labeled "DR16M16")
 ```
 "Unmapped" means that the CPU generates an exception when accessing that area.<br/>
-Note: Wipeout uses a BIOS function that changes RAM\_SIZE to 00000888h (ie. with
-corrected size of 2MB, and with the unknown Bit8 cleared). Gundam Battle
+Note: Wipeout uses a BIOS function that changes DRAM\_CTRL to 00000888h (ie.
+with corrected size of 2MB, and with the unknown Bit8 cleared). Gundam Battle
 Assault 2 does actually use the "8MB" space (with stacktop in mirrored RAM at
 807FFFxxh).<br/>
 Clearing bit7 causes many games to hang during CDROM loading on both EARLY-PU-8
 and LATE-PU-8 (but works on PU-18 through PM-41).<br/>
+
+#### Main RAM array organization
+The 2MB main RAM is organized as 2048 rows of 256 columns, 4 bytes per column,
+ie. 1024 bytes per row.<br/>
+The CPU address maps onto the array linearly:<br/>
+```
+  row    = addr[20:10]
+  column = addr[9:2]
+```
+So a 1KB-aligned block is exactly one DRAM row, and crossing a 1KB boundary
+crosses a row.<br/>
+The controller uses a closed-page policy between transactions: a fresh row
+address is emitted on every transaction, even when the previous transaction
+touched the same row. Fast-page mode applies only within a single burst, so
+there is no page-hit bonus for two separate accesses to the same row.<br/>
+Refresh is distributed, one row every 256 CPU cycles, sweeping all 2048 rows in
+roughly 15.5ms.<br/>
 
 #### FFFE0130h - BCC, BIU/Cache Configuration Register (R/W)
 ```
@@ -228,6 +246,27 @@ and LATE-PU-8 (but works on PU-18 through PM-41).<br/>
 Documented in chapter 14 of the datasheet for LSI's L64360, which specifically
 states it "includes the LR33300 Family Control Registers described in the
 CW33300 manual".<br/>
+IBLKSZ (bits 8-9) controls the i-cache refill burst length. With the default
+value of 1 (4-word), a cache miss at word 0 fills the entire 4-word line. With
+IBLKSZ=0 (2-word), a miss at word 0 fills only words 0 and 1. Misses at words
+1, 2, or 3 always fill from the accessed word to end-of-line regardless of
+IBLKSZ. See the [i-Cache](../memory-map/SKILL.md#i-cache) section for details on fill
+behavior and per-word valid bits.<br/>
+When TAG is set and IsC is set in COP0 SR, stores to the cache address space
+write to the i-cache tag memory. The stored value is:
+```
+  tag = (data AND 0Fh) OR (offset AND FFFFF000h)
+```
+The low 4 bits of the write data become the per-word valid bits. The upper
+address bits come from the **write offset**, not the data. Writing 0 at each
+line's base address (offset = line * 16) clears the valid bits while setting
+the address portion to 0, effectively invalidating the line. Code words are not
+affected by tag writes.<br/>
+TAG mode reads (loads with TAG set in BCC and IsC set) return the valid bits in
+bits [3:0] and a tag match result in bit [4]. Bit 4 is set if the stored tag's
+address field matches the read address. The upper bits [31:5] contain code word
+data that leaks through and should be ignored. TAG mode reads are primarily
+useful for diagnostics, not for normal cache management.<br/>
 Used primarily by the BIOS to flush the i-cache in combination with the COP0
 status register, like so:<br/>
 ```c
@@ -271,11 +310,37 @@ COP0_SR = sr;
 ```
 A usable version of this code
 [is available](https://github.com/pcsx-redux/nugget/blob/main/common/hardware/flushcache.s).<br/>
+##### "D-cache" mode (RAM=0, DS=1)
 Bit 3 may be cleared to unmap the scratchpad from memory and use it as a data
-cache instead, however doing so will result in erratic behavior due to it not
-being equipped with tag memory; each cache line's "tag" seems to be hardcoded to
-its respective scratchpad address instead. With bit 3 cleared, data in the
-scratchpad will be updated during CPU loads but no cache hits will ever occur.<br/>
-Bits 4-5 seem to have no effect whatsoever. The CPU will always fetch one word
-at a time from RAM, rather than attempting to prefetch an entire line using a
-burst read (as it does with the i-cache).<br/>
+cache instead, however doing so produces an unusual fill behavior due to the
+scratchpad SRAM not being equipped with tag memory; each cache line's "tag" is
+hardcoded to its respective scratchpad address. The address tag of any
+non-scratchpad load will therefore never match, and every load is a cache miss
+that fills scratchpad as a side effect.<br/>
+The miss-fill writes the loaded word into scratchpad at slot
+`(load_byte_addr >> 2) AND 0FFh`. The fill is **word-granular** regardless of
+load width: `lb`, `lh`, and `lw` all populate the full word containing the
+accessed byte/half. Each load produces exactly one word fill - there is no
+burst behavior. The most useful pattern in this mode is loading a 1KB block
+from main RAM into scratchpad with a sequence of `lw` instructions, saving
+the explicit `sw` to scratchpad that a manual copy would require.<br/>
+The mechanism has several specific characteristics, all hardware-verified on
+SCPH-5501:<br/>
+- The cache **never produces a true hit**. Every load is a miss-fill, even
+immediately after a previous load filled the same slot. If main RAM is
+modified between two loads of the same address (e.g. via the uncached KSEG1
+mirror), the second load sees the new RAM value.
+- **KSEG1 (uncached) loads bypass the d-cache entirely.** They do not fill
+scratchpad.
+- **Stores do not spill into scratchpad.** Only loads do. Stores in this mode
+go to main RAM (or the targeted I/O) without touching scratchpad.
+- Reads or writes targeting the scratchpad address range
+(1F800000h..1F8003FFh) **deadlock the bus** in this mode. With scratchpad
+disabled by RAM=0, those addresses no longer have a normal responder.
+Recovery requires a power cycle.
+- Bits 4-5 (DBLKSZ) have no effect on fill behavior in this mode, and seem
+to have no effect in normal scratchpad mode either. The CPU will always
+fetch one word at a time from RAM, rather than attempting to prefetch an
+entire line using a burst read (as it does with the i-cache).
+- Bits 0-2 (LOCK / INV / TAG) are inert when COP0 SR.IsC is clear.
+- COP0 SR.SwC has no observable effect on this behavior.<br/>

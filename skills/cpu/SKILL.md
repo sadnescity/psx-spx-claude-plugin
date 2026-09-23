@@ -1,6 +1,6 @@
 ---
 name: cpu
-description: "PSX CPU (MIPS R3000A): registers (R0-R31, HI/LO, PC), opcode encoding, load/store/ALU/jump/coprocessor opcodes, pseudo opcodes, COP0 exception handling, debug registers. Use when writing or analyzing MIPS assembly, understanding instruction encoding, or debugging exceptions."
+description: "PSX CPU (MIPS R3000A): registers (R0-R31, HI/LO, PC), opcode encoding, load/store/ALU/jump/coprocessor opcodes, load delay, load timing and load shadow, pseudo opcodes, COP0 exception handling, debug registers. Use when writing or analyzing MIPS assembly, understanding instruction encoding, or debugging exceptions."
 ---
 
 #   CPU Specifications
@@ -182,6 +182,45 @@ opcode, in that case the load would complete during IRQ handling, and so, the
 next opcode would receive the NEW value).<br/>
 MFC2/CFC2 also have a 1-instruction delay until the target register is loaded with its new value (more info in the GTE section).<br/>
 
+#### Load Timing
+As mentioned above, the PSX has no data cache, so every load reads through to
+memory and halts the CPU until the data arrives. The number of CPU cycles per
+lw (including the 1-cycle issue; the load-delay slot is separate) depends on
+what is accessed (measured on hardware):
+```
+  Scratchpad (1F800000h..)      1 cycle    ;on-chip SRAM, no bus access
+  On-die I/O (IRQ/DMA/timers)   5 cycles   ;one shared decoder
+  Main RAM (KUSEG/KSEG0/KSEG1)  7 cycles   ;plus occasional DRAM-refresh stalls
+  BIOS ROM (1FC00000h..)        27..33     ;8bit ROM, programmable bus delay
+```
+The scratchpad is the (otherwise unused) data-cache SRAM addressed directly, so
+it reads as fast as a register. All on-die I/O registers read at the same 5
+cycles regardless of which one, as they share a single decoder. Cached (KSEG0)
+and uncached (KSEG1) accesses to main RAM cost the same, as there's no data
+cache to speed up the "cached" mirror. The main RAM figure is slightly variable:
+DRAM refresh cycles occasionally collide with a read and stall it for a few
+extra cycles, so a tight read loop averages a little above 7 cycles. The BIOS
+ROM figure varies between consoles, as the ROM bus delay is programmable via the
+memory-control registers.<br/>
+
+#### Load Shadow
+The "CPU halted until the data arrives" above is only partly true for a slow
+load: the bus access overlaps the following instructions, as long as they don't
+use the loaded register and don't start another bus access. The overlap is not
+complete, though. Following an on-die load (5 cycles back-to-back) with N
+independent nops, and measuring the cost beyond those nops:
+```
+  lw + 0 nop     +4 cycles/load   ;back-to-back, nothing to overlap
+  lw + 1..3 nop  falling
+  lw + 4 nop     +2 cycles/load   ;overlap saturated
+  lw + 7 nop     +2 cycles/load   ;no further improvement
+```
+So roughly half of the access hides behind trailing independent instructions,
+and about 2 cycles/load of bus occupancy remains no matter how much unrelated
+work follows (saturating after about 4 instructions). A load followed by enough
+unrelated work therefore costs about 3 cycles (1 issue plus ~2 irreducible)
+rather than the full 5.<br/>
+
 #### Store instructions
 ```
   sb  rt,imm(rs)    [imm+rs]=(rt AND FFh)   ;store 8bit
@@ -240,7 +279,7 @@ can transfer all fragments of Rt at once (including for odd 24bit amounts). The
 transferred data is not zero- or sign-expanded, eg. when transferring 8bit
 data, the other 24bit of Rt and [mem] will remain intact.<br/>
 
-Note: The aligned variant can also misused for blocking memory access on
+Note: The aligned variant can also be misused for blocking memory access on
 aligned addresses (in that case, if the address is known to be aligned, only
 one of the opcodes are needed, either LWL or LWR).... Uhhhhhhhm, OR is that NOT
 allowed... more PROBABLY that doesn't work?<br/>
@@ -600,11 +639,16 @@ ExcCode values:
             interrupts are allowed to cause an exception.
   16    Isc Isolate Cache (0=No, 1=Isolate)
               When isolated, all load and store operations are targetted
-              to the Data cache, and never the main memory.
-              (Used by PSX Kernel, in combination with Port FFFE0130h)
+              to the cache instead of main memory. Which cache is accessed
+              depends on the BCC register (FFFE0130h): with TAG+IS1, stores
+              go to i-cache tag memory; with IS1 only, stores go to i-cache
+              code words. (Used by PSX Kernel, in combination with Port
+              FFFE0130h)
   17    Swc Swapped cache mode (0=Normal, 1=Swapped)
-              Instruction cache will act as Data cache and vice versa.
-              Use only with Isc to access & invalidate Instr. cache entries.
+              Documented as swapping instruction and data caches. Hardware
+              testing shows no observable effect on PSX: IsC+SwC produces
+              identical results to IsC alone for both TAG and code word
+              reads/writes. The PSX kernel does not use this bit.
               (Not used by PSX Kernel)
   18    PZ  When set cache parity bits are written as 0.
   19    CM  Shows the result of the last load operation with the D-cache

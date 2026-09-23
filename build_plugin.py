@@ -39,7 +39,7 @@ OUTPUT_DIR = os.environ.get("PSX_SPX_SKILLS", os.path.join(SCRIPT_DIR, "skills")
 #             The top-level name/description are unused for split entries.
 
 SKILLS = [
-    # ── Intact pages (19) ──────────────────────────────────────────────
+    # ── Intact pages (22) ──────────────────────────────────────────────
     {
         "name": "gpu",
         "source": "graphicsprocessingunitgpu.md",
@@ -48,7 +48,7 @@ SKILLS = [
     {
         "name": "spu",
         "source": "soundprocessingunitspu.md",
-        "description": "PSX SPU (Sound Processing Unit): ADPCM samples/pitch, volume/ADSR envelopes, voice flags, noise generator, control/status registers, SPU RAM access, reverb, IRQ. Use when working with audio, sound effects, music playback, or SPU registers.",
+        "description": "PSX SPU (Sound Processing Unit): ADPCM samples/pitch, volume/ADSR envelopes, voice flags (KON/KOF/ENDX/PMON/NON/EON), noise generator, ATTR control and STATX status registers (official names, formerly SPUCNT/SPUSTAT), SPU RAM access, reverb and its precision, IRQ. Use when working with audio, sound effects, music playback, or SPU registers.",
     },
     {
         "name": "cheat-devices",
@@ -63,7 +63,7 @@ SKILLS = [
     {
         "name": "cpu",
         "source": "cpuspecifications.md",
-        "description": "PSX CPU (MIPS R3000A): registers (R0-R31, HI/LO, PC), opcode encoding, load/store/ALU/jump/coprocessor opcodes, pseudo opcodes, COP0 exception handling, debug registers. Use when writing or analyzing MIPS assembly, understanding instruction encoding, or debugging exceptions.",
+        "description": "PSX CPU (MIPS R3000A): registers (R0-R31, HI/LO, PC), opcode encoding, load/store/ALU/jump/coprocessor opcodes, load delay, load timing and load shadow, pseudo opcodes, COP0 exception handling, debug registers. Use when writing or analyzing MIPS assembly, understanding instruction encoding, or debugging exceptions.",
     },
     {
         "name": "gte",
@@ -73,7 +73,7 @@ SKILLS = [
     {
         "name": "expansion-port",
         "source": "expansionportpio.md",
-        "description": "PSX Expansion Port (PIO): EXP1/EXP2/EXP3 regions, ROM header, DUART (SCN2681), DTL-H2000 dev board I/O, emulation expansions (Nocash, PCSX-Redux). Use when working with expansion hardware or dev board features.",
+        "description": "PSX Expansion Port (PIO): DEV0/DEV8/DEV1 regions (formerly EXP1/EXP2/EXP3), ROM header, DUART (SCN2681), DTL-H2000 dev board I/O (ATCONS, POST/LED), emulation expansions (Nocash, PCSX-Redux). Use when working with expansion hardware or dev board features.",
     },
     {
         "name": "hardware-numbers",
@@ -93,17 +93,17 @@ SKILLS = [
     {
         "name": "memory-control",
         "source": "memorycontrol.md",
-        "description": "PSX Memory Control registers: expansion base addresses, delay/size configuration for EXP1/EXP2/EXP3/BIOS/SPU/CDROM, COM_DELAY, RAM_SIZE, cache configuration (BIU register at FFFE0130h). Use when configuring memory timings or cache behavior.",
+        "description": "PSX Memory Control registers: DEV0/DEV8 base addresses, delay/size configuration for DEV0/DEV1/DEV2 (BIOS)/DEV4 (SPU)/DEV5 (CDROM)/DEV8 (formerly EXP1/EXP2/EXP3), COM_DELAY, DRAM_CTRL (aka RAM_SIZE) and main RAM array organization, BIU/cache configuration register (FFFE0130h) including d-cache mode. Use when configuring memory timings, RAM size, or cache behavior.",
     },
     {
         "name": "sio",
         "source": "serialinterfacessio.md",
-        "description": "PSX Serial Interfaces (SIO): SIO0 (controller/memory card) and SIO1 (external serial) registers - TX/RX data, status, mode, control, baud rate. Link cable games list. Use when working with serial communication, controller protocol, or link cable.",
+        "description": "PSX Serial Interfaces (SIO): SIO0 (controller/memory card) and SIO1 (external serial) registers - DR data, SR status, MR mode, CR control, BR baud rate (official names; formerly SIO_TX/RX_DATA, SIO_STAT/MODE/CTRL/BAUD). Link cable games list. Use when working with serial communication, controller protocol, or link cable.",
     },
     {
         "name": "io-map",
         "source": "iomap.md",
-        "description": "PSX I/O Map: complete register address listing for all hardware - memory control, peripherals, interrupts, DMA, timers, CDROM, GPU, MDEC, SPU voices/control/reverb, expansion regions, BIOS. Use as quick reference to find which address maps to which hardware register.",
+        "description": "PSX I/O Map: complete register address listing for all hardware - system bus interface, DRAM controller, peripherals, interrupts, DMA, timers, CDROM, GPU, MDEC, SPU voices/control/reverb, DEV0/DEV8/DEV1 expansion regions, BIOS, CW33300 CPU configuration, plus a table mapping legacy nocash register names to official ones. Use as quick reference to find which address maps to which hardware register, or to translate old register names.",
     },
     {
         "name": "dma",
@@ -123,17 +123,32 @@ SKILLS = [
     {
         "name": "memory-map",
         "source": "memorymap.md",
-        "description": "PSX Memory Map: KUSEG/KSEG0/KSEG1/KSEG2 regions, Main RAM (2MB), scratchpad, I/O ports, expansion regions, BIOS ROM, cache control. Address mirroring, memory exceptions, write queue behavior. Use when working with memory addresses, address translation, or RAM layout.",
+        "description": "PSX Memory Map: KUSEG/KSEG0/KSEG1/KSEG2 regions, Main RAM (2MB), scratchpad, I/O ports, DEV0/DEV8/DEV1 expansion regions, BIOS ROM, cache control. i-cache organization (direct-mapped lines, physical tags, fill behavior, stale code after self-modification), address mirroring, memory exceptions, write queue behavior. Use when working with memory addresses, address translation, RAM layout, or instruction cache effects.",
     },
     {
         "name": "timers",
         "source": "timers.md",
-        "description": "PSX Timers (Root Counters): Timer 0-2 registers - current value, counter mode (sync, reset, IRQ, clock source), target value. Dotclock/Hblank sources, reset/wrap behavior. Use when working with timer interrupts, vsync timing, or frame counting.",
+        "description": "PSX Timers (Root Counters): Timer 0-2 registers - COUNT current value, MODE counter mode (sync, reset, IRQ, clock source), COMP target value. Dotclock/Hblank sources, reset/wrap behavior. Use when working with timer interrupts, vsync timing, or frame counting.",
     },
     {
         "name": "interrupts",
         "source": "interrupts.md",
         "description": "PSX Interrupts: I_STAT and I_MASK registers, IRQ list (VBLANK, GPU, CDROM, DMA, Timer0-2, Controller/MemCard, SIO, SPU, Lightgun), edge-triggered behavior, acknowledge sequence, COP0 interrupt handling. Use when working with interrupt handlers or IRQ configuration.",
+    },
+    {
+        "name": "gte-pipeline-timings",
+        "source": "gtepipelinetimings.md",
+        "description": "PSX GTE pipeline timings (hardware-measured): per-instruction, per-input-register latch points, i.e. how many instruction slots after a COP2 command (RTPS/RTPT, NCLIP, NCDS/NCCT, DPCS, MVMVA, SQR, AVSZ, ...) an MTC2/CTC2 to an input register can no longer affect the result; far color/RGBC latching, triple-vertex variants, caveats. Use when overlapping CPU work with GTE commands, scheduling MTC2/CTC2 after cop2, or making an emulator's GTE register timing cycle-accurate.",
+    },
+    {
+        "name": "partial-word-writes",
+        "source": "partialwordwrites.md",
+        "description": "PSX partial-word writes to MMIO (hardware-measured): what sb/sh/swl/swr/sw really latch on on-die I/O registers (IRQ, DMA, GPU, MDEC: byte enables ignored, full shifted word written) versus SBUS devices (SPU 16-bit: sw also writes the neighbor register, sb to odd bytes dropped), BIU dispatch rules, summary table per op and byte offset. Use when writing I/O registers with byte/halfword stores, debugging clobbered neighboring registers, or emulating narrow MMIO writes.",
+    },
+    {
+        "name": "dev-boards-protocol",
+        "source": "psxdevboardprotocol.md",
+        "description": "PSX dev-board host protocol (DTL-H2000/H2500/H2700): ISA I/O port map and status/control/mode/reset registers, DECI command buffer format and command table, boot modes, connection/reset sequences, PCDRV host file access, SNPATCH debug stub, target execution, CPE executable format, console mode, H2700 Performance Analyzer (ports, capture frames, .PAD files). Use when talking to a dev board from the host, implementing DECI/PCDRV, or decoding Performance Analyzer captures.",
     },
     # ── Split pages (9 source files → 21 skills) ──────────────────────
     {
@@ -250,14 +265,14 @@ SKILLS = [
         "splits": [
             {
                 "name": "pocketstation-hardware",
-                "description": "Pocketstation hardware: ARM7TDMI CPU, I/O map, memory map (2KB RAM, 128KB flash), LCD/buzzer, interrupts, timers, RTC, infrared, SIO/IrDA communication, power control, battery. Use when working with Pocketstation hardware or peripherals.",
+                "description": "Pocketstation hardware: ARM7TDMI CPU, I/O map, official Sony register names (PDA Hardware Spec), memory map (2KB RAM, 128KB flash), LCD/buzzer, interrupts, timers, RTC, infrared, SIO/IrDA communication, power control, battery/low-voltage detection. Use when working with Pocketstation hardware or peripherals.",
                 "start_heading": None,
-                "end_heading": "Pocketstation SWI Function Summary",
+                "end_heading": "Pocketstation Official Sony Kernel and SWI Reference",
             },
             {
                 "name": "pocketstation-software",
-                "description": "Pocketstation software: SWI function reference (misc, comms, execute, date/time, flash), BU protocol commands (standard memory card + Pocketstation extensions), file header/icon format, XBOO cable upload. Use when working with Pocketstation software, BIOS calls, or memory card protocol.",
-                "start_heading": "Pocketstation SWI Function Summary",
+                "description": "Pocketstation software: official Sony kernel/SWI reference (system call table, PDA/UI status buffers, file transfer callback, reset state), SWI function reference (misc, comms, execute, date/time, flash), BU protocol commands (standard memory card + Pocketstation extensions), file header/icon format, XBOO cable upload. Use when working with Pocketstation software, kernel/BIOS calls, or memory card protocol.",
+                "start_heading": "Pocketstation Official Sony Kernel and SWI Reference",
                 "end_heading": None,
             },
         ],

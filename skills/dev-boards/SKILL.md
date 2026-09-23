@@ -81,7 +81,7 @@ description: "PSX development board chipsets: DTL-H2000/H2500/H2700 boards, blue
   U715  20pin 74HC244AP    (dual 4-bit 3-state noninverting buffer/line driver)
   JPxx 100pin Blue connector (to other ISA board)
   U738  20pin LVT244 (SMD) (dual 4-bit 3-state noninverting buffer/line driver)
-  U734  32pin KM684000G-7 (SRAM 512Kx8)         ;\maybe 1Mbyte EXP3 RAM ?
+  U734  32pin KM684000G-7 (SRAM 512Kx8)         ;\maybe 1Mbyte DEV1 RAM ?
   U733  32pin KM684000G-7 (SRAM 512Kx8)         ;/
   U725  20pin SN74ALS688N  (8bit inverting identity comparator with enable)
   S700  24pin 12bit DIP switch  (select I/O Address bits A15..A4)
@@ -179,18 +179,24 @@ daughterboard with Controller ports).<br/>
   X302     3pin 4.000MHz (for sub-cpu)
 ```
 
-#### Sony DTL-H2700 Dev board (ISA bus) (CPU, ANALYZER ...?)
-Another revision of the DTL-H2000/DTL-H2500 boards. Consists of a single ISA
-card stacked together with two huge daughterboards, and probably additionally
-having a small connector daughterboard. Exact chipset is unknown (there might
-be components on both sides of the PCBs, most of them not visible due to the
-PCB stacking, so taking photos/scans of the PCBs would require advanced
-techniques with screwdrivers).<br/>
-Currently the only known chip name is an EPROM (MX 27C1000DC-90, with sticker
-"Title=DTL-H2700, Ver=1.00, Date=96.12.4, Sum=046B No."). The ISA card is
-having markings: "SONY HCD MWB-7? MADE IN JAPAN, PA47 1-589-003-01 1642E03A0".<br/>
-One uncommon feature is an extra connector for a "trigger switch" (foot pedal),
-which is reportedly used for activating performance analyzer logging.<br/>
+#### Sony DTL-H2700 Dev board (ISA bus) (CPU + Performance Analyzer)
+An ISA-bus development board identical to the DTL-H2000 but with an additional
+Performance Analyzer (bus logic analyzer) on two daughterboards. Consists of a
+main ISA card stacked with two large daughterboards (the PA hardware) and a
+small connector daughterboard. Occupies the equivalent of three ISA slots.
+Exact chipset is mostly unknown due to PCB stacking making components
+inaccessible.<br/>
+Known chips: EPROM (MX 27C1000DC-90, sticker "Title=DTL-H2700, Ver=1.00,
+Date=96.12.4, Sum=046B No."). ISA card markings: "SONY HCD MWB-7? MADE IN
+JAPAN, PA47 1-589-003-01 1642E03A0".<br/>
+Uses ISA I/O ports at a DIP-switch configurable base address (factory default
+0x1340). The DECI debugger uses 8 ports at base+0 through base+7 (shared with
+DTL-H2000). The Performance Analyzer uses 2 additional ports at base+0xC and
+base+0xE. No DMA is required. IRQ is optional (valid: 10, 11, 12, 15).<br/>
+An extra connector provides input for a "trigger switch" (foot pedal) used to
+activate performance analyzer capture.<br/>
+For the DECI protocol, PCDRV, and Performance Analyzer interface details, see
+[PSX Dev-Board Protocol](../dev-boards-protocol/SKILL.md).<br/>
 
 #### Sony DTL-H201A / DT-HV - Graphic Artist Board (IBM PC/ATs to NTSC video)
 ```
@@ -355,7 +361,7 @@ ordered 1,2,3,4,..,39,40, but on DTL-H2010 side they should be ordered
 2,1,4,3,..,40,39.<br/>
 
 #### Sony DTL-H2510 (Gray Internal CDROM Drive)
-This is some sort of a mimmicked front loading PC CDROM drive (consisting of a
+This is some sort of a mimicked front loading PC CDROM drive (consisting of a
 tray that contains a normal (top-loading) PSX cdrom drive unit).<br/>
 ```
   IC309 80pin Sony CXD2510Q (CDROM Signal Processor)
@@ -367,7 +373,7 @@ tray that contains a normal (top-loading) PSX cdrom drive unit).<br/>
 There is no eject button, unknown if there's some eject motor, or if one
 needs to push/pull the drive tray manually.<br/>
 
-#### Sony SCPH-9903 (Gray SCEx-free Playstation)
-A rare SCEx-free Playstation that can boot from CDR's without SCEx strings;
+#### Sony SCPH-9903 (Gray SCEx-free PlayStation)
+A rare SCEx-free PlayStation that can boot from CDR's without SCEx strings;
 maybe intended for beta-testers. Marked "Property of Sony Computer
 Entertainment", "U/C".<br/>
